@@ -6,28 +6,35 @@
   <title>ToolNext — All your everyday tools in one place</title>
   <meta name="description" content="ToolNext — Fast, secure & mobile-friendly web utilities: Word Counter, Image Compressor, PDF Tools, QR Generator, Text-to-Speech and more. Privacy-first." />
   <meta name="keywords" content="ToolNext, online tools, word counter, image compressor, qr generator, pdf tools, text to speech" />
+  <meta name="author" content="ToolNext" />
   <meta name="theme-color" content="#4F46E5" />
-  <link rel="canonical" href="https://toolnext.example/" />
+  <link rel="canonical" href="https://toolnextt.github.io/" />
   <!-- Open Graph -->
   <meta property="og:title" content="ToolNext — Premium Web Utilities" />
   <meta property="og:description" content="Fast, privacy-first tools that run in your browser. Text tools, image tools, PDF and utilities — no installs." />
   <meta property="og:type" content="website" />
   <!-- Fonts & icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide icons -->
   <script defer src="https://unpkg.com/lucide-icons@latest/dist/umd/lucide.min.js"></script>
 
   <style>
-    /* ---------- BASE / THEME ---------- */
+    /* ---------- THEME & BASE ---------- */
     :root{
-      --bg:#f7fafc; --surface:#ffffff; --text:#0b1220; --muted:#6b7280;
-      --primary:#4F46E5; --accent:#22D3EE; --radius:16px;
+      --bg: #f7fafc;
+      --surface: #ffffff;
+      --text: #071026;
+      --muted: #6b7280;
+      --primary: #4F46E5;
+      --accent: #22D3EE;
+      --radius: 16px;
       --card-shadow: 0 10px 30px rgba(2,6,23,0.06);
     }
     [data-theme="dark"]{
       --bg:#071026; --surface:#0f1724; --text:#e6eef8; --muted:#97a7bd;
-      --primary:#7c5cff; --accent:#22d3ee;
-      --card-shadow: 0 18px 50px rgba(2,6,23,0.55);
+      --primary:#7c5cff; --accent:#22D3EE; --card-shadow: 0 18px 50px rgba(2,6,23,0.55);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -38,16 +45,15 @@
     .container{max-width:1180px;margin:28px auto;padding:0 20px}
 
     /* ---------- HEADER ---------- */
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:14px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 0;position:relative}
+    .brand{display:flex;align-items:center;gap:12px}
     .mark{
       width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
       background:linear-gradient(135deg,var(--primary),#a78bfa);color:white;font-weight:800;font-size:18px;
       box-shadow:0 12px 40px rgba(79,70,229,0.12)
     }
-    .brand .meta{line-height:1}
-    .brand .meta .title{font-weight:800;font-size:18px;color:var(--primary)}
-    .brand .meta .sub{font-size:12px;color:var(--muted);margin-top:3px}
+    .meta .title{font-weight:800;font-size:18px;color:var(--primary)}
+    .meta .sub{font-size:12px;color:var(--muted);margin-top:3px}
 
     nav.desktop{display:flex;gap:18px;align-items:center}
     nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600}
@@ -56,23 +62,22 @@
     .header-actions{display:flex;gap:10px;align-items:center}
     .btn{background:var(--primary);color:white;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700;box-shadow:0 10px 30px rgba(79,70,229,0.12)}
     .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,42,0.06);box-shadow:none}
-    .icon-btn{background:transparent;border:0;padding:6px;border-radius:10px;cursor:pointer;color:var(--muted)}
 
-    /* mobile menu */
-    .hamburger{display:none;background:transparent;border:0;font-size:22px;cursor:pointer;color:var(--muted)}
-    .mobile-menu{display:none;position:absolute;top:72px;left:20px;right:20px;background:var(--surface);border-radius:12px;padding:12px;box-shadow:var(--card-shadow)}
+    .icon-btn{background:transparent;border:0;padding:6px;border-radius:10px;cursor:pointer;color:var(--muted)}
+    .hamburger{display:none;background:transparent;border:0;font-size:20px;cursor:pointer;color:var(--muted)}
+
+    .mobile-menu{display:none;position:absolute;top:74px;left:18px;right:18px;background:var(--surface);border-radius:12px;padding:10px;box-shadow:var(--card-shadow);z-index:60}
 
     /* ---------- HERO ---------- */
-    .hero{display:flex;gap:28px;align-items:center;margin-top:6px;margin-bottom:18px}
+    .hero{display:flex;gap:26px;align-items:center;margin-top:6px;margin-bottom:18px}
     .hero-left{flex:1}
-    .hero h1{font-size:40px;margin:0 0 8px;line-height:1.02}
+    .hero h1{font-size:40px;margin:0 0 8px;line-height:1.03}
     .hero p{margin:0;color:var(--muted);font-size:16px}
     .hero-cta{display:flex;gap:12px;margin-top:18px;align-items:center}
     .hero-badge{display:flex;gap:10px;align-items:center;background:linear-gradient(180deg,#fff,#f8fbff);padding:10px 14px;border-radius:999px;box-shadow:0 12px 40px rgba(79,70,229,0.05)}
     .trusted{font-weight:700;color:#111}
 
-    /* hero mock/illustration */
-    .hero-illustration{width:380px;max-width:38%;min-width:260px;border-radius:18px;padding:20px;background:linear-gradient(180deg,#eef2ff,#fff);box-shadow:0 14px 50px rgba(79,70,229,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .hero-illustration{width:360px;max-width:36%;min-width:240px;border-radius:18px;padding:18px;background:linear-gradient(180deg,#eef2ff,#fff);box-shadow:0 14px 50px rgba(79,70,229,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center}
     .hero-illustration small{color:var(--muted)}
 
     /* ---------- TOOLS GRID ---------- */
@@ -80,7 +85,7 @@
     .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
     .card{
       background:var(--surface);padding:16px;border-radius:14px;box-shadow:var(--card-shadow);
-      display:flex;flex-direction:column;gap:12px;transition:transform .18s ease,box-shadow .18s ease;
+      display:flex;flex-direction:column;gap:12px;transition:transform .18s cubic-bezier(.2,.9,.2,1),box-shadow .18s ease;
       min-height:130px;
     }
     .card:hover{transform:translateY(-8px);box-shadow:0 26px 70px rgba(2,6,23,0.12)}
@@ -90,40 +95,51 @@
     .card .desc{color:var(--muted);font-size:14px}
     .card .actions{margin-top:auto;display:flex;justify-content:flex-end}
 
-    /* featured row */
+    /* featured */
     .featured{margin-top:18px;padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#f6f8ff);box-shadow:0 10px 30px rgba(79,70,229,0.06)}
     .badge{display:inline-block;background:#ffd966;padding:6px 10px;border-radius:999px;margin-right:8px;font-weight:700;color:#111}
 
-    /* columns & contact */
+    /* layout */
     .columns{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:20px}
     .contact-card{padding:16px;border-radius:12px;background:var(--surface);box-shadow:var(--card-shadow)}
     .contact-card input,.contact-card textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);margin-top:8px}
 
-    /* modal premium */
+    /* modal */
     .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:120}
-    .modal-card{background:var(--surface);width:100%;max-width:920px;border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(2,6,23,0.5);position:relative;animation:modalPop .28s ease}
-    @keyframes modalPop{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+    .modal-card{background:var(--surface);width:100%;max-width:980px;border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(2,6,23,0.5);position:relative;animation:modalPop .28s ease}
+    @keyframes modalPop{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
 
     .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(0,0,0,0.04);padding-bottom:12px}
     .modal-header .left{display:flex;gap:12px;align-items:center}
     .modal-body{padding-top:12px}
     .modal-footer{display:flex;justify-content:flex-end;gap:8px;padding-top:12px}
 
-    /* tiny helpers */
+    /* helpers */
     .muted{color:var(--muted)}
     .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
     .small{font-size:13px;color:var(--muted)}
+
     /* responsive */
-    @media (max-width:980px){ .hero{flex-direction:column-reverse} .hero-illustration{width:100%;max-width:none;min-width:0} .columns{grid-template-columns:1fr} .desktop{display:none} .hamburger{display:block} .mobile-menu{display:block} }
+    @media (max-width:980px){
+      .hero{flex-direction:column-reverse}
+      .hero-illustration{width:100%;max-width:none;min-width:0}
+      .columns{grid-template-columns:1fr}
+      nav.desktop{display:none}
+      .hamburger{display:block}
+    }
+    @media (max-width:600px){
+      .card{min-height:110px;padding:14px}
+      .hero h1{font-size:26px}
+    }
   </style>
 </head>
 <body>
 
   <div class="container" id="app">
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
-      <div class="brand">
-        <div class="mark" aria-hidden>TN</div>
+      <div class="brand" aria-hidden>
+        <div class="mark">TN</div>
         <div class="meta">
           <div class="title">ToolNext</div>
           <div class="sub">Fast • Free • Mobile-friendly</div>
@@ -140,17 +156,23 @@
 
       <div class="header-actions">
         <div class="small muted desktop">Trusted by <strong>5,000+</strong> users</div>
-        <button class="icon-btn" id="trustBtn" title="Secure & Free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1l7 4v6c0 6-7 12-7 12s-7-6-7-12V5l7-4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Toggle dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.2"/></svg></button>
-        <button class="hamburger" id="hamburger" aria-label="Open menu" title="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        <button class="icon-btn" id="trustBtn" title="Secure & Free">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1l7 4v6c0 6-7 12-7 12s-7-6-7-12V5l7-4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Toggle dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" title="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </button>
       </div>
 
-      <!-- Mobile menu (simple) -->
-      <div id="mobileMenu" class="mobile-menu" style="display:none">
-        <a href="#home" style="display:block;padding:8px 6px">Home</a>
-        <a href="#tools" style="display:block;padding:8px 6px">Tools</a>
-        <a href="#contact" style="display:block;padding:8px 6px">Contact</a>
-        <a href="#privacy" style="display:block;padding:8px 6px">Privacy Policy</a>
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="mobile-menu" style="display:none" aria-hidden="true">
+        <a href="#home" style="display:block;padding:10px 8px;border-radius:8px">Home</a>
+        <a href="#tools" style="display:block;padding:10px 8px;border-radius:8px">Tools</a>
+        <a href="#contact" style="display:block;padding:10px 8px;border-radius:8px">Contact</a>
+        <a href="#privacy" style="display:block;padding:10px 8px;border-radius:8px">Privacy Policy</a>
       </div>
     </header>
 
@@ -160,7 +182,7 @@
         <h1>All your everyday tools in one place</h1>
         <p class="muted">Tiny, fast and mobile-first utilities — Word Counter, Image Compressor, PDF tools, QR maker and more.</p>
 
-        <div class="hero-cta" style="margin-top:14px">
+        <div class="hero-cta">
           <button class="btn" id="startUsing">Start Using Tools</button>
           <button class="btn ghost" id="tryDemo">Try Demo</button>
         </div>
@@ -180,9 +202,9 @@
       <div class="hero-illustration" aria-hidden>
         <div style="font-weight:800;color:var(--primary);font-size:20px;margin-bottom:6px">ToolNext</div>
         <div class="muted" style="text-align:center">Your pocket set of useful utilities — no app, just open and use.</div>
-        <div style="height:10px"></div>
+        <div style="height:12px"></div>
         <div style="width:180px;height:120px;border-radius:12px;background:linear-gradient(135deg,#fff,#eef2ff);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(79,70,229,0.06)">
-          <div class="small muted">Illustration</div>
+          <div class="small muted">Phone & Laptop mock</div>
         </div>
       </div>
     </section>
@@ -276,7 +298,7 @@
           <div class="actions"><button class="btn ghost" onclick="openModal('ocr');event.stopPropagation();">Open</button></div>
         </div>
 
-        <!-- Unit & Password -->
+        <!-- Unit -->
         <div class="card" data-tool="unit" tabindex="0" onclick="openModal('unit')">
           <div class="head">
             <div class="icon" style="background:linear-gradient(135deg,#36d1dc,#5b86e5)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg></div>
@@ -327,17 +349,17 @@
           <div style="font-weight:700">Contact</div>
           <div class="muted" style="margin-top:6px">Have questions? Send us a message — we reply by email.</div>
 
-          <div class="contact-small" style="margin-top:10px">
+          <div class="contact-small" style="margin-top:10px;display:flex;align-items:center;gap:8px">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13a2.5 2.5 0 0 0 2.5-2.5v-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path><path d="M21 6.5V7l-9 6-9-6v-.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path></svg>
-            <div style="font-weight:600;margin-left:6px">toolnextt@gmail.com</div>
+            <div style="font-weight:600">toolnextt@gmail.com</div>
           </div>
 
           <form id="contactForm" style="margin-top:12px" onsubmit="handleContact(event)">
-            <label class="muted sr-only" for="cname">Name</label>
+            <label class="sr-only" for="cname">Name</label>
             <input id="cname" name="name" required placeholder="Your name">
-            <label class="muted sr-only" for="cemail">Email</label>
+            <label class="sr-only" for="cemail">Email</label>
             <input id="cemail" name="email" type="email" required placeholder="your@email.com">
-            <label class="muted sr-only" for="cmessage">Message</label>
+            <label class="sr-only" for="cmessage">Message</label>
             <textarea id="cmessage" name="message" required placeholder="Type your message..."></textarea>
 
             <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
@@ -354,7 +376,7 @@
 
           <div style="margin-top:12px">
             <div class="card faq"><div class="muted"><strong>How to use ToolNext?</strong><div class="muted" style="margin-top:6px">Open any tool and follow the on-screen instructions. Many tools run fully in your browser.</div></div></div>
-            <div class="card faq" style="margin-top:8px"><div class="muted"><strong>Is ToolNext free?</strong><div class="muted" style="margin-top:6px">Yes — core tools are free. Advanced batch features may be paid later.</div></div></div>
+            <div class="card faq" style="margin-top:8px"><div class="muted"><strong>Is ToolNext free?</strong><div class="muted" style="margin-top:6px">Yes — core tools are free. Advanced features may be paid later.</div></div></div>
           </div>
 
           <div style="margin-top:14px;font-weight:700">Follow us</div>
@@ -367,11 +389,13 @@
       </div>
     </section>
 
-    <footer style="margin-top:28px">
-      <div style="display:flex;justify-content:center;gap:10px;align-items:center">
-        <div class="muted">© ToolNext 2025</div>
+    <footer style="margin-top:28px;padding:20px 0;text-align:center;color:var(--muted)">
+      <div style="display:flex;justify-content:center;gap:10px;align-items:center;flex-direction:column">
+        <div>Trusted by <strong>5,000+</strong> users • Secure & Free</div>
+        <div style="margin-top:8px">© ToolNext 2025</div>
       </div>
     </footer>
+
   </div>
 
   <!-- PREMIUM MODAL -->
@@ -390,9 +414,7 @@
         </div>
       </div>
 
-      <div id="modalBody" class="modal-body">
-        <!-- dynamic -->
-      </div>
+      <div id="modalBody" class="modal-body"></div>
 
       <div class="modal-footer">
         <button class="btn ghost" onclick="closeModal()">Close</button>
@@ -401,16 +423,18 @@
     </div>
   </div>
 
-  <!-- PRIVACY SECTION ANCHOR -->
-  <section id="privacy" style="display:none"></section>
+  <!-- Privacy anchor for header link -->
+  <div id="privacy" style="display:none"></div>
 
   <!-- ---------- SCRIPTS ---------- -->
   <script>
-    // Helper to toggle mobile menu
+    // Mobile menu toggle
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger?.addEventListener('click', ()=> {
-      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+      const show = mobileMenu.style.display !== 'block';
+      mobileMenu.style.display = show ? 'block' : 'none';
+      mobileMenu.setAttribute('aria-hidden', show ? 'false' : 'true');
     });
 
     // Dark mode toggle
@@ -423,7 +447,7 @@
       else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tn-theme','dark'); themeToggle.setAttribute('aria-pressed','true'); }
     });
 
-    // Modal logic & tool content
+    // Modal controls
     const backdrop = document.getElementById('modalBackdrop');
     const modalIcon = document.getElementById('modalIcon');
     const modalTitle = document.getElementById('modalTitle');
@@ -441,7 +465,7 @@
       if (id === 'word-counter'){
         modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg>';
         modalTitle.textContent = 'Word Counter';
-        modalSub.textContent = 'Type or paste text to get words, characters and sentences counts.';
+        modalSub.textContent = 'Type or paste text to get words, characters and sentence counts.';
         modalBody.innerHTML = `
           <textarea id="wcInput" placeholder="Paste your text here..." style="width:100%;min-height:160px;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:15px"></textarea>
           <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
@@ -457,10 +481,10 @@
           navigator.clipboard?.writeText(res).then(()=> alert('Copied to clipboard.'));
         };
       }
-      else if (id === 'tts' || id === 'text-to-speech'){
+      else if (id === 'tts'){
         modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 11c0-4 4-6 9-6s9 2 9 6-4 6-9 6-9-2-9-6z" stroke="white" stroke-width="1.6"/></svg>';
         modalTitle.textContent = 'Text to Speech';
-        modalSub.textContent = 'Enter text and press Play. Works in browser.';
+        modalSub.textContent = 'Enter text and press Play. Works in your browser.';
         modalBody.innerHTML = `
           <textarea id="ttsInput" placeholder="Enter text to speak..." style="width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:15px"></textarea>
           <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
@@ -473,7 +497,7 @@
             <button class="btn" onclick="playTTS()">Play</button>
             <button class="btn ghost" onclick="stopTTS()">Stop</button>
           </div>
-          <div class="small muted" style="margin-top:10px">Voice availability depends on device/browser.</div>
+          <div class="small muted" style="margin-top:10px">Voice availability depends on your device/browser.</div>
         `;
         modalPrimary.textContent = 'Download (future)';
         modalPrimary.onclick = ()=> alert('Audio download requires advanced WebAudio flow — can add later.');
@@ -500,7 +524,6 @@
         };
       }
       else {
-        // placeholder for other tools
         modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 4v16" stroke="white" stroke-width="1.6"/></svg>';
         modalTitle.textContent = id.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
         modalSub.textContent = 'Tool UI ready — request implementation to enable features.';
@@ -512,10 +535,10 @@
     function closeModal(){
       backdrop.style.display = 'none';
       backdrop.setAttribute('aria-hidden','true');
-      // stop TTS if running
       stopTTS();
     }
-    backdrop?.addEventListener('click', e=> { if (e.target === backdrop) closeModal(); });
+
+    backdrop?.addEventListener('click', (e)=> { if (e.target === backdrop) closeModal(); });
     document.addEventListener('keydown', e=> { if (e.key === 'Escape') closeModal(); });
 
     // WORD COUNTER
@@ -525,10 +548,11 @@
       const charsNoSpaces = txt.replace(/\s+/g,'').length;
       const sentences = txt.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
       const res = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
-      document.getElementById('wcResult').textContent = res;
+      const el = document.getElementById('wcResult');
+      if (el) el.textContent = res;
     }
 
-    // TTS (Web Speech)
+    // TTS (Web Speech API)
     let synth = window.speechSynthesis;
     let currentUtterance = null;
     function populateVoices(){
@@ -537,7 +561,7 @@
       sel.innerHTML = '';
       const voices = synth.getVoices();
       if (!voices.length){ setTimeout(populateVoices,200); return; }
-      voices.forEach(v=> {
+      voices.forEach(v=>{
         const opt = document.createElement('option');
         opt.value = v.name;
         opt.textContent = v.name + (v.lang ? ` (${v.lang})` : '');
@@ -589,27 +613,26 @@
       URL.revokeObjectURL(url);
     }
 
-    // Contact: mailto fallback
+    // Contact (mailto)
     function handleContact(e){
       e.preventDefault();
       const name = encodeURIComponent(document.getElementById('cname').value.trim());
       const email = encodeURIComponent(document.getElementById('cemail').value.trim());
       const message = encodeURIComponent(document.getElementById('cmessage').value.trim());
-      const subject = encodeURIComponent('ToolNext Contact: ' + (name||email));
+      const subject = encodeURIComponent('ToolNext Contact: ' + (name || email));
       const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0A${decodeURIComponent(message)}`);
       window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
     }
 
-    // demo / start
-    document.getElementById('startUsing').addEventListener('click', ()=> document.getElementById('toolsGrid').scrollIntoView({behavior:'smooth'}));
-    document.getElementById('tryDemo').addEventListener('click', ()=> openModal('word-counter'));
+    // Demo buttons / start
+    document.getElementById('startUsing')?.addEventListener('click', ()=> document.getElementById('toolsGrid').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('tryDemo')?.addEventListener('click', ()=> openModal('word-counter'));
 
-    // init voices
+    // Ensure voices loaded on some browsers
     window.addEventListener('load', ()=> { populateVoices(); });
-
   </script>
 
-  <!-- Render lucide icons -->
+  <!-- lucide icons init -->
   <script>lucide.createIcons();</script>
 </body>
 </html>
