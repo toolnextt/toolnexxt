@@ -1,120 +1,615 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ToolNext — All your daily tools in one place. Fast, free, and mobile-friendly utilities like Word Counter, Image Compressor, PDF Tools, QR Maker, and more." />
-  <meta name="keywords" content="ToolNext, online tools, free utilities, word counter, image compressor, QR code generator, PDF merge, converter" />
-  <meta name="author" content="ToolNext" />
-  <title>ToolNext — Smart Everyday Tools</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ToolNext — All your everyday tools in one place</title>
+  <meta name="description" content="ToolNext — Fast, secure & mobile-friendly web utilities: Word Counter, Image Compressor, PDF Tools, QR Generator, Text-to-Speech and more. Privacy-first." />
+  <meta name="keywords" content="ToolNext, online tools, word counter, image compressor, qr generator, pdf tools, text to speech" />
+  <meta name="theme-color" content="#4F46E5" />
+  <link rel="canonical" href="https://toolnext.example/" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="ToolNext — Premium Web Utilities" />
+  <meta property="og:description" content="Fast, privacy-first tools that run in your browser. Text tools, image tools, PDF and utilities — no installs." />
+  <meta property="og:type" content="website" />
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script defer src="https://unpkg.com/lucide-icons@latest/dist/umd/lucide.min.js"></script>
+
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
-    body{background:#f9fafe;color:#1a1a1a;transition:0.3s;}
-    header{display:flex;align-items:center;justify-content:space-between;padding:20px 40px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100;}
-    .logo{font-size:22px;font-weight:700;color:#5a48f3;display:flex;align-items:center;gap:10px;}
-    nav a{margin:0 14px;text-decoration:none;color:#444;font-weight:500;transition:.2s;}
-    nav a:hover{color:#5a48f3;}
-    .dark-toggle{cursor:pointer;font-size:22px;}
-    main{max-width:1100px;margin:40px auto;padding:0 20px;}
-    h1{font-size:32px;margin-bottom:10px;}
-    p.sub{color:#555;margin-bottom:30px;}
-    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-    .card{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.05);transition:.3s;cursor:pointer;}
-    .card:hover{transform:translateY(-5px);box-shadow:0 6px 18px rgba(0,0,0,0.08);}
-    .icon{font-size:34px;margin-bottom:12px;}
-    footer{background:#fff;padding:40px 20px;text-align:center;margin-top:60px;border-top:1px solid #eee;}
-    footer a{text-decoration:none;color:#5a48f3;}
-    section{margin-top:60px;}
-    .contact form{max-width:500px;margin:auto;display:flex;flex-direction:column;gap:15px;}
-    input,textarea{padding:12px;border:1px solid #ccc;border-radius:8px;font-size:16px;width:100%;}
-    button{background:#5a48f3;color:#fff;border:none;padding:12px 18px;border-radius:8px;font-size:16px;cursor:pointer;transition:.3s;}
-    button:hover{background:#4c3de0;}
-    .dark body{background:#111;color:#eee;}
-    .dark header, .dark footer, .dark .card{background:#1a1a1a;color:#fff;}
-    .dark nav a{color:#ccc;}
-    .dark nav a:hover{color:#fff;}
-    .dark input,.dark textarea{background:#222;border:1px solid #333;color:#fff;}
-    .dark button{background:#5a48f3;}
-    .privacy{text-align:left;max-width:800px;margin:auto;line-height:1.7;color:#555;}
+    /* ---------- BASE / THEME ---------- */
+    :root{
+      --bg:#f7fafc; --surface:#ffffff; --text:#0b1220; --muted:#6b7280;
+      --primary:#4F46E5; --accent:#22D3EE; --radius:16px;
+      --card-shadow: 0 10px 30px rgba(2,6,23,0.06);
+    }
+    [data-theme="dark"]{
+      --bg:#071026; --surface:#0f1724; --text:#e6eef8; --muted:#97a7bd;
+      --primary:#7c5cff; --accent:#22d3ee;
+      --card-shadow: 0 18px 50px rgba(2,6,23,0.55);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,var(--bg),#ffffff);color:var(--text);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.45;
+    }
+    .container{max-width:1180px;margin:28px auto;padding:0 20px}
+
+    /* ---------- HEADER ---------- */
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+    .brand{display:flex;align-items:center;gap:14px}
+    .mark{
+      width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,var(--primary),#a78bfa);color:white;font-weight:800;font-size:18px;
+      box-shadow:0 12px 40px rgba(79,70,229,0.12)
+    }
+    .brand .meta{line-height:1}
+    .brand .meta .title{font-weight:800;font-size:18px;color:var(--primary)}
+    .brand .meta .sub{font-size:12px;color:var(--muted);margin-top:3px}
+
+    nav.desktop{display:flex;gap:18px;align-items:center}
+    nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav.desktop a:hover{color:var(--text)}
+
+    .header-actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--primary);color:white;padding:10px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700;box-shadow:0 10px 30px rgba(79,70,229,0.12)}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(15,23,42,0.06);box-shadow:none}
+    .icon-btn{background:transparent;border:0;padding:6px;border-radius:10px;cursor:pointer;color:var(--muted)}
+
+    /* mobile menu */
+    .hamburger{display:none;background:transparent;border:0;font-size:22px;cursor:pointer;color:var(--muted)}
+    .mobile-menu{display:none;position:absolute;top:72px;left:20px;right:20px;background:var(--surface);border-radius:12px;padding:12px;box-shadow:var(--card-shadow)}
+
+    /* ---------- HERO ---------- */
+    .hero{display:flex;gap:28px;align-items:center;margin-top:6px;margin-bottom:18px}
+    .hero-left{flex:1}
+    .hero h1{font-size:40px;margin:0 0 8px;line-height:1.02}
+    .hero p{margin:0;color:var(--muted);font-size:16px}
+    .hero-cta{display:flex;gap:12px;margin-top:18px;align-items:center}
+    .hero-badge{display:flex;gap:10px;align-items:center;background:linear-gradient(180deg,#fff,#f8fbff);padding:10px 14px;border-radius:999px;box-shadow:0 12px 40px rgba(79,70,229,0.05)}
+    .trusted{font-weight:700;color:#111}
+
+    /* hero mock/illustration */
+    .hero-illustration{width:380px;max-width:38%;min-width:260px;border-radius:18px;padding:20px;background:linear-gradient(180deg,#eef2ff,#fff);box-shadow:0 14px 50px rgba(79,70,229,0.06);display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .hero-illustration small{color:var(--muted)}
+
+    /* ---------- TOOLS GRID ---------- */
+    section h3{font-size:24px;margin:20px 0}
+    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+    .card{
+      background:var(--surface);padding:16px;border-radius:14px;box-shadow:var(--card-shadow);
+      display:flex;flex-direction:column;gap:12px;transition:transform .18s ease,box-shadow .18s ease;
+      min-height:130px;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 26px 70px rgba(2,6,23,0.12)}
+    .card .head{display:flex;gap:12px;align-items:center}
+    .card .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;box-shadow:0 8px 30px rgba(15,23,42,0.06)}
+    .card .title{font-weight:800;font-size:18px}
+    .card .desc{color:var(--muted);font-size:14px}
+    .card .actions{margin-top:auto;display:flex;justify-content:flex-end}
+
+    /* featured row */
+    .featured{margin-top:18px;padding:16px;border-radius:12px;background:linear-gradient(180deg,#fff,#f6f8ff);box-shadow:0 10px 30px rgba(79,70,229,0.06)}
+    .badge{display:inline-block;background:#ffd966;padding:6px 10px;border-radius:999px;margin-right:8px;font-weight:700;color:#111}
+
+    /* columns & contact */
+    .columns{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:20px}
+    .contact-card{padding:16px;border-radius:12px;background:var(--surface);box-shadow:var(--card-shadow)}
+    .contact-card input,.contact-card textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);margin-top:8px}
+
+    /* modal premium */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:none;align-items:center;justify-content:center;padding:20px;z-index:120}
+    .modal-card{background:var(--surface);width:100%;max-width:920px;border-radius:18px;padding:20px;box-shadow:0 30px 80px rgba(2,6,23,0.5);position:relative;animation:modalPop .28s ease}
+    @keyframes modalPop{from{opacity:0;transform:translateY(8px) scale(.99)}to{opacity:1;transform:none}}
+
+    .modal-header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(0,0,0,0.04);padding-bottom:12px}
+    .modal-header .left{display:flex;gap:12px;align-items:center}
+    .modal-body{padding-top:12px}
+    .modal-footer{display:flex;justify-content:flex-end;gap:8px;padding-top:12px}
+
+    /* tiny helpers */
+    .muted{color:var(--muted)}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);border:0}
+    .small{font-size:13px;color:var(--muted)}
+    /* responsive */
+    @media (max-width:980px){ .hero{flex-direction:column-reverse} .hero-illustration{width:100%;max-width:none;min-width:0} .columns{grid-template-columns:1fr} .desktop{display:none} .hamburger{display:block} .mobile-menu{display:block} }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo"><i class="ri-tools-line"></i> ToolNext</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
-    <a href="#privacy">Privacy Policy</a>
-  </nav>
-  <i class="ri-moon-line dark-toggle" id="themeToggle"></i>
-</header>
+  <div class="container" id="app">
+    <!-- Header -->
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden>TN</div>
+        <div class="meta">
+          <div class="title">ToolNext</div>
+          <div class="sub">Fast • Free • Mobile-friendly</div>
+        </div>
+      </div>
 
-<main>
-  <section id="home">
-    <h1>All your everyday tools in one place</h1>
-    <p class="sub">Fast, free, and mobile-friendly utilities — Word Counter, Image Compressor, PDF Tools, QR Maker, and more.</p>
-  </section>
+      <nav class="desktop" aria-label="Main Navigation">
+        <a href="#home">Home</a>
+        <a href="#tools">Tools</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-  <section id="tools">
-    <h2>Popular Tools</h2>
-    <div class="tools-grid">
-      <div class="card"><div class="icon" style="color:#5a48f3;"><i class="ri-file-word-line"></i></div><h3>Word Counter</h3><p>Count words, characters & sentences instantly.</p></div>
-      <div class="card"><div class="icon" style="color:#f39c12;"><i class="ri-image-2-line"></i></div><h3>Image Compressor</h3><p>Reduce image file size for faster sharing.</p></div>
-      <div class="card"><div class="icon" style="color:#27ae60;"><i class="ri-qr-code-line"></i></div><h3>QR Code Generator</h3><p>Create QR codes for links and text quickly.</p></div>
-      <div class="card"><div class="icon" style="color:#e74c3c;"><i class="ri-exchange-dollar-line"></i></div><h3>Currency Converter</h3><p>Convert PKR, USD, EUR and more live rates.</p></div>
-      <div class="card"><div class="icon" style="color:#9b59b6;"><i class="ri-file-pdf-2-line"></i></div><h3>PDF Tools</h3><p>Merge, split, compress or convert PDFs online.</p></div>
-      <div class="card"><div class="icon" style="color:#3498db;"><i class="ri-voiceprint-line"></i></div><h3>Text to Speech</h3><p>Listen to text with voice and speed controls.</p></div>
+      <div class="header-actions">
+        <div class="small muted desktop">Trusted by <strong>5,000+</strong> users</div>
+        <button class="icon-btn" id="trustBtn" title="Secure & Free"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1l7 4v6c0 6-7 12-7 12s-7-6-7-12V5l7-4z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Toggle dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.2"/></svg></button>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" title="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      </div>
+
+      <!-- Mobile menu (simple) -->
+      <div id="mobileMenu" class="mobile-menu" style="display:none">
+        <a href="#home" style="display:block;padding:8px 6px">Home</a>
+        <a href="#tools" style="display:block;padding:8px 6px">Tools</a>
+        <a href="#contact" style="display:block;padding:8px 6px">Contact</a>
+        <a href="#privacy" style="display:block;padding:8px 6px">Privacy Policy</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Intro">
+      <div class="hero-left">
+        <h1>All your everyday tools in one place</h1>
+        <p class="muted">Tiny, fast and mobile-first utilities — Word Counter, Image Compressor, PDF tools, QR maker and more.</p>
+
+        <div class="hero-cta" style="margin-top:14px">
+          <button class="btn" id="startUsing">Start Using Tools</button>
+          <button class="btn ghost" id="tryDemo">Try Demo</button>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:12px;align-items:center">
+          <div class="hero-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1l3 5 5 1-4 4 1 5-5-3-5 3 1-5-4-4 5-1 3-5z" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="font-size:13px">Trusted by <strong>5,000+</strong> users</div>
+          </div>
+          <div class="hero-badge" title="Secure & Free">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1l7 4v6c0 6-7 12-7 12s-7-6-7-12V5l7-4z" stroke="#34d399" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="font-size:13px">Secure • Free</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-illustration" aria-hidden>
+        <div style="font-weight:800;color:var(--primary);font-size:20px;margin-bottom:6px">ToolNext</div>
+        <div class="muted" style="text-align:center">Your pocket set of useful utilities — no app, just open and use.</div>
+        <div style="height:10px"></div>
+        <div style="width:180px;height:120px;border-radius:12px;background:linear-gradient(135deg,#fff,#eef2ff);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(79,70,229,0.06)">
+          <div class="small muted">Illustration</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section id="tools">
+      <h3>Tools</h3>
+      <div class="tools-grid" id="toolsGrid">
+
+        <!-- Word Counter -->
+        <div class="card" data-tool="word-counter" tabindex="0" onclick="openModal('word-counter')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Word Counter</div>
+              <div class="desc">Count words, characters & sentences instantly.</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('word-counter');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- Image Compressor -->
+        <div class="card" data-tool="image-compressor" tabindex="0" onclick="openModal('image-compressor')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Image Compressor</div>
+              <div class="desc">Reduce photo size for faster sharing (client-side).</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('image-compressor');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- QR Generator -->
+        <div class="card" data-tool="qr-generator" tabindex="0" onclick="openModal('qr-generator')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="6" height="6" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">QR Code Generator</div>
+              <div class="desc">Create QR codes for links & text quickly.</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('qr-generator');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- Currency -->
+        <div class="card" data-tool="currency" tabindex="0" onclick="openModal('currency')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 5v14" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Currency Converter</div>
+              <div class="desc">PKR ↔ USD, EUR and more.</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('currency');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- PDF Tools -->
+        <div class="card" data-tool="pdf-tools" tabindex="0" onclick="openModal('pdf-tools')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="12" height="18" rx="2" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">PDF Tools</div>
+              <div class="desc">Merge, split & compress PDFs (client-side planned).</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('pdf-tools');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- Text to Speech -->
+        <div class="card" data-tool="tts" tabindex="0" onclick="openModal('tts')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#4f46e5,#a78bfa)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 11c0-4 4-6 9-6s9 2 9 6-4 6-9 6-9-2-9-6z" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Text to Speech</div>
+              <div class="desc">Listen to text with voice & speed controls.</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('tts');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- OCR -->
+        <div class="card" data-tool="ocr" tabindex="0" onclick="openModal('ocr')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Image to Text (OCR)</div>
+              <div class="desc">Extract text from screenshots & photos (future).</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('ocr');event.stopPropagation();">Open</button></div>
+        </div>
+
+        <!-- Unit & Password -->
+        <div class="card" data-tool="unit" tabindex="0" onclick="openModal('unit')">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#36d1dc,#5b86e5)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg></div>
+            <div>
+              <div class="title">Unit Converter</div>
+              <div class="desc">Length, weight, temperature & more.</div>
+            </div>
+          </div>
+          <div class="actions"><button class="btn ghost" onclick="openModal('unit');event.stopPropagation();">Open</button></div>
+        </div>
+
+      </div>
+
+      <div class="featured" aria-hidden>
+        <h3>Most Used Tools</h3>
+        <div style="margin-top:10px">
+          <span class="badge">Image Compressor</span>
+          <span class="badge">QR Generator</span>
+          <span class="badge">PDF Tools</span>
+          <span class="badge">Text to Speech</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section id="categories" style="margin-top:20px">
+      <h3>Categories</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+        <div class="card" style="min-width:180px;max-width:240px"><div style="font-weight:700">Text Tools</div><div class="muted" style="margin-top:6px">Word Counter, Text to Speech, Fancy Fonts</div></div>
+        <div class="card" style="min-width:180px;max-width:240px"><div style="font-weight:700">Image Tools</div><div class="muted" style="margin-top:6px">Image Compressor, OCR (future)</div></div>
+        <div class="card" style="min-width:180px;max-width:240px"><div style="font-weight:700">PDF & Docs</div><div class="muted" style="margin-top:6px">Merge, Split, Convert</div></div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" style="margin-top:20px">
+      <h3>About ToolNext</h3>
+      <div class="card" style="padding:14px;margin-top:8px">
+        <p class="muted">ToolNext provides lightweight and free web utilities that run directly in your browser. No installs, privacy-first, and optimized for phones. We focus on speed and simplicity — each tool should do one job and do it well.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT & SUPPORT -->
+    <section id="contact" style="margin-top:20px">
+      <h3>Contact & Support</h3>
+      <div class="columns">
+        <div class="contact-card">
+          <div style="font-weight:700">Contact</div>
+          <div class="muted" style="margin-top:6px">Have questions? Send us a message — we reply by email.</div>
+
+          <div class="contact-small" style="margin-top:10px">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13a2.5 2.5 0 0 0 2.5-2.5v-7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path><path d="M21 6.5V7l-9 6-9-6v-.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></path></svg>
+            <div style="font-weight:600;margin-left:6px">toolnextt@gmail.com</div>
+          </div>
+
+          <form id="contactForm" style="margin-top:12px" onsubmit="handleContact(event)">
+            <label class="muted sr-only" for="cname">Name</label>
+            <input id="cname" name="name" required placeholder="Your name">
+            <label class="muted sr-only" for="cemail">Email</label>
+            <input id="cemail" name="email" type="email" required placeholder="your@email.com">
+            <label class="muted sr-only" for="cmessage">Message</label>
+            <textarea id="cmessage" name="message" required placeholder="Type your message..."></textarea>
+
+            <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+              <button class="btn" type="submit">Send</button>
+              <button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Clear</button>
+            </div>
+            <div class="muted small" style="margin-top:8px">Messages open in your email client (mailto). Server delivery can be added later.</div>
+          </form>
+        </div>
+
+        <aside>
+          <div style="font-weight:700">Support</div>
+          <div class="muted" style="margin-top:8px">FAQs</div>
+
+          <div style="margin-top:12px">
+            <div class="card faq"><div class="muted"><strong>How to use ToolNext?</strong><div class="muted" style="margin-top:6px">Open any tool and follow the on-screen instructions. Many tools run fully in your browser.</div></div></div>
+            <div class="card faq" style="margin-top:8px"><div class="muted"><strong>Is ToolNext free?</strong><div class="muted" style="margin-top:6px">Yes — core tools are free. Advanced batch features may be paid later.</div></div></div>
+          </div>
+
+          <div style="margin-top:14px;font-weight:700">Follow us</div>
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+            <a class="small muted" href="">Website</a>
+            <a class="small muted" href="">Facebook</a>
+            <a class="small muted" href="">Twitter</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer style="margin-top:28px">
+      <div style="display:flex;justify-content:center;gap:10px;align-items:center">
+        <div class="muted">© ToolNext 2025</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- PREMIUM MODAL -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document" id="modalCard">
+      <div class="modal-header">
+        <div class="left">
+          <div id="modalIcon" style="width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;background:linear-gradient(135deg,#4F46E5,#a78bfa);box-shadow:0 12px 40px rgba(79,70,229,0.12)"></div>
+          <div style="margin-left:12px">
+            <div id="modalTitle" style="font-weight:800;font-size:18px">Tool</div>
+            <div id="modalSub" class="muted small">Tool description</div>
+          </div>
+        </div>
+        <div>
+          <button class="icon-btn" onclick="closeModal()" aria-label="Close modal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+      </div>
+
+      <div id="modalBody" class="modal-body">
+        <!-- dynamic -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn ghost" onclick="closeModal()">Close</button>
+        <button id="modalPrimary" class="btn" onclick="">Action</button>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form onsubmit="sendMail(event)">
-      <input type="text" id="name" placeholder="Your Name" required />
-      <input type="email" id="email" placeholder="Your Email" required />
-      <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
+  <!-- PRIVACY SECTION ANCHOR -->
+  <section id="privacy" style="display:none"></section>
 
-  <section id="privacy">
-    <h2>Privacy Policy</h2>
-    <div class="privacy">
-      <p>At ToolNext, we respect your privacy. We do not store, share, or sell any personal information. All tools run directly in your browser — no data leaves your device.</p>
-      <p>We may use basic analytics to improve performance and user experience. You can contact us anytime at <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a> for questions about privacy.</p>
-    </div>
-  </section>
-</main>
+  <!-- ---------- SCRIPTS ---------- -->
+  <script>
+    // Helper to toggle mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger?.addEventListener('click', ()=> {
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
 
-<footer>
-  <p>© 2025 ToolNext — All rights reserved.</p>
-  <p>
-    <a href="#">Facebook</a> | 
-    <a href="#">Twitter</a> | 
-    <a href="#">Instagram</a> | 
-    <a href="#">YouTube</a>
-  </p>
-</footer>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const saved = localStorage.getItem('tn-theme');
+    if (saved === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeToggle.setAttribute('aria-pressed','true'); }
+    themeToggle.addEventListener('click', ()=> {
+      const cur = document.documentElement.getAttribute('data-theme');
+      if (cur === 'dark'){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('tn-theme','light'); themeToggle.setAttribute('aria-pressed','false'); }
+      else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tn-theme','dark'); themeToggle.setAttribute('aria-pressed','true'); }
+    });
 
-<script>
-  const themeToggle = document.getElementById('themeToggle');
-  themeToggle.onclick = () => {
-    document.body.classList.toggle('dark');
-    themeToggle.classList.toggle('ri-sun-line');
-  };
+    // Modal logic & tool content
+    const backdrop = document.getElementById('modalBackdrop');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSub = document.getElementById('modalSub');
+    const modalBody = document.getElementById('modalBody');
+    const modalPrimary = document.getElementById('modalPrimary');
 
-  function sendMail(e){
-    e.preventDefault();
-    const name=document.getElementById('name').value;
-    const email=document.getElementById('email').value;
-    const message=document.getElementById('message').value;
-    window.location.href=`mailto:toolnextt@gmail.com?subject=Message from ${name}&body=${message}%0A%0AReply to: ${email}`;
-  }
-</script>
+    function openModal(id){
+      backdrop.style.display = 'flex';
+      backdrop.setAttribute('aria-hidden','false');
+      modalBody.innerHTML = '';
+      modalPrimary.style.display = 'inline-block';
+      modalPrimary.onclick = null;
 
+      if (id === 'word-counter'){
+        modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16" stroke="white" stroke-width="1.6"/></svg>';
+        modalTitle.textContent = 'Word Counter';
+        modalSub.textContent = 'Type or paste text to get words, characters and sentences counts.';
+        modalBody.innerHTML = `
+          <textarea id="wcInput" placeholder="Paste your text here..." style="width:100%;min-height:160px;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:15px"></textarea>
+          <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+            <button class="btn" onclick="runWordCount()">Count</button>
+            <button class="btn ghost" onclick="document.getElementById('wcInput').value=''">Clear</button>
+            <div id="wcResult" class="muted" style="margin-left:10px"></div>
+          </div>
+        `;
+        modalPrimary.textContent = 'Copy Result';
+        modalPrimary.onclick = ()=> {
+          const res = document.getElementById('wcResult').textContent || '';
+          if (!res) { alert('Please run the count first.'); return; }
+          navigator.clipboard?.writeText(res).then(()=> alert('Copied to clipboard.'));
+        };
+      }
+      else if (id === 'tts' || id === 'text-to-speech'){
+        modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 11c0-4 4-6 9-6s9 2 9 6-4 6-9 6-9-2-9-6z" stroke="white" stroke-width="1.6"/></svg>';
+        modalTitle.textContent = 'Text to Speech';
+        modalSub.textContent = 'Enter text and press Play. Works in browser.';
+        modalBody.innerHTML = `
+          <textarea id="ttsInput" placeholder="Enter text to speak..." style="width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);font-size:15px"></textarea>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+            <select id="ttsVoice" style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)"></select>
+            <select id="ttsRate" style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)">
+              <option value="0.8">Slow</option>
+              <option value="1" selected>Normal</option>
+              <option value="1.4">Fast</option>
+            </select>
+            <button class="btn" onclick="playTTS()">Play</button>
+            <button class="btn ghost" onclick="stopTTS()">Stop</button>
+          </div>
+          <div class="small muted" style="margin-top:10px">Voice availability depends on device/browser.</div>
+        `;
+        modalPrimary.textContent = 'Download (future)';
+        modalPrimary.onclick = ()=> alert('Audio download requires advanced WebAudio flow — can add later.');
+        populateVoices();
+      }
+      else if (id === 'image-compressor'){
+        modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="white" stroke-width="1.6"/></svg>';
+        modalTitle.textContent = 'Image Compressor';
+        modalSub.textContent = 'Upload an image and compress it client-side — your file stays on your device.';
+        modalBody.innerHTML = `
+          <input id="imgFile" type="file" accept="image/*" />
+          <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+            <label class="muted">Quality</label>
+            <input id="imgQuality" type="range" min="10" max="100" value="80" />
+            <button class="btn" onclick="compressImage()">Compress</button>
+            <button class="btn ghost" onclick="document.getElementById('imgFile').value=''">Clear</button>
+          </div>
+          <div id="imgPreview" style="margin-top:12px"></div>
+        `;
+        modalPrimary.textContent = 'Download';
+        modalPrimary.onclick = ()=> {
+          const a = document.getElementById('imgDownload');
+          if (a) a.click(); else alert('Compress an image first.');
+        };
+      }
+      else {
+        // placeholder for other tools
+        modalIcon.innerHTML = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 4v16" stroke="white" stroke-width="1.6"/></svg>';
+        modalTitle.textContent = id.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase());
+        modalSub.textContent = 'Tool UI ready — request implementation to enable features.';
+        modalBody.innerHTML = `<div class="muted">This tool is prepared with premium UI. I can add full functionality on request.</div>`;
+        modalPrimary.style.display = 'none';
+      }
+    }
+
+    function closeModal(){
+      backdrop.style.display = 'none';
+      backdrop.setAttribute('aria-hidden','true');
+      // stop TTS if running
+      stopTTS();
+    }
+    backdrop?.addEventListener('click', e=> { if (e.target === backdrop) closeModal(); });
+    document.addEventListener('keydown', e=> { if (e.key === 'Escape') closeModal(); });
+
+    // WORD COUNTER
+    function runWordCount(){
+      const txt = (document.getElementById('wcInput')||{}).value || '';
+      const words = txt.trim().length ? txt.trim().split(/\s+/).length : 0;
+      const charsNoSpaces = txt.replace(/\s+/g,'').length;
+      const sentences = txt.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
+      const res = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
+      document.getElementById('wcResult').textContent = res;
+    }
+
+    // TTS (Web Speech)
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    function populateVoices(){
+      const sel = document.getElementById('ttsVoice');
+      if (!sel) return;
+      sel.innerHTML = '';
+      const voices = synth.getVoices();
+      if (!voices.length){ setTimeout(populateVoices,200); return; }
+      voices.forEach(v=> {
+        const opt = document.createElement('option');
+        opt.value = v.name;
+        opt.textContent = v.name + (v.lang ? ` (${v.lang})` : '');
+        sel.appendChild(opt);
+      });
+    }
+    function playTTS(){
+      stopTTS();
+      const text = (document.getElementById('ttsInput')||{}).value || '';
+      if (!text.trim()){ alert('Enter text first.'); return; }
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      const selName = (document.getElementById('ttsVoice')||{}).value;
+      const voices = synth.getVoices();
+      if (selName){ const v = voices.find(x=>x.name===selName); if (v) currentUtterance.voice = v; }
+      currentUtterance.rate = parseFloat((document.getElementById('ttsRate')||{}).value || 1);
+      synth.speak(currentUtterance);
+    }
+    function stopTTS(){ if (synth && synth.speaking) synth.cancel(); }
+
+    // IMAGE COMPRESS (client-side)
+    async function compressImage(){
+      const fileInput = document.getElementById('imgFile');
+      const q = (document.getElementById('imgQuality')||{}).value/100 || 0.8;
+      const preview = document.getElementById('imgPreview');
+      preview.innerHTML = 'Processing...';
+      if (!fileInput || !fileInput.files || !fileInput.files[0]) { preview.innerHTML = '<div class="muted">Select an image first.</div>'; return; }
+      const file = fileInput.files[0];
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      await new Promise(r=>{ img.onload = r; img.src = url; });
+      const canvas = document.createElement('canvas');
+      const maxW = 1600;
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if (w > maxW){ h = Math.round(h * (maxW/w)); w = maxW; }
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      const dataUrl = canvas.toDataURL('image/jpeg', q);
+      const blob = await (await fetch(dataUrl)).blob();
+      const sizeKB = Math.round(blob.size/1024);
+      preview.innerHTML = `<div style="display:flex;gap:12px;align-items:center">
+        <img src="${dataUrl}" style="max-width:220px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.06)"/>
+        <div>
+          <div style="font-weight:700">Compressed: ${sizeKB} KB</div>
+          <div class="muted" style="margin-top:6px">Original: ${Math.round(file.size/1024)} KB</div>
+          <div style="margin-top:10px"><a id="imgDownload" href="${dataUrl}" download="toolnext-compressed.jpg" class="btn">Download</a></div>
+        </div>
+      </div>`;
+      URL.revokeObjectURL(url);
+    }
+
+    // Contact: mailto fallback
+    function handleContact(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('cname').value.trim());
+      const email = encodeURIComponent(document.getElementById('cemail').value.trim());
+      const message = encodeURIComponent(document.getElementById('cmessage').value.trim());
+      const subject = encodeURIComponent('ToolNext Contact: ' + (name||email));
+      const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0A${decodeURIComponent(message)}`);
+      window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // demo / start
+    document.getElementById('startUsing').addEventListener('click', ()=> document.getElementById('toolsGrid').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('tryDemo').addEventListener('click', ()=> openModal('word-counter'));
+
+    // init voices
+    window.addEventListener('load', ()=> { populateVoices(); });
+
+  </script>
+
+  <!-- Render lucide icons -->
+  <script>lucide.createIcons();</script>
 </body>
 </html>
