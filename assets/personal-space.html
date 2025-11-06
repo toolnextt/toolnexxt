@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Personal Space — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header"><div class="brand"><div class="logo">TN</div><div><div class="title">ToolNextt</div><div class="tag">Personal Space</div></div></div><nav class="nav"><a href="/">Home</a><a href="/pages/tools.html">Tools</a></nav><div class="actions"><button id="themeToggle" class="icon-btn">☀️</button><button class="btn" onclick="location.href='/pages/tools.html'">All Tools</button></div></header>
+
+  <section>
+    <h3>Personal Space</h3>
+    <p class="small">Upload notes or images and keep them in your browser. Items are private — stored locally on your device.</p>
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <input id="psTitle" class="input" placeholder="Title (optional)"/>
+      <input id="psFile" type="file" />
+      <button class="btn" id="psUpload">Upload</button>
+    </div>
+
+    <div id="psGrid" class="space-grid" style="margin-top:12px"></div>
+  </section>
+
+  <footer>...standard footer...</footer>
+</div>
+
+<script src="/assets/app.js" defer></script>
+<script>
+function getSpace(){ try{return JSON.parse(localStorage.getItem('tn-space')||'[]'); }catch(e){ return []; } }
+function saveSpace(a){ localStorage.setItem('tn-space', JSON.stringify(a)); }
+function renderSpace(){
+  const arr=getSpace(); const grid=document.getElementById('psGrid'); grid.innerHTML = arr.map(it=>{
+    if(it.type.startsWith('image/')) return `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:6px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div><div style="margin-top:6px"><button class="btn ghost" onclick="deleteItem(${it.id})">Delete</button></div></div>`;
+    return `<div class="space-item"><pre style="max-height:140px;overflow:auto;text-align:left">${escapeHtml(it.data.slice(0,300))}${it.data.length>300?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div><div style="margin-top:6px"><button class="btn ghost" onclick="deleteItem(${it.id})">Delete</button></div></div>`;
+  }).join('');
+}
+function deleteItem(id){ const a=getSpace().filter(x=>x.id!==id); saveSpace(a); renderSpace(); }
+document.getElementById('psUpload').addEventListener('click', ()=>{
+  const f = document.getElementById('psFile').files[0]; const title=document.getElementById('psTitle').value;
+  if(!f) return alert('Select file');
+  const r = new FileReader(); r.onload = e=>{
+    const arr=getSpace(); arr.unshift({id:Date.now(),title:title,type:f.type,data:e.target.result}); saveSpace(arr); renderSpace(); document.getElementById('psFile').value=''; document.getElementById('psTitle').value='';
+  }
+  if(f.type.startsWith('text/')) r.readAsText(f); else r.readAsDataURL(f);
+});
+document.addEventListener('DOMContentLoaded', renderSpace);
+</script>
+</body></html>
