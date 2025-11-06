@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Character Counter — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Character Counter</h3>
+    <textarea id="char_text" style="width:100%;min-height:140px;padding:12px;border-radius:8px;border:1px solid var(--glass-border)"></textarea>
+    <div style="margin-top:8px"><button class="btn" onclick="runCharCount()">Count</button><button class="btn ghost" onclick="document.getElementById('char_text').value=''">Clear</button></div>
+    <div id="char_out" class="small muted" style="margin-top:8px"></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+<script>
+function runCharCount(){
+  const s = document.getElementById('char_text').value || '';
+  const withSpaces = s.length;
+  const withoutSpaces = s.replace(/\s+/g,'').length;
+  document.getElementById('char_out').textContent = `Chars (with spaces): ${withSpaces} • Chars (no spaces): ${withoutSpaces}`;
+}
+</script>
+</body></html>
