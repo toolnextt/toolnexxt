@@ -1,273 +1,356 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ToolNext — All Your Everyday Tools (API Integrated)</title>
-  <meta name="description" content="ToolNext — Fast, free & secure tools: TTS, Word Counter, Image Compressor, QR, Currency Converter, Translator, OCR, Email templates, Age calc & Personal Space." />
-  <meta name="keywords" content="ToolNext, online tools, currency converter, qr generator, translator, ocr" />
-  <meta name="theme-color" content="#4F46E5" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <style>
-    :root{
-      --bg:#f6f8ff; --card:#fff; --text:#071026; --muted:#6b7280;
-      --primary1:#4f46e5; --primary2:#7c5cff;
-      --radius:14px; --shadow:0 14px 40px rgba(2,6,23,0.06);
-    }
-    [data-theme="dark"]{
-      --bg:#050617; --card:#0b1220; --text:#e6eef8; --muted:#98a7bf;
-      --primary1:#7c5cff; --primary2:#4f46e5;
-      --shadow:0 20px 60px rgba(2,6,23,0.6);
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:linear-gradient(180deg,var(--bg),#ffffff);color:var(--text);-webkit-font-smoothing:antialiased}
-    .container{max-width:1180px;margin:28px auto;padding:0 20px}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ToolNextt — Free & Secure Online Tools</title>
+<meta name="description" content="ToolNextt — 14 free & secure web utilities: Image Compressor, PDF Merger, Password Generator, QR Creator, Text-to-Speech, Email Generator, Currency Converter, Age Calculator and more." />
+<meta name="keywords" content="ToolNextt, online tools, image compressor, pdf merge, password generator, qr generator, tts, email generator, currency converter" />
+<meta name="theme-color" content="#0b1220" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<style>
+  /* ---------- VARIABLES & RESET ---------- */
+  :root{
+    --bg-1: #050617;
+    --bg-2: #071028;
+    --card: rgba(255,255,255,0.03);
+    --glass: rgba(255,255,255,0.02);
+    --muted: #98a7bf;
+    --text: #e6eef8;
+    --accent-a: #5b6cff;
+    --accent-b: #3ec5ff;
+    --glass-border: rgba(255,255,255,0.04);
+    --radius: 14px;
+    --shadow: 0 18px 60px rgba(2,6,23,0.6);
+    --glass-shadow: 0 8px 30px rgba(2,6,23,0.45);
+    --fw-heading: 800;
+    --transition: 240ms cubic-bezier(.2,.9,.2,1);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background:linear-gradient(180deg,var(--bg-1),var(--bg-2)); color:var(--text);
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    line-height:1.45; padding-bottom:40px;
+  }
+  a{color:inherit}
+  .container{max-width:1180px;margin:26px auto;padding:0 18px}
 
-    header{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo-mark{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--primary1),var(--primary2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
-    nav.desktop{display:flex;gap:16px}
-    nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600}
-    .actions{display:flex;gap:10px;align-items:center}
-    .btn{background:linear-gradient(135deg,var(--primary1),var(--primary2));color:#fff;padding:10px 14px;border-radius:12px;border:0;cursor:pointer}
-    .btn.ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--text)}
-    .icon-btn{background:transparent;border:0;color:var(--muted);cursor:pointer}
+  /* ---------- HEADER ---------- */
+  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;position:relative}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:18px;box-shadow:var(--glass-shadow)
+  }
+  .brand .title{font-weight:800;font-size:18px}
+  .brand .tag{font-size:12px;color:var(--muted);margin-top:3px}
 
-    .hero{display:flex;gap:24px;align-items:center;margin-top:8px}
-    .hero-left{flex:1}
-    .hero h1{font-size:36px;margin:0 0 10px;line-height:1.03}
-    .hero p{margin:0;color:var(--muted)}
-    .hero-illustration{width:360px;border-radius:18px;padding:18px;background:linear-gradient(180deg,#eef2ff,#fff);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center}
+  nav.desktop{display:flex;gap:16px;align-items:center}
+  nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600}
+  nav.desktop a:hover{color:var(--text)}
 
-    section{margin-top:24px}
-    .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);transition:transform .18s ease;display:flex;flex-direction:column}
-    .card:hover{transform:translateY(-6px)}
-    .card .icon{width:56px;height:56px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
-    .title{font-weight:800}
-    .desc{color:var(--muted);font-size:14px;margin-top:6px}
-    .actions-row{text-align:right;margin-top:auto}
+  .actions{display:flex;gap:10px;align-items:center}
+  .btn{
+    background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
+    color:#fff;padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(78,70,255,0.12);
+    transition:transform var(--transition),opacity var(--transition);
+  }
+  .btn.ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text)}
+  .icon-btn{background:transparent;border:0;color:var(--muted);font-size:18px;cursor:pointer}
 
-    .columns{display:grid;grid-template-columns:1fr 360px;gap:16px}
-    .contact-card{padding:16px;border-radius:12px;background:var(--card);box-shadow:var(--shadow)}
-    .contact-card input, .contact-card textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}
-    footer{margin-top:26px;padding:26px 20px;background:linear-gradient(180deg,#0f1724,#071026);color:#cfd8ef;border-radius:12px}
-    .footer-grid{display:grid;grid-template-columns:1fr repeat(3,200px);gap:18px;max-width:1180px;margin:0 auto}
-    .space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:12px}
-    .space-item{background:var(--card);padding:8px;border-radius:8px;box-shadow:0 8px 30px rgba(2,6,23,0.04);text-align:center}
+  .hamburger{display:none}
 
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:200}
-    .modal{background:var(--card);width:100%;max-width:920px;border-radius:12px;padding:16px;box-shadow:var(--shadow)}
-    @media(max-width:980px){ .hero{flex-direction:column-reverse}.desktop{display:none} }
-  </style>
+  /* ---------- HERO (image-like but svg) ---------- */
+  .hero{display:flex;gap:28px;align-items:center;margin-top:8px}
+  .hero-left{flex:1;max-width:64%}
+  .hero h1{font-size:36px;margin:0;line-height:1.02;font-weight:var(--fw-heading);letter-spacing:-0.5px}
+  .hero p{margin:8px 0 0;color:var(--muted);font-size:15px}
+  .hero-cta{display:flex;gap:12px;margin-top:18px;align-items:center}
+  .badges{display:flex;gap:10px;margin-top:12px;align-items:center}
+  .badge{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));padding:8px 12px;border-radius:999px;border:1px solid var(--glass-border);font-weight:600;color:var(--text);display:flex;gap:8px;align-items:center}
+
+  .hero-visual{width:360px;min-width:240px;border-radius:18px;padding:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:var(--glass-shadow);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .hero-visual svg{width:100%;max-width:300px;height:auto}
+
+  /* ---------- TOOLS GRID ---------- */
+  section h3{font-size:20px;margin:20px 0;color:var(--text)}
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:14px;border:1px solid var(--glass-border);box-shadow:0 10px 30px rgba(2,6,23,0.35);
+    transition:transform var(--transition), box-shadow var(--transition), background var(--transition);
+    display:flex;flex-direction:column;gap:10px;min-height:120px;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+  .card .head{display:flex;gap:12px;align-items:center}
+  .card .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+  .card .title{font-weight:800}
+  .card .desc{color:var(--muted);font-size:13px}
+  .card .actions{margin-top:auto;text-align:right}
+
+  /* feature row */
+  .featured{margin-top:18px;padding:14px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid var(--glass-border);box-shadow:0 12px 36px rgba(2,6,23,0.4)}
+
+  /* ---------- CONTACT / COLUMNS ---------- */
+  .columns{display:grid;grid-template-columns:1fr 360px;gap:14px;margin-top:18px}
+  .contact-card{padding:16px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid var(--glass-border)}
+  input, textarea, select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:var(--text);margin-top:8px}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* ---------- PERSONAL SPACE GRID ---------- */
+  .space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}
+  .space-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));padding:8px;border-radius:8px;border:1px solid var(--glass-border);text-align:center}
+
+  /* ---------- FOOTER ---------- */
+  footer{margin-top:28px;padding:26px;border-radius:12px;background:linear-gradient(180deg,#06102a,#031028);color:var(--muted)}
+  .footer-grid{display:grid;grid-template-columns:1fr repeat(3,200px);gap:18px;max-width:1180px;margin:0 auto}
+  .footer h4{color:var(--text);margin-bottom:8px}
+  .social-row{display:flex;gap:12px;align-items:center;margin-top:10px}
+
+  /* ---------- MODAL ---------- */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:220}
+  .modal-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));width:100%;max-width:920px;border-radius:12px;padding:18px;border:1px solid var(--glass-border);box-shadow:var(--shadow)}
+
+  /* responsive */
+  @media(max-width:980px){
+    .hero{flex-direction:column-reverse}
+    nav.desktop{display:none}
+    .hamburger{display:block}
+    .columns{grid-template-columns:1fr}
+    .hero-left{max-width:100%}
+  }
+  @media(max-width:640px){
+    .hero h1{font-size:22px}
+    .hero-visual{width:100%}
+    .footer-grid{grid-template-columns:1fr}
+  }
+
+  /* small interactions */
+  .btn:active{transform:translateY(1px)}
+  .card .icon i{transform:translateY(0);transition:transform var(--transition)}
+  .card:hover .icon i{transform:translateY(-4px)}
+</style>
 </head>
 <body>
   <div class="container" id="app">
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
-      <div class="brand">
-        <div class="logo-mark">TN</div>
+      <div class="brand" aria-hidden>
+        <div class="logo">TN</div>
         <div>
-          <div style="font-weight:800;color:var(--primary1)">ToolNext</div>
-          <div style="font-size:12px;color:var(--muted)">Fast • Free • Secure</div>
+          <div class="title">ToolNextt</div>
+          <div class="tag">Fast • Free • Secure</div>
         </div>
       </div>
 
-      <nav class="desktop" aria-label="Main nav">
+      <nav class="desktop" aria-label="Main Navigation">
         <a href="#home">Home</a>
         <a href="#tools">Tools</a>
-        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
 
       <div class="actions">
-        <div style="font-size:13px;color:var(--muted)" class="desktop">Trusted by <strong>5,000+</strong></div>
-        <button id="themeToggle" class="icon-btn" title="Toggle theme"><i class="fa fa-moon"></i></button>
-        <button id="openTools" class="btn">Start Using</button>
+        <div class="small" style="color:var(--muted);">Trusted by <strong>5,000+</strong></div>
+        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-pressed="false"><i class="fa fa-moon"></i></button>
+        <button id="openTools" class="btn">Explore Tools</button>
       </div>
+
+      <!-- mobile menu (hidden desktop) -->
+      <button class="hamburger icon-btn" id="hamburgerBtn" aria-label="Open menu" style="display:none"><i class="fa fa-bars"></i></button>
     </header>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Intro">
       <div class="hero-left">
-        <h1>All Your Everyday Tools in One Place</h1>
-        <p class="muted">Fast • Free • Mobile friendly — Tools that run in your browser.</p>
-        <div style="margin-top:14px">
-          <button class="btn" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Start Using Tools</button>
-          <button class="btn ghost" onclick="openTool('word-counter')">Try Demo</button>
+        <h1>Free & Secure Tools — All in One Place</h1>
+        <p class="small" style="margin-top:8px">ToolNextt helps you access 14 powerful web utilities — fast, private, and mobile-friendly.</p>
+
+        <div class="hero-cta">
+          <button class="btn" id="ctaExplore">Explore Tools</button>
+          <button class="btn ghost" id="ctaDemo">Try Demo</button>
         </div>
-        <div style="margin-top:12px;display:flex;gap:10px">
-          <div style="background:#fff;padding:8px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.06)">Trusted by <strong>5,000+</strong></div>
-          <div style="background:#fff;padding:8px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.06)">Secure • Free</div>
+
+        <div class="badges">
+          <div class="badge"><i class="fa fa-shield-alt" style="color:#ffd166"></i><div>Trusted by <strong>5,000+</strong></div></div>
+          <div class="badge"><i class="fa fa-lock" style="color:#34d399"></i><div>Secure • Free</div></div>
         </div>
       </div>
-      <div class="hero-illustration">
-        <div style="font-weight:800;color:var(--primary1);font-size:18px">ToolNext</div>
-        <div class="muted" style="text-align:center;margin-top:6px">Your pocket set of useful utilities — no app, just open & use.</div>
-        <div style="height:12px"></div>
-        <div style="width:260px;height:150px;border-radius:12px;background:linear-gradient(135deg,#fff,#eef6ff);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(2,6,23,0.06)">
-          <div style="text-align:center"><i class="fa fa-laptop" style="font-size:30px;color:var(--primary1)"></i><div class="muted" style="margin-top:8px">Phone & Laptop mock</div></div>
-        </div>
+
+      <div class="hero-visual" aria-hidden>
+        <!-- lightweight SVG abstract tech graphic (matches site theme, small) -->
+        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#3ec5ff"/></linearGradient>
+            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/></filter>
+          </defs>
+          <!-- laptop outline -->
+          <rect x="72" y="72" rx="14" ry="14" width="496" height="240" fill="url(#g1)" opacity="0.06"/>
+          <rect x="94" y="98" rx="10" ry="10" width="452" height="192" fill="rgba(255,255,255,0.02)"/>
+          <g filter="url(#f1)">
+            <rect x="120" y="128" width="120" height="92" rx="8" fill="url(#g1)"/>
+            <rect x="260" y="128" width="120" height="92" rx="8" fill="#0b1224" opacity="0.6"/>
+            <rect x="400" y="128" width="120" height="92" rx="8" fill="url(#g1)" opacity="0.85"/>
+          </g>
+          <!-- small tool icons -->
+          <g transform="translate(120,240)" fill="#fff" opacity="0.9">
+            <circle cx="40" cy="12" r="10" fill="url(#g1)" />
+            <rect x="76" y="4" width="20" height="16" rx="3" fill="url(#g1)"/>
+            <rect x="112" y="2" width="20" height="20" rx="3" fill="url(#g1)"/>
+          </g>
+          <text x="50%" y="360" font-size="14" fill="rgba(255,255,255,0.7)" font-family="Inter,Arial" text-anchor="middle">Phone & Laptop mock — lightweight vector</text>
+        </svg>
       </div>
     </section>
 
-    <!-- Tools -->
-    <section id="tools">
-      <h3>Tools</h3>
+    <!-- TOOLS -->
+    <section id="tools" aria-labelledby="toolsHeading" style="margin-top:18px">
+      <h3 id="toolsHeading">14 Useful Tools</h3>
       <div class="tools-grid" id="toolsGrid">
 
-        <!-- RENDER 12+ TOOL CARDS -->
-        <!-- TTS -->
-        <div class="card" onclick="openTool('tts')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#4f46e5,#7c5cff)"><i class="fa fa-headphones"></i></div>
-            <div><div class="title">Text to Speech</div><div class="desc">Convert text into audio (browser TTS).</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('tts');event.stopPropagation()">Open</button></div>
+        <!-- 1 Image Compressor -->
+        <div class="card" role="button" tabindex="0" onclick="openTool('imgcomp')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><i class="fa fa-image"></i></div>
+            <div><div class="title">Image Compressor</div><div class="desc">Reduce image size locally — private, fast.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('imgcomp');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Word Counter -->
-        <div class="card" onclick="openTool('word-counter')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><i class="fa fa-file-word"></i></div>
-            <div><div class="title">Word Counter</div><div class="desc">Count words, characters & sentences instantly.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('word-counter');event.stopPropagation()">Open</button></div>
+        <!-- 2 PDF Merger -->
+        <div class="card" onclick="openTool('pdfmerge')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-file-pdf"></i></div>
+            <div><div class="title">PDF Merger</div><div class="desc">Merge multiple PDFs (UI-ready; conversion server recommended for full feature).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('pdfmerge');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Image Compressor -->
-        <div class="card" onclick="openTool('imgcomp')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><i class="fa fa-image"></i></div>
-            <div><div class="title">Image Compressor</div><div class="desc">Compress images client-side. Private — file stays on your device.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('imgcomp');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <!-- QR -->
-        <div class="card" onclick="openTool('qr')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><i class="fa fa-qrcode"></i></div>
-            <div><div class="title">QR Code Generator</div><div class="desc">Generate QR images using free API.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('qr');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <!-- Currency -->
-        <div class="card" onclick="openTool('currency')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-dollar-sign"></i></div>
-            <div><div class="title">Currency Converter</div><div class="desc">Live rates via exchangerate.host (free).</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('currency');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <!-- PDF placeholder -->
-        <div class="card" onclick="openTool('pdf')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-file-pdf"></i></div>
-            <div><div class="title">PDF Tools</div><div class="desc">UI ready — conversions need server or third-party API.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('pdf');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <!-- YouTube Thumbnail -->
-        <div class="card" onclick="openTool('ytthumb')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#ff3c3c,#ff8a3c)"><i class="fa-brands fa-youtube"></i></div>
-            <div><div class="title">YouTube Thumbnail</div><div class="desc">Fetch thumbnails by video URL.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('ytthumb');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <!-- Password Generator -->
+        <!-- 3 Password Generator -->
         <div class="card" onclick="openTool('pwgen')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#654ea3,#eaafc8)"><i class="fa fa-key"></i></div>
-            <div><div class="title">Password Generator</div><div class="desc">Create secure random passwords.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('pwgen');event.stopPropagation()">Open</button></div>
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#654ea3,#eaafc8)"><i class="fa fa-key"></i></div>
+            <div><div class="title">Password Generator</div><div class="desc">Create strong random passwords and copy with one click.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('pwgen');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Translator -->
-        <div class="card" onclick="openTool('translate')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#06b6d4,#4f46e5)"><i class="fa fa-language"></i></div>
-            <div><div class="title">Text Translator</div><div class="desc">Translate text using MyMemory free API.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('translate');event.stopPropagation()">Open</button></div>
+        <!-- 4 QR Generator -->
+        <div class="card" onclick="openTool('qr')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><i class="fa fa-qrcode"></i></div>
+            <div><div class="title">QR Code Generator</div><div class="desc">Generate QR codes (image) using a free API.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('qr');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Image BG remove placeholder -->
-        <div class="card" onclick="openTool('bgremove')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#36d1dc,#5b86e5)"><i class="fa fa-cut"></i></div>
-            <div><div class="title">Image Background Remover</div><div class="desc">UI ready — advanced removal needs API.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('bgremove');event.stopPropagation()">Open</button></div>
+        <!-- 5 Text to Speech -->
+        <div class="card" onclick="openTool('tts')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#4f46e5,#7c5cff)"><i class="fa fa-headphones"></i></div>
+            <div><div class="title">Text to Speech</div><div class="desc">Listen to text with voice & speed controls (browser TTS).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('tts');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- OCR -->
-        <div class="card" onclick="openTool('ocr')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><i class="fa fa-camera"></i></div>
-            <div><div class="title">Image → Text (OCR)</div><div class="desc">Use OCR.space free demo or your API key for better limits.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('ocr');event.stopPropagation()">Open</button></div>
+        <!-- 6 File Converter (placeholder) -->
+        <div class="card" onclick="openTool('fileconv')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#06b6d4,#4f46e5)"><i class="fa fa-exchange-alt"></i></div>
+            <div><div class="title">File Converter</div><div class="desc">Convert file types (server/API needed for advanced conversions).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('fileconv');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Email Generator -->
-        <div class="card" onclick="openTool('emailgen')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-envelope"></i></div>
-            <div><div class="title">Email Generator</div><div class="desc">Generate professional email templates using RandomUser data (free).</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('emailgen');event.stopPropagation()">Open</button></div>
+        <!-- 7 Word Counter -->
+        <div class="card" onclick="openTool('word-counter')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><i class="fa fa-file-word"></i></div>
+            <div><div class="title">Word Counter</div><div class="desc">Count words, characters & sentences instantly (local).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('word-counter');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Age Calculator -->
+        <!-- 8 Text Case Converter -->
+        <div class="card" onclick="openTool('caseconv')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#36d1dc,#5b86e5)"><i class="fa fa-font"></i></div>
+            <div><div class="title">Text Case Converter</div><div class="desc">Uppercase, lowercase & sentence case quickly.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('caseconv');event.stopPropagation()">Open</button></div>
+        </div>
+
+        <!-- 9 Character Counter -->
+        <div class="card" onclick="openTool('char-counter')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ffd966,#ffb86b)"><i class="fa fa-pen-alt"></i></div>
+            <div><div class="title">Character Counter</div><div class="desc">Count characters including / excluding spaces.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('char-counter');event.stopPropagation()">Open</button></div>
+        </div>
+
+        <!-- 10 Age Calculator -->
         <div class="card" onclick="openTool('agecalc')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#ffd966,#ffb86b)"><i class="fa fa-calendar"></i></div>
-            <div><div class="title">Age Calculator</div><div class="desc">Calculate exact age from date of birth.</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('agecalc');event.stopPropagation()">Open</button></div>
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><i class="fa fa-calendar"></i></div>
+            <div><div class="title">Age Calculator</div><div class="desc">Calculate precise age from date of birth.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('agecalc');event.stopPropagation()">Open</button></div>
         </div>
 
-        <!-- Personal Space -->
+        <!-- 11 Email Generator -->
+        <div class="card" onclick="openTool('emailgen')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-envelope"></i></div>
+            <div><div class="title">Email Generator</div><div class="desc">Generate unlimited random email addresses (no user data required).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('emailgen');event.stopPropagation()">Open</button></div>
+        </div>
+
+        <!-- 12 Currency Converter -->
+        <div class="card" onclick="openTool('currency')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff8a3c)"><i class="fa fa-dollar-sign"></i></div>
+            <div><div class="title">Currency Converter</div><div class="desc">Live rates via exchangerate.host (free API).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('currency');event.stopPropagation()">Open</button></div>
+        </div>
+
+        <!-- 13 OCR (Image -> Text) -->
+        <div class="card" onclick="openTool('ocr')">
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff5e62,#ff9966)"><i class="fa fa-camera"></i></div>
+            <div><div class="title">Image → Text (OCR)</div><div class="desc">Basic OCR using ocr.space (demo key included for testing).</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('ocr');event.stopPropagation()">Open</button></div>
+        </div>
+
+        <!-- 14 Personal Space -->
         <div class="card" onclick="openTool('personal')">
-          <div style="display:flex;gap:12px;align-items:center">
-            <div class="icon" style="background:linear-gradient(135deg,#9b59b6,#6c5ce7)"><i class="fa fa-user"></i></div>
-            <div><div class="title">Personal Space</div><div class="desc">Upload photos/text to your personal space (localStorage).</div></div>
-          </div>
-          <div class="actions-row"><button class="btn ghost" onclick="openTool('personal');event.stopPropagation()">Open</button></div>
+          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#9b59b6,#6c5ce7)"><i class="fa fa-user"></i></div>
+            <div><div class="title">Personal Space</div><div class="desc">Upload images or notes saved locally in your browser.</div></div></div>
+          <div class="actions"><button class="btn ghost" onclick="openTool('personal');event.stopPropagation()">Open</button></div>
         </div>
 
       </div>
+
+      <div class="featured" aria-hidden>
+        <h3 style="margin:0">Most Used</h3>
+        <div style="margin-top:10px">
+          <span class="badge">Image Compressor</span>
+          <span class="badge">QR Generator</span>
+          <span class="badge">Text to Speech</span>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact & Personal preview -->
-    <section id="contact" style="margin-top:22px">
+    <!-- ABOUT -->
+    <section id="about" style="margin-top:18px">
+      <h3>About ToolNextt</h3>
+      <div style="margin-top:8px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid var(--glass-border)"><p class="small">ToolNextt offers a compact set of secure, privacy-first web utilities that run in your browser. Tools that are client-side keep your data private. For advanced conversions we can integrate secure APIs on request.</p></div>
+    </section>
+
+    <!-- CONTACT & PERSONAL -->
+    <section id="contact" style="margin-top:18px">
       <h3>Contact & Support</h3>
       <div class="columns">
         <div class="contact-card">
           <div style="font-weight:700">Contact</div>
-          <div class="muted" style="margin-top:6px">Have questions? Email us at <strong>toolnextt@gmail.com</strong></div>
+          <div class="small muted" style="margin-top:6px">Questions or feedback? Email us at <strong>toolnextt@gmail.com</strong>. We usually respond within 24 hours.</div>
 
-          <form id="contactForm" onsubmit="handleContact(event)">
+          <form id="contactForm" onsubmit="handleContact(event)" style="margin-top:12px">
+            <label class="small">Name</label>
             <input id="cname" required placeholder="Your name" />
-            <input id="cemail" type="email" required placeholder="Your email" />
-            <textarea id="cmessage" required placeholder="Message"></textarea>
-            <div style="margin-top:8px"><button class="btn" type="submit">Send</button> <button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Clear</button></div>
-            <div class="small muted" style="margin-top:8px">Submitting opens your email app (mailto). Server delivery can be added later.</div>
+            <label class="small">Email</label>
+            <input id="cemail" type="email" required placeholder="your@email.com" />
+            <label class="small">Message</label>
+            <textarea id="cmessage" required placeholder="Your message..."></textarea>
+            <div style="margin-top:10px;display:flex;gap:8px"><button class="btn" type="submit">Send</button><button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Clear</button></div>
+            <div class="small muted" style="margin-top:8px">Form opens your email client (mailto). Server-side delivery can be added later.</div>
           </form>
 
-          <div style="margin-top:12px">
-            <div style="font-weight:700">Your Public Space Preview</div>
-            <div class="small muted">Upload items to your personal space below (stored locally).</div>
+          <!-- Personal Space preview (local) -->
+          <div style="margin-top:14px">
+            <div style="font-weight:700">Your Public Space (Preview)</div>
+            <div class="small muted" style="margin-top:6px">Upload items (saved locally in your browser). To share with others, export or copy data.</div>
             <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="psTitle" placeholder="Title (optional)" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)"/>
+              <input id="psTitle" placeholder="Title (optional)" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03)" />
               <input id="psFile" type="file" />
               <button class="btn ghost" onclick="addPersonalItem()">Upload</button>
             </div>
@@ -277,289 +360,477 @@
 
         <aside>
           <div style="font-weight:700">Support</div>
-          <div class="muted" style="margin-top:8px">FAQs & Quick Links</div>
+          <div class="small muted" style="margin-top:8px">FAQs & Quick Links</div>
           <div style="margin-top:12px">
             <div style="margin-bottom:8px"><a href="#tools">All Tools</a></div>
-            <div style="margin-bottom:8px"><a href="#privacy">Privacy Policy</a></div>
             <div style="margin-bottom:8px"><a href="#about">About</a></div>
+            <div style="margin-bottom:8px"><a href="#privacy">Privacy Policy</a></div>
           </div>
+
           <div style="margin-top:16px">
-            <div style="font-weight:700">Follow Us</div>
-            <div style="margin-top:8px;display:flex;gap:10px">
+            <div style="font-weight:700">Follow us</div>
+            <div class="social-row">
               <a href="#" title="Facebook" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#" title="Instagram" style="color:var(--muted)"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" title="X" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="#" title="YouTube" style="color:var(--muted)"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" title="X (Twitter)" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" title="LinkedIn" style="color:var(--muted)"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
       <div class="footer-grid">
         <div>
-          <div style="display:flex;gap:10px;align-items:center"><div class="logo-mark" style="width:44px;height:44px">TN</div><div><div style="font-weight:800;color:#fff">ToolNext</div><div class="small muted">Fast • Free • Secure</div></div></div>
-          <p style="margin-top:10px;color:#cbd7ff">ToolNext brings you simple and fast web tools — text utilities, image helpers, converters and handy utilities — all in one place.</p>
+          <div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:48px;height:48px">TN</div>
+            <div><div style="font-weight:800;color:var(--text)">ToolNextt</div><div class="small muted">Fast • Free • Secure</div></div></div>
+          <p class="small" style="margin-top:12px;color:var(--muted)">ToolNextt brings you 14 fast and privacy-first tools — text utilities, converters and time-savers — all accessible in your browser without installs.</p>
         </div>
         <div>
-          <h4 style="color:#fff">Quick Links</h4>
+          <h4>Quick Links</h4>
           <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="#home">Home</a><a href="#tools">Tools</a><a href="#about">About</a><a href="#contact">Contact</a></div>
         </div>
         <div>
-          <h4 style="color:#fff">Popular Tools</h4>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="#word-counter">Word Counter</a><a href="#imgcomp">Image Compressor</a><a href="#qr">QR Generator</a><a href="#tts">Text to Speech</a></div>
+          <h4>Popular Tools</h4>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="#imgcomp">Image Compressor</a><a href="#qr">QR Generator</a><a href="#tts">Text to Speech</a><a href="#emailgen">Email Generator</a></div>
         </div>
         <div>
-          <h4 style="color:#fff">Contact</h4>
+          <h4>Contact</h4>
           <div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div>
-          <div style="margin-top:10px;display:flex;gap:10px">
-            <a href="#" style="color:#cbd7ff"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" style="color:#cbd7ff"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" style="color:#cbd7ff"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" style="color:#cbd7ff"><i class="fa-brands fa-youtube"></i></a>
+          <div class="social-row" style="margin-top:8px">
+            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-linkedin-in"></i></a>
           </div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:16px;color:#98a7bf">© ToolNext 2025 • Trusted by 5,000+ users • 100% Secure & Free</div>
-    </footer>
-  </div>
 
-  <!-- Modal -->
-  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" id="modalBox">
-      <button style="position:absolute;right:14px;top:12px;border:0;background:transparent;font-size:18px;cursor:pointer" onclick="closeModal()">✕</button>
-      <div id="modalContent"></div>
+      <div style="text-align:center;margin-top:16px;color:var(--muted)">© ToolNextt 2025 • Trusted by 5,000+ users • 100% Secure & Free</div>
+    </footer>
+
+    <!-- privacy anchor content hidden -->
+    <div id="privacy" style="display:none">
+      <h3>Privacy Policy</h3>
+      <p>ToolNextt does not collect personal data unless you voluntarily submit it (contact form opens your email client). Files uploaded to Personal Space are stored locally in your browser only.</p>
     </div>
   </div>
 
-  <script>
-    /* ----------------- UI helpers ----------------- */
-    const modalBg = document.getElementById('modalBackdrop');
-    const modalContent = document.getElementById('modalContent');
-    function openModal(html){ modalContent.innerHTML = html; modalBg.style.display = 'flex'; modalBg.setAttribute('aria-hidden','false'); }
-    function closeModal(){ modalBg.style.display = 'none'; modalBg.setAttribute('aria-hidden','true'); stopTTS() }
-    modalBg.addEventListener('click', e=> { if (e.target === modalBg) closeModal(); });
-    document.addEventListener('keydown', e=> { if (e.key==='Escape') closeModal(); });
+  <!-- MODAL -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" id="modalCard">
+      <button style="position:absolute;right:12px;top:10px;border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer" onclick="closeModal()">✕</button>
+      <div id="modalInner"></div>
+    </div>
+  </div>
 
-    /* Theme toggle */
-    const themeToggle = document.getElementById('themeToggle');
-    const saved = localStorage.getItem('tn-theme');
-    if (saved === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); themeToggle.innerHTML='<i class="fa fa-sun"></i>' }
-    themeToggle.addEventListener('click', ()=> {
-      const cur = document.documentElement.getAttribute('data-theme');
-      if (cur === 'dark'){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('tn-theme','light'); themeToggle.innerHTML='<i class="fa fa-moon"></i>'; }
-      else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tn-theme','dark'); themeToggle.innerHTML='<i class="fa fa-sun"></i>'; }
-    });
+<script>
+/* ----------------- UI & State ----------------- */
+const modalBg = document.getElementById('modalBackdrop');
+const modalInner = document.getElementById('modalInner');
 
-    /* Open specific tool */
-    function openTool(id){
-      if (id === 'tts') openTTS();
-      else if (id === 'word-counter') openWordCounter();
-      else if (id === 'imgcomp') openImageCompressor();
-      else if (id === 'qr') openQRTool();
-      else if (id === 'currency') openCurrency();
-      else if (id === 'pdf') openPDF();
-      else if (id === 'ytthumb') openYTThumb();
-      else if (id === 'pwgen') openPasswordGen();
-      else if (id === 'translate') openTranslator();
-      else if (id === 'bgremove') openBGRemove();
-      else if (id === 'ocr') openOCR();
-      else if (id === 'emailgen') openEmailGen();
-      else if (id === 'agecalc') openAgeCalc();
-      else if (id === 'personal') openPersonalSpace();
+function openModal(html){
+  modalInner.innerHTML = html;
+  modalBg.style.display = 'flex';
+  modalBg.setAttribute('aria-hidden','false');
+  // small delay to allow any in-modal scripts to run after insertion
+}
+function closeModal(){
+  stopTTS(); modalBg.style.display = 'none'; modalBg.setAttribute('aria-hidden','true'); modalInner.innerHTML = '';
+}
+modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+document.getElementById('openTools').addEventListener('click', ()=> document.getElementById('tools').scrollIntoView({behavior:'smooth'}));
+document.getElementById('ctaExplore').addEventListener('click', ()=> document.getElementById('tools').scrollIntoView({behavior:'smooth'}));
+document.getElementById('ctaDemo').addEventListener('click', ()=> openTool('word-counter'));
+
+/* Theme toggle */
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('tn-theme');
+if (savedTheme === 'light'){ document.documentElement.style.background = ''; /* keep dark default */ }
+if (savedTheme === 'dark'){ document.documentElement.setAttribute('data-theme','dark'); themeToggle.innerHTML = '<i class="fa fa-sun"></i>'; }
+themeToggle.addEventListener('click', ()=>{
+  const cur = document.documentElement.getAttribute('data-theme');
+  if (cur === 'dark'){ document.documentElement.removeAttribute('data-theme'); localStorage.setItem('tn-theme','light'); themeToggle.innerHTML = '<i class="fa fa-moon"></i>'; }
+  else { document.documentElement.setAttribute('data-theme','dark'); localStorage.setItem('tn-theme','dark'); themeToggle.innerHTML = '<i class="fa fa-sun"></i>'; }
+});
+
+/* ----------------- TOOL ROUTER ----------------- */
+function openTool(id){
+  const mapping = {
+    'imgcomp': openImageCompressor,
+    'pdfmerge': openPDFMerger,
+    'pwgen': openPasswordGen,
+    'qr': openQRTool,
+    'tts': openTTS,
+    'fileconv': openFileConverter,
+    'word-counter': openWordCounter,
+    'caseconv': openCaseConv,
+    'char-counter': openCharCounter,
+    'agecalc': openAgeCalc,
+    'emailgen': openEmailGen,
+    'currency': openCurrency,
+    'ocr': openOCR,
+    'personal': openPersonalSpace
+  };
+  const fn = mapping[id];
+  if (fn) fn();
+  else alert('Tool not implemented yet.');
+}
+
+/* ----------------- TEXT TO SPEECH ----------------- */
+let synth = window.speechSynthesis;
+let utterance = null;
+function populateVoices(selectId){
+  const sel = document.getElementById(selectId);
+  if(!sel) return;
+  sel.innerHTML = '';
+  const voices = synth.getVoices();
+  if(!voices.length){ setTimeout(()=>populateVoices(selectId),200); return; }
+  voices.forEach(v=>{
+    const o = document.createElement('option'); o.value = v.name; o.textContent = `${v.name} ${v.lang? '('+v.lang+')':''}`; sel.appendChild(o);
+  });
+}
+function openTTS(){
+  openModal(`<h2>Text to Speech</h2>
+    <p class="small">Runs in your browser (Web Speech API).</p>
+    <textarea id="tts_text" style="width:100%;min-height:140px;margin-top:10px;padding:10px;border-radius:8px"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+      <select id="tts_voice" style="padding:8px;border-radius:8px"></select>
+      <select id="tts_rate" style="padding:8px;border-radius:8px"><option value="0.8">Slow</option><option value="1" selected>Normal</option><option value="1.4">Fast</option></select>
+      <button class="btn" onclick="playTTS()">Play</button>
+      <button class="btn ghost" onclick="stopTTS()">Stop</button>
+    </div>`);
+  populateVoices('tts_voice');
+}
+function playTTS(){
+  stopTTS();
+  const txt = document.getElementById('tts_text')?.value || '';
+  if(!txt.trim()){ alert('Enter text to play'); return; }
+  utterance = new SpeechSynthesisUtterance(txt);
+  const selName = document.getElementById('tts_voice')?.value;
+  const voices = synth.getVoices();
+  if(selName){ const v = voices.find(x=>x.name===selName); if(v) utterance.voice = v; }
+  utterance.rate = parseFloat(document.getElementById('tts_rate')?.value || 1);
+  synth.speak(utterance);
+}
+function stopTTS(){ if(synth && synth.speaking) synth.cancel(); }
+
+/* ----------------- IMAGE COMPRESSOR (client-side) ----------------- */
+function openImageCompressor(){
+  openModal(`<h2>Image Compressor</h2><p class="small">Compress images in your browser — file stays on your device.</p>
+    <input id="img_file" type="file" accept="image/*" style="margin-top:10px"/>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+      <label class="small">Quality</label><input id="img_quality" type="range" min="10" max="100" value="80"/>
+      <button class="btn" onclick="compressImage()">Compress</button>
+    </div>
+    <div id="img_preview" style="margin-top:12px"></div>`);
+}
+async function compressImage(){
+  const fileInput = document.getElementById('img_file');
+  const q = (document.getElementById('img_quality')?.value || 80)/100;
+  const preview = document.getElementById('img_preview');
+  preview.innerHTML = 'Processing...';
+  if(!fileInput || !fileInput.files || !fileInput.files[0]){ preview.innerHTML = '<div class="small muted">Choose an image first.</div>'; return; }
+  const f = fileInput.files[0];
+  const img = new Image();
+  const url = URL.createObjectURL(f);
+  await new Promise(r=>{ img.onload = r; img.src = url; });
+  const canvas = document.createElement('canvas');
+  const maxW = 1400;
+  let w = img.naturalWidth, h = img.naturalHeight;
+  if(w > maxW){ h = Math.round(h * (maxW / w)); w = maxW; }
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img,0,0,w,h);
+  const dataUrl = canvas.toDataURL('image/jpeg', q);
+  const blob = await (await fetch(dataUrl)).blob();
+  const sizeKB = Math.round(blob.size/1024);
+  preview.innerHTML = `<div style="display:flex;gap:12px;align-items:center">
+    <img src="${dataUrl}" style="max-width:220px;border-radius:8px"/>
+    <div><div style="font-weight:700">Compressed: ${sizeKB} KB</div><div class="small muted" style="margin-top:6px">Original: ${Math.round(f.size/1024)} KB</div><div style="margin-top:8px"><a href="${dataUrl}" download="toolnextt-compressed.jpg" class="btn">Download</a></div></div></div>`;
+  URL.revokeObjectURL(url);
+}
+
+/* ----------------- PDF MERGER (UI placeholder) ----------------- */
+function openPDFMerger(){
+  openModal(`<h2>PDF Merger</h2><p class="small">Select PDF files to merge. For complete merging server-side processing or a cloud API is recommended. This UI prepares uploads.</p>
+    <input type="file" id="pdf_files" accept="application/pdf" multiple style="margin-top:10px"/>
+    <div style="margin-top:8px"><button class="btn" onclick="preparePDFMerge()">Prepare</button></div>
+    <div id="pdf_preview" style="margin-top:10px" class="small muted"></div>`);
+}
+function preparePDFMerge(){
+  const files = (document.getElementById('pdf_files')?.files) || [];
+  if(!files.length){ alert('Select PDF files'); return; }
+  const list = Array.from(files).map(f=>f.name).join(', ');
+  document.getElementById('pdf_preview').textContent = 'Files: ' + list + ' — Server-side merge required to produce output.';
+}
+
+/* ----------------- PASSWORD GENERATOR ----------------- */
+function openPasswordGen(){
+  openModal(`<h2>Password Generator</h2><p class="small">Generate a strong random password.</p>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center"><input id="pw_len" type="number" min="4" max="64" value="16" style="width:80px;padding:8px"/><button class="btn" onclick="generatePassword()">Generate</button></div>
+    <input id="pw_out" readonly style="width:100%;margin-top:10px;padding:10px;border-radius:8px"/>`);
+}
+function generatePassword(){
+  const len = parseInt(document.getElementById('pw_len')?.value || 16,10);
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
+  let out = '';
+  for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
+  document.getElementById('pw_out').value = out;
+  try{ navigator.clipboard.writeText(out); }catch(e){}
+}
+
+/* ----------------- QR GENERATOR (free API) ----------------- */
+function openQRTool(){
+  openModal(`<h2>QR Code Generator</h2><p class="small">Enter text or link — QR image generated via free API.</p>
+    <input id="qr_input" placeholder="Enter URL or text" style="width:100%;margin-top:10px;padding:8px;border-radius:8px"/>
+    <div style="margin-top:8px"><button class="btn" onclick="generateQR()">Generate</button></div>
+    <div id="qr_out" style="margin-top:12px"></div>`);
+}
+function generateQR(){
+  const v = (document.getElementById('qr_input')?.value || '').trim();
+  if(!v){ alert('Enter value'); return; }
+  const url = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(v);
+  document.getElementById('qr_out').innerHTML = `<img src="${url}" alt="QR" style="max-width:260px;border-radius:8px"/><div style="margin-top:8px"><a href="${url}" target="_blank" class="btn">Open</a></div>`;
+}
+
+/* ----------------- FILE CONVERTER (placeholder) ----------------- */
+function openFileConverter(){
+  openModal(`<h2>File Converter</h2><p class="small">Advanced conversion (audio/image/document) requires a server or third-party API. This UI accepts files and prepares job details.</p>
+    <input type="file" id="convfile" style="margin-top:10px"/><div style="margin-top:8px"><select id="convType"><option value="pdf-to-doc">PDF → DOC (server)</option><option value="img-to-webp">Image → WebP (client)</option></select><button class="btn" style="margin-left:8px" onclick="prepareFileConv()">Prepare</button></div>
+    <div id="conv_preview" style="margin-top:10px" class="small muted"></div>`);
+}
+function prepareFileConv(){
+  const f = document.getElementById('convfile')?.files?.[0];
+  const type = document.getElementById('convType')?.value;
+  if(!f){ alert('Select file'); return; }
+  if(type==='img-to-webp'){
+    // we can do a client-side re-encode for images if feasible — keep simple for now
+    openModal(`<h2>Image → WebP (Client)</h2><p class="small">Converting image to WebP client-side...</p>`);
+    // small demo: re-encode image to jpeg (already implemented by compressor)
+    setTimeout(()=>{ closeModal(); openImageCompressor(); },600);
+  } else {
+    document.getElementById('conv_preview').textContent = 'Conversion requires server/API. Contact us to integrate.';
+  }
+}
+
+/* ----------------- WORD COUNTER ----------------- */
+function openWordCounter(){
+  openModal(`<h2>Word Counter</h2><p class="small">Count words, characters & sentences instantly.</p>
+    <textarea id="wc_text" style="width:100%;min-height:140px;margin-top:8px"></textarea>
+    <div style="margin-top:8px"><button class="btn" onclick="runWordCount()">Count</button><button class="btn ghost" onclick="document.getElementById('wc_text').value=''">Clear</button><div id="wc_out" class="small muted" style="margin-left:12px;display:inline-block"></div></div>`);
+}
+function runWordCount(){
+  const t = (document.getElementById('wc_text')?.value || '').trim();
+  const words = t ? t.split(/\s+/).length : 0;
+  const charsNoSpaces = t.replace(/\s+/g,'').length;
+  const sentences = t.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
+  document.getElementById('wc_out').textContent = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
+}
+
+/* ----------------- CASE CONVERTER ----------------- */
+function openCaseConv(){
+  openModal(`<h2>Text Case Converter</h2><p class="small">Change text case quickly.</p>
+    <textarea id="case_text" style="width:100%;min-height:120px;margin-top:8px"></textarea>
+    <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="convertCase('upper')">UPPERCASE</button><button class="btn" onclick="convertCase('lower')">lowercase</button><button class="btn" onclick="convertCase('sentence')">Sentence case</button></div>
+    <div style="margin-top:8px" class="small muted">Result will replace the input.</div>`);
+}
+function convertCase(mode){
+  const el = document.getElementById('case_text');
+  if(!el) return;
+  const v = el.value || '';
+  if(mode==='upper') el.value = v.toUpperCase();
+  else if(mode==='lower') el.value = v.toLowerCase();
+  else if(mode==='sentence') el.value = v.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+}
+
+/* ----------------- CHARACTER COUNTER ----------------- */
+function openCharCounter(){
+  openModal(`<h2>Character Counter</h2><p class="small">Count characters including/excluding spaces.</p>
+    <textarea id="char_text" style="width:100%;min-height:140px;margin-top:8px"></textarea>
+    <div style="margin-top:8px"><button class="btn" onclick="runCharCount()">Count</button><button class="btn ghost" onclick="document.getElementById('char_text').value=''">Clear</button></div>
+    <div id="char_out" class="small muted" style="margin-top:8px"></div>`);
+}
+function runCharCount(){
+  const s = document.getElementById('char_text')?.value || '';
+  const withSpaces = s.length;
+  const withoutSpaces = s.replace(/\s+/g,'').length;
+  document.getElementById('char_out').textContent = `Chars (with spaces): ${withSpaces} • Chars (no spaces): ${withoutSpaces}`;
+}
+
+/* ----------------- AGE CALCULATOR ----------------- */
+function openAgeCalc(){
+  openModal(`<h2>Age Calculator</h2><p class="small">Select your DOB to get exact age.</p><input id="dob" type="date" style="margin-top:8px;padding:8px"/><div style="margin-top:8px"><button class="btn" onclick="calcAge()">Calculate</button></div><div id="age_out" class="small muted" style="margin-top:8px"></div>`);
+}
+function calcAge(){
+  const v = document.getElementById('dob')?.value;
+  if(!v){ alert('Select your date of birth'); return; }
+  const dob = new Date(v); const now = new Date();
+  let years = now.getFullYear() - dob.getFullYear();
+  let months = now.getMonth() - dob.getMonth();
+  let days = now.getDate() - dob.getDate();
+  if(days < 0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(months < 0){ years--; months += 12; }
+  document.getElementById('age_out').textContent = `Age: ${years} yrs, ${months} months, ${days} days`;
+}
+
+/* ----------------- EMAIL GENERATOR (random unlimited) ----------------- */
+/*
+  Email generator creates random email addresses.
+  Uses randomuser.me to get realistic name parts; when unavailable it falls back to random string.
+*/
+async function openEmailGen(){
+  openModal(`<h2>Email Generator</h2><p class="small">Generate unlimited random email addresses — copy one click.</p>
+    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="generateRandomEmail()">Generate Email</button><button class="btn ghost" onclick="generateRandomEmail(true)">Quick Many</button></div>
+    <div id="email_out" style="margin-top:12px"></div>`);
+}
+async function generateRandomEmail(many=false){
+  try{
+    // Try RandomUser for realistic names
+    const r = await fetch('https://randomuser.me/api/');
+    const j = await r.json();
+    const u = j.results && j.results[0];
+    let local = '';
+    if(u){
+      const p = (u.name.first + '.' + u.name.last).toLowerCase().replace(/[^a-z0-9.]/g,'');
+      local = p + (Math.random() > 0.6 ? Math.floor(Math.random()*999) : '');
+    } else {
+      local = randomString(8);
     }
-
-    /* ----------------- TTS (browser) ----------------- */
-    let synth = window.speechSynthesis, currentUtterance = null;
-    function populateVoices(selectId){
-      const sel = document.getElementById(selectId);
-      if (!sel) return;
-      sel.innerHTML = '';
-      const voices = synth.getVoices();
-      if (!voices.length){ setTimeout(()=>populateVoices(selectId),200); return; }
-      voices.forEach(v=> { const o=document.createElement('option'); o.value=v.name; o.textContent = `${v.name} ${v.lang? '('+v.lang+')':''}`; sel.appendChild(o); });
+    const domains = ['@mail.com','@postbox.com','@inbox.com','@toolnextt.app','@freemail.com'];
+    if(many){
+      let list = [];
+      for(let i=0;i<6;i++){
+        const em = (local + (i?i:'') + domains[Math.floor(Math.random()*domains.length)]);
+        list.push(`<div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><div style="flex:1">${em}</div><button class="btn" onclick="navigator.clipboard.writeText('${em}').then(()=>alert('Copied'))">Copy</button></div>`);
+      }
+      document.getElementById('email_out').innerHTML = list.join('');
+    } else {
+      const email = local + domains[Math.floor(Math.random()*domains.length)];
+      document.getElementById('email_out').innerHTML = `<div style="display:flex;gap:8px;align-items:center"><div style="flex:1;font-weight:700">${email}</div><button class="btn" onclick="navigator.clipboard.writeText('${email}').then(()=>alert('Copied'))">Copy</button></div>`;
     }
-    function openTTS(){
-      openModal(`<h2>Text to Speech</h2><div class="small muted">Runs in your browser.</div>
-        <textarea id="ttsInput" style="width:100%;min-height:140px;margin-top:10px"></textarea>
-        <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
-          <select id="ttsVoice" style="padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)"></select>
-          <select id="ttsRate" style="padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)"><option value='0.8'>Slow</option><option value='1' selected>Normal</option><option value='1.4'>Fast</option></select>
-          <button class="btn" onclick="playTTS()">Play</button>
-          <button class="btn ghost" onclick="stopTTS()">Stop</button>
-        </div>`);
-      populateVoices('ttsVoice');
-    }
-    function playTTS(){
-      stopTTS();
-      const text = (document.getElementById('ttsInput')||{}).value || '';
-      if (!text.trim()){ alert('Enter text'); return; }
-      currentUtterance = new SpeechSynthesisUtterance(text);
-      const selName = (document.getElementById('ttsVoice')||{}).value;
-      const voices = synth.getVoices();
-      if (selName){ const v = voices.find(x=>x.name===selName); if (v) currentUtterance.voice = v; }
-      currentUtterance.rate = parseFloat((document.getElementById('ttsRate')||{}).value || 1);
-      synth.speak(currentUtterance);
-    }
-    function stopTTS(){ if (synth && synth.speaking) synth.cancel(); }
+  }catch(e){
+    // fallback
+    const em = randomString(8) + '@mail.com';
+    document.getElementById('email_out').innerHTML = `<div style="display:flex;gap:8px;align-items:center"><div style="flex:1">${em}</div><button class="btn" onclick="navigator.clipboard.writeText('${em}').then(()=>alert('Copied'))">Copy</button></div>`;
+  }
+}
+function randomString(len){
+  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  let s='';
+  for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)];
+  return s;
+}
 
-    /* ----------------- Word Counter ----------------- */
-    function openWordCounter(){
-      openModal(`<h2>Word Counter</h2><div class="small muted">Count words, chars & sentences.</div><textarea id="wcInput" style="width:100%;min-height:160px;margin-top:10px"></textarea>
-        <div style="margin-top:8px"><button class="btn" onclick="runWordCount()">Count</button><button class="btn ghost" onclick="document.getElementById('wcInput').value=''">Clear</button> <span id="wcResult" style="margin-left:8px" class="muted"></span></div>`);
+/* ----------------- CURRENCY CONVERTER (exchangerate.host free) ----------------- */
+async function openCurrency(){
+  openModal(`<h2>Currency Converter</h2><p class="small">Live rates via exchangerate.host (free).</p>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center"><input id="cur_amt" type="number" value="1" style="width:90px;padding:8px"/><select id="cur_from" style="padding:8px"></select><select id="cur_to" style="padding:8px"></select><button class="btn" onclick="convertCurrency()">Convert</button></div>
+    <div id="cur_out" class="small muted" style="margin-top:10px"></div>`);
+  try{
+    const r = await fetch('https://api.exchangerate.host/symbols'); const j = await r.json();
+    const symbols = j.symbols || {};
+    const keys = Object.keys(symbols);
+    const from = document.getElementById('cur_from'); const to = document.getElementById('cur_to');
+    from.innerHTML = ''; to.innerHTML = '';
+    ['USD','EUR','PKR','GBP','AED','INR'].forEach(c=> { if(symbols[c]) { from.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); }});
+    keys.slice(0,20).forEach(k=> { if(!['USD','EUR','PKR','GBP','AED','INR'].includes(k)) { from.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); }});
+    from.value='USD'; to.value='PKR';
+  }catch(e){ document.getElementById('cur_out').textContent = 'Could not load currency symbols.'; }
+}
+async function convertCurrency(){
+  const amount = parseFloat(document.getElementById('cur_amt')?.value || 1);
+  const from = document.getElementById('cur_from')?.value; const to = document.getElementById('cur_to')?.value;
+  if(!from || !to){ alert('Select currencies'); return; }
+  document.getElementById('cur_out').textContent = 'Converting...';
+  try{
+    const r = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
+    const j = await r.json();
+    if(j.result !== undefined) document.getElementById('cur_out').textContent = `${amount} ${from} = ${j.result} ${to} (Rate: ${j.info.rate})`;
+    else document.getElementById('cur_out').textContent = 'Conversion failed.';
+  }catch(e){ document.getElementById('cur_out').textContent = 'Network error'; }
+}
+
+/* ----------------- OCR (ocr.space demo) ----------------- */
+function openOCR(){
+  openModal(`<h2>Image → Text (OCR)</h2><p class="small">Uses ocr.space API demo key for testing. For production get your own free key.</p><input id="ocr_file" type="file" accept="image/*" style="margin-top:8px"/><div style="margin-top:8px"><button class="btn" onclick="runOCR()">Extract Text</button></div><pre id="ocr_out" class="small muted" style="margin-top:12px;max-height:320px;overflow:auto"></pre>`);
+}
+async function runOCR(){
+  const f = document.getElementById('ocr_file')?.files?.[0];
+  if(!f){ alert('Select an image'); return; }
+  document.getElementById('ocr_out').textContent = 'Processing...';
+  const apikey = 'helloworld'; // demo key; replace with your key for production
+  const form = new FormData(); form.append('apikey', apikey); form.append('file', f); form.append('language','eng'); form.append('isOverlayRequired','false');
+  try{
+    const r = await fetch('https://api.ocr.space/parse/image', { method:'POST', body: form });
+    const j = await r.json();
+    if(j?.IsErroredOnProcessing){ document.getElementById('ocr_out').textContent = 'OCR error: ' + (j.ErrorMessage || JSON.stringify(j)); }
+    else {
+      const text = (j.ParsedResults||[]).map(p=>p.ParsedText).join('\n');
+      document.getElementById('ocr_out').textContent = text || 'No text found';
     }
-    function runWordCount(){
-      const txt = (document.getElementById('wcInput')||{}).value || '';
-      const words = txt.trim().length ? txt.trim().split(/\s+/).length : 0;
-      const charsNoSpaces = txt.replace(/\s+/g,'').length;
-      const sentences = txt.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
-      document.getElementById('wcResult').textContent = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
-    }
+  }catch(e){
+    document.getElementById('ocr_out').textContent = 'Network/CORS error. Server-side proxy or your own key may be required.'; console.warn(e);
+  }
+}
 
-    /* ----------------- Image Compressor ----------------- (client-side) */
-    function openImageCompressor(){ openModal(`<h2>Image Compressor</h2><div class="small muted">Compress locally in browser.</div><input id="imgFile" type="file" accept="image/*" style="margin-top:10px"/><div style="margin-top:8px"><label>Quality</label><input id="imgQuality" type="range" min="10" max="100" value="80" style="margin-left:8px"/></div><div style="margin-top:8px"><button class="btn" onclick="compressImage()">Compress</button></div><div id="imgPreview" style="margin-top:12px"></div>`); }
-    async function compressImage(){
-      const fileInput = document.getElementById('imgFile'); const q = (document.getElementById('imgQuality')||{}).value/100 || 0.8; const preview = document.getElementById('imgPreview'); preview.innerHTML='Processing...';
-      if (!fileInput || !fileInput.files[0]){ preview.innerHTML='<div class="muted">Select an image first.</div>'; return; }
-      const file = fileInput.files[0]; const img = new Image(); const url = URL.createObjectURL(file);
-      await new Promise(r=> { img.onload = r; img.src = url; });
-      const canvas = document.createElement('canvas'); const maxW = 1600; let w=img.naturalWidth,h=img.naturalHeight; if(w>maxW){ h=Math.round(h*(maxW/w)); w=maxW; } canvas.width=w; canvas.height=h;
-      const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
-      const dataUrl = canvas.toDataURL('image/jpeg', q); const blob = await (await fetch(dataUrl)).blob(); const sizeKB=Math.round(blob.size/1024);
-      preview.innerHTML=`<div style="display:flex;gap:12px;align-items:center"><img src="${dataUrl}" style="max-width:220px;border-radius:8px"/><div><div style="font-weight:700">Compressed: ${sizeKB} KB</div><div class="muted">Original: ${Math.round(file.size/1024)} KB</div><div style="margin-top:8px"><a id="imgDownload" href="${dataUrl}" download="toolnext-compressed.jpg" class="btn">Download</a></div></div></div>`;
-      URL.revokeObjectURL(url);
-    }
+/* ----------------- PERSONAL SPACE (localStorage) ----------------- */
+function openPersonalSpace(){
+  openModal(`<h2>Personal Space</h2><p class="small">Upload images or text notes — saved locally in your browser.</p>
+    <div style="display:flex;gap:8px;margin-top:8px"><input id="ps_title_modal" placeholder="Title (optional)" style="flex:1;padding:8px"/><input id="ps_file_modal" type="file"/><button class="btn" onclick="addPersonalItemModal()">Upload</button></div>
+    <div id="ps_preview_modal" class="space-grid" style="margin-top:12px"></div>`);
+  renderSpaceModal();
+}
+function getSpace(){ try{ return JSON.parse(localStorage.getItem('tn-space')||'[]'); }catch(e){ return []; } }
+function saveSpace(arr){ localStorage.setItem('tn-space', JSON.stringify(arr)); }
+function addPersonalItemModal(){
+  const f = document.getElementById('ps_file_modal')?.files?.[0]; const title = (document.getElementById('ps_title_modal')?.value||'').trim();
+  if(!f){ alert('Select file to upload'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const data = e.target.result;
+    const arr = getSpace(); arr.unshift({id:Date.now(),title,type:f.type,data}); saveSpace(arr); renderSpaceModal(); renderSpaceGrid(); alert('Saved locally to Personal Space.');
+  };
+  if(f.type.startsWith('text/')) reader.readAsText(f); else reader.readAsDataURL(f);
+}
+function renderSpaceModal(){
+  const p = document.getElementById('ps_preview_modal'); if(!p) return;
+  const arr = getSpace();
+  p.innerHTML = arr.map(it=>{
+    if(it.type.startsWith('image/')) return `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:8px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>`;
+    return `<div class="space-item"><pre style="text-align:left;max-height:120px;overflow:auto">${escapeHtml((it.data||'').slice(0,500))}${it.data.length>500?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`;
+  }).join('');
+}
+function addPersonalItem(){ const f = document.getElementById('psFile')?.files?.[0]; const title = (document.getElementById('psTitle')?.value||'').trim(); if(!f){ alert('Select file'); return; }
+  const r = new FileReader(); r.onload=e=>{ const arr=getSpace(); arr.unshift({id:Date.now(),title,type:f.type,data:e.target.result}); saveSpace(arr); renderSpaceGrid(); alert('Saved locally (browser).'); document.getElementById('psFile').value=''; document.getElementById('psTitle').value=''; }; if(f.type.startsWith('text/')) r.readAsText(f); else r.readAsDataURL(f);
+}
+function renderSpaceGrid(){
+  const g = document.getElementById('spaceGrid'); if(!g) return;
+  const arr = getSpace();
+  g.innerHTML = arr.map(it=>{
+    if(it.type.startsWith('image/')) return `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:6px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>`;
+    return `<div class="space-item"><pre style="text-align:left;max-height:140px;overflow:auto">${escapeHtml((it.data||'').slice(0,300))}${it.data.length>300?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`;
+  }).join('');
+}
+function renderSpaceModalOnLoad(){ if(document.getElementById('ps_preview_modal')) renderSpaceModal(); }
 
-    /* ----------------- QR (free API) ----------------- */
-    function openQRTool(){ openModal(`<h2>QR Code Generator</h2><div class="small muted">Generates QR image via free API.</div><input id="qrText" placeholder="Enter URL or text" style="width:100%;margin-top:10px;padding:8px"/><div style="margin-top:8px"><button class="btn" onclick="genQR()">Generate</button></div><div id="qrPreview" style="margin-top:12px"></div>`); }
-    function genQR(){ const v=(document.getElementById('qrText')||{}).value||''; if(!v.trim()){alert('Enter text');return;} const url='https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+encodeURIComponent(v); document.getElementById('qrPreview').innerHTML=`<img src="${url}" style="max-width:260px;border-radius:8px"/><div style="margin-top:8px"><a href="${url}" class="btn" target="_blank">Open</a></div>`; }
+/* ----------------- CONTACT (mailto) ----------------- */
+function handleContact(e){
+  e.preventDefault();
+  const name = encodeURIComponent(document.getElementById('cname').value.trim());
+  const email = encodeURIComponent(document.getElementById('cemail').value.trim());
+  const msg = encodeURIComponent(document.getElementById('cmessage').value.trim());
+  const subject = encodeURIComponent('ToolNextt Contact: ' + (name || email));
+  const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${decodeURIComponent(msg)}`);
+  window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
+}
 
-    /* ----------------- Currency Converter (exchangerate.host) ----------------- */
-    async function openCurrency(){
-      openModal(`<h2>Currency Converter</h2><div class="small muted">Live rates via exchangerate.host (free).</div>
-        <div style="display:flex;gap:8px;margin-top:10px"><input id="curAmount" type="number" value="1" style="width:90px;padding:8px"/><select id="curFrom" style="padding:8px"></select><select id="curTo" style="padding:8px"></select><button class="btn" onclick="convertCurrency()">Convert</button></div>
-        <div id="curResult" style="margin-top:12px" class="muted"></div>`);
-      // fetch symbols
-      try{
-        const res = await fetch('https://api.exchangerate.host/symbols'); const j = await res.json();
-        const symbols = j.symbols || {};
-        const from = document.getElementById('curFrom'), to = document.getElementById('curTo');
-        from.innerHTML = ''; to.innerHTML = '';
-        ['USD','EUR','PKR','GBP','AED','INR'].forEach(code=>{ if(symbols[code]){ from.insertAdjacentHTML('beforeend',`<option value="${code}">${code} - ${symbols[code].description}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${code}">${code} - ${symbols[code].description}</option>`);} });
-        // add a few more
-        Object.keys(symbols).slice(0,10).forEach(code=>{ if(!['USD','EUR','PKR','GBP','AED','INR'].includes(code)) { from.insertAdjacentHTML('beforeend',`<option value="${code}">${code}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${code}">${code}</option>`); }});
-        from.value='USD'; to.value='PKR';
-      }catch(e){ console.warn(e); }
-    }
-    async function convertCurrency(){
-      const amount = parseFloat(document.getElementById('curAmount').value || 1);
-      const from = document.getElementById('curFrom').value; const to = document.getElementById('curTo').value;
-      if(!from || !to){ alert('Select currencies'); return; }
-      document.getElementById('curResult').textContent = 'Converting...';
-      try{
-        const res = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
-        const j = await res.json();
-        if(j.result !== undefined) document.getElementById('curResult').textContent = `${amount} ${from} = ${j.result} ${to} (Rate: ${j.info.rate})`;
-        else document.getElementById('curResult').textContent = 'Could not fetch rate.';
-      }catch(e){ document.getElementById('curResult').textContent = 'Network error'; }
-    }
-
-    /* ----------------- YT Thumbnail ----------------- */
-    function openYTThumb(){ openModal(`<h2>YouTube Thumbnail</h2><div class="small muted">Get thumbnails by video URL.</div><input id="ytUrl" placeholder="YouTube URL" style="width:100%;margin-top:10px;padding:8px"/><div style="margin-top:8px"><button class="btn" onclick="getYTThumb()">Get</button></div><div id="ytPreview" style="margin-top:12px"></div>`); }
-    function getYTThumb(){ const url=(document.getElementById('ytUrl')||{}).value||''; const id=(url.match(/v=([^&]+)/)||url.match(/youtu\.be\/([^?]+)/)||[])[1]; if(!id){alert('Enter valid URL');return;} const thumbs=[`https://img.youtube.com/vi/${id}/maxresdefault.jpg`,`https://img.youtube.com/vi/${id}/sddefault.jpg`,`https://img.youtube.com/vi/${id}/hqdefault.jpg`]; document.getElementById('ytPreview').innerHTML = thumbs.map(t=>`<div style="display:inline-block;margin-right:8px"><img src="${t}" style="max-width:220px"/><div style="text-align:center;margin-top:6px"><a href="${t}" class="btn" target="_blank">Open</a></div></div>`).join(''); }
-
-    /* ----------------- Password Gen ----------------- */
-    function openPasswordGen(){ openModal(`<h2>Password Generator</h2><div class="small muted">Generate strong passwords.</div><div style="margin-top:8px"><input id="pwLen" type="number" min="4" max="64" value="16" style="width:90px;padding:8px"/><button class="btn" onclick="genPassword()">Generate</button></div><input id="pwResult" style="width:100%;margin-top:8px;padding:8px" readonly />`); }
-    function genPassword(){ const len=parseInt(document.getElementById('pwLen').value||16,10); const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?'; let out=''; for(let i=0;i<len;i++) out+=chars[Math.floor(Math.random()*chars.length)]; document.getElementById('pwResult').value = out; navigator.clipboard?.writeText(out).catch(()=>{}); }
-
-    /* ----------------- Translator (MyMemory free) ----------------- */
-    function openTranslator(){ openModal(`<h2>Text Translator</h2><div class="small muted">Powered by MyMemory (free). Limited daily quota.</div><textarea id="trText" style="width:100%;min-height:120px;margin-top:8px"></textarea><div style="margin-top:8px;display:flex;gap:8px"><select id="trFrom"><option value="en">English</option><option value="auto">Auto</option></select><select id="trTo"><option value="ur">Urdu</option><option value="en">English</option><option value="hi">Hindi</option></select><button class="btn" onclick="translateText()">Translate</button></div><div id="trResult" style="margin-top:12px" class="muted"></div>`); }
-    async function translateText(){
-      const q = encodeURIComponent((document.getElementById('trText')||{}).value||''); const from=(document.getElementById('trFrom')||{}).value||'auto'; const to=(document.getElementById('trTo')||{}).value||'en';
-      if(!q){ alert('Enter text'); return; }
-      document.getElementById('trResult').textContent = 'Translating...';
-      try{
-        const res = await fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=${from}|${to}`);
-        const j = await res.json();
-        document.getElementById('trResult').textContent = j.responseData?.translatedText || 'No result';
-      }catch(e){ document.getElementById('trResult').textContent = 'Network error'; }
-    }
-
-    /* ----------------- OCR (ocr.space) ----------------- */
-    function openOCR(){ openModal(`<h2>Image → Text (OCR)</h2><div class="small muted">Uses ocr.space API. For production get your free API key at https://ocr.space/ocrapi</div><input id="ocrFile" type="file" accept="image/*" style="margin-top:8px"/><div style="margin-top:8px"><button class="btn" onclick="runOCR()">Extract Text</button></div><pre id="ocrResult" style="margin-top:12px;max-height:300px;overflow:auto" class="muted"></pre>`); }
-    async function runOCR(){
-      const f = (document.getElementById('ocrFile')||{}).files?.[0];
-      if(!f){ alert('Select image'); return; }
-      document.getElementById('ocrResult').textContent = 'Processing...';
-      // Note: ocr.space demo key "helloworld" works for testing but limited usage.
-      const apikey = 'helloworld'; // replace with your free key for production
-      const form = new FormData(); form.append('apikey', apikey); form.append('language','eng'); form.append('isOverlayRequired','false'); form.append('file', f);
-      try{
-        const res = await fetch('https://api.ocr.space/parse/image', { method:'POST', body: form });
-        const j = await res.json();
-        if (j?.IsErroredOnProcessing) document.getElementById('ocrResult').textContent = 'OCR error: ' + (j.ErrorMessage || JSON.stringify(j));
-        else {
-          const text = (j.ParsedResults||[]).map(r=>r.ParsedText).join('\n');
-          document.getElementById('ocrResult').textContent = text || 'No text found';
-        }
-      }catch(e){ document.getElementById('ocrResult').textContent = 'Network / CORS error (server may block client requests)'; console.warn(e); }
-    }
-
-    /* ----------------- Email Generator (RandomUser) ----------------- */
-    function openEmailGen(){ openModal(`<h2>Email Generator</h2><div class="small muted">Generates a professional email template using a sample name (RandomUser.me)</div><div style="margin-top:8px"><input id="egTo" placeholder="Recipient name / company" style="width:100%;padding:8px"/></div><div style="margin-top:8px"><input id="egSubject" placeholder="Subject" style="width:100%;padding:8px"/></div><div style="margin-top:8px"><textarea id="egBody" placeholder="Key points" style="width:100%;min-height:120px"></textarea></div><div style="margin-top:8px"><button class="btn" onclick="generateEmailFromRandomUser()">Generate with RandomUser</button> <button class="btn ghost" onclick="document.getElementById('egBody').value=''">Clear</button></div><textarea id="egResult" style="width:100%;min-height:140px;margin-top:8px"></textarea>`); }
-    async function generateEmailFromRandomUser(){
-      try{
-        const r = await fetch('https://randomuser.me/api/'); const j = await r.json(); const user = j.results[0];
-        const name = `${user.name.first} ${user.name.last}`; const company = user.location.timezone.description || 'Team';
-        const to = document.getElementById('egTo').value || name;
-        const subj = document.getElementById('egSubject').value || 'Hello';
-        const bodyText = document.getElementById('egBody').value || 'I hope you are well. I wanted to reach out regarding...';
-        const template = `Subject: ${subj}\n\nHi ${to},\n\n${bodyText}\n\nBest regards,\n${name}\n${company}\nEmail: ${user.email}`;
-        document.getElementById('egResult').value = template;
-        navigator.clipboard?.writeText(template).catch(()=>{});
-      }catch(e){ alert('Could not get sample user.'); }
-    }
-
-    /* ----------------- Age Calculator ----------------- */
-    function openAgeCalc(){ openModal(`<h2>Age Calculator</h2><div class="small muted">Select DOB to calculate exact age.</div><input id="dob" type="date" style="margin-top:8px;padding:8px"/><div style="margin-top:8px"><button class="btn" onclick="calcAge()">Calculate</button></div><div id="ageResult" style="margin-top:8px" class="muted"></div>`); }
-    function calcAge(){
-      const v = document.getElementById('dob').value; if(!v){ alert('Select DOB'); return; }
-      const dob = new Date(v); const now = new Date();
-      let years = now.getFullYear() - dob.getFullYear(); let months = now.getMonth() - dob.getMonth(); let days = now.getDate() - dob.getDate();
-      if(days<0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
-      if(months<0){ years--; months += 12; }
-      document.getElementById('ageResult').textContent = `Age: ${years} years, ${months} months, ${days} days`;
-    }
-
-    /* ----------------- Personal Space (localStorage) ----------------- */
-    function openPersonalSpace(){
-      openModal(`<h2>Personal Space</h2><div class="small muted">Upload images or text notes (saved locally in your browser).</div>
-        <div style="margin-top:8px;display:flex;gap:8px"><input id="psTitleModal" placeholder="Title (optional)" style="flex:1;padding:8px"/><input id="psFileModal" type="file"/><button class="btn" onclick="addPersonalItemModal()">Upload</button></div>
-        <div id="psPreview" style="margin-top:12px" class="space-grid"></div>`);
-      renderSpaceModal();
-    }
-    function getSpace(){ try{ return JSON.parse(localStorage.getItem('toolnext-space')||'[]'); }catch(e){return[]} }
-    function saveSpace(a){ localStorage.setItem('toolnext-space', JSON.stringify(a)); }
-    function addPersonalItemModal(){
-      const f = (document.getElementById('psFileModal')||{}).files?.[0]; const title=(document.getElementById('psTitleModal')||{}).value||'';
-      if(!f){ alert('Select file'); return; }
-      const r = new FileReader();
-      r.onload = e=>{ const data=e.target.result; const arr=getSpace(); arr.unshift({id:Date.now(),title, type:f.type, data}); saveSpace(arr); renderSpaceModal(); renderSpaceGrid(); alert('Saved to personal space (local).'); };
-      if(f.type.startsWith('text/')) r.readAsText(f); else r.readAsDataURL(f);
-    }
-    function renderSpaceModal(){ const p=document.getElementById('psPreview'); if(!p) return; const arr=getSpace(); p.innerHTML = arr.map(it=> it.type.startsWith('image/') ? `<div class="space-item"><img src="${it.data}" style="max-width:120px;border-radius:6px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>` : `<div class="space-item"><pre style="text-align:left;max-height:120px;overflow:auto">${escapeHtml((it.data||'').slice(0,800))}${it.data.length>800?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`).join(''); }
-    function addPersonalItem(){ const f=(document.getElementById('psFile')||{}).files?.[0]; const title=(document.getElementById('psTitle')||{}).value||''; if(!f){alert('Select file');return;} const r=new FileReader(); r.onload=e=>{ const arr=getSpace(); arr.unshift({id:Date.now(),title, type:f.type, data:e.target.result}); saveSpace(arr); renderSpaceGrid(); alert('Saved locally.'); document.getElementById('psFile').value=''; document.getElementById('psTitle').value=''; }; if(f.type.startsWith('text/')) r.readAsText(f); else r.readAsDataURL(f); }
-    function renderSpaceGrid(){ const g=document.getElementById('spaceGrid'); if(!g) return; const arr=getSpace(); g.innerHTML = arr.map(it=> it.type.startsWith('image/') ? `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:6px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>` : `<div class="space-item"><pre style="text-align:left;max-height:140px;overflow:auto">${escapeHtml((it.data||'').slice(0,300))}${it.data.length>300?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`).join(''); }
-    function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
-
-    /* ----------------- Contact (mailto) ----------------- */
-    function handleContact(e){ e.preventDefault(); const name=encodeURIComponent(document.getElementById('cname').value.trim()); const email=encodeURIComponent(document.getElementById('cemail').value.trim()); const msg=encodeURIComponent(document.getElementById('cmessage').value.trim()); const subject=encodeURIComponent('ToolNext Contact: '+(name||email)); const body=encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${decodeURIComponent(msg)}`); window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`; }
-
-    // init
-    document.getElementById('openTools').addEventListener('click', ()=> document.getElementById('tools').scrollIntoView({behavior:'smooth'}));
-    window.addEventListener('load', ()=> { populateVoices('ttsVoice'); renderSpaceGrid(); });
-  </script>
+/* ----------------- INIT ----------------- */
+window.addEventListener('load', ()=>{ renderSpaceGrid(); populateVoices && populateVoices('tts_voice'); renderSpaceModalOnLoad(); });
+</script>
 </body>
 </html>
