@@ -1,244 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ToolNextt — Free & Secure Online Tools</title>
-  <meta name="description" content="ToolNextt — 14 free & secure web utilities: Image Compressor, PDF Merger, Password Generator, QR Creator, Text-to-Speech, Email Generator, Currency Converter, Age Calculator and more." />
-  <meta name="keywords" content="ToolNextt, online tools, image compressor, pdf merge, password generator, qr generator, tts, email generator, currency converter" />
-  <meta name="theme-color" content="#0b1220" />
-
-  <!-- Fonts & Icons (optional but recommended) -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
-  <!-- Your stylesheet (you said you already created assets/style.css) -->
-  <link rel="stylesheet" href="assets/style.css">
-
-  <!-- Favicon optional -->
-  <!-- <link rel="icon" href="assets/images/favicon.png" /> -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ToolNextt - Free and Secure Online Tools like Word Counter, Image Compressor, QR Generator, and more.">
+  <title>ToolNextt | Free & Secure Online Tools</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1069/1069130.png">
 </head>
+
 <body>
-  <div class="container">
-    <!-- HEADER -->
-    <header class="header" role="banner">
-      <div class="brand" aria-hidden="true">
-        <div class="logo">TN</div>
-        <div>
-          <div class="title">ToolNextt</div>
-          <div class="tag">Fast • Free • Secure</div>
-        </div>
-      </div>
+  <header class="header">
+    <div class="logo">🧰 <span>ToolNextt</span></div>
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="theme-toggle" class="theme-btn">🌙</button>
+  </header>
 
-      <nav class="nav" role="navigation" aria-label="Main">
-        <a href="/">Home</a>
-        <a href="/pages/tools.html">Tools</a>
-        <a href="/pages/about.html">About</a>
-        <a href="/pages/contact.html">Contact</a>
-      </nav>
-
-      <div class="actions" role="region" aria-label="Actions">
-        <div class="small">Trusted by <strong>5,000+</strong></div>
-        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-pressed="false">☀️</button>
-        <button id="openTools" class="btn">Explore Tools</button>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero" id="home" aria-labelledby="hero-heading">
-      <div class="hero-left">
-        <h1 id="hero-heading">Free & Secure Tools — All in One Place</h1>
-        <p class="small">ToolNextt helps you access 14 powerful web utilities — fast, private, and mobile-friendly.</p>
-
-        <div class="hero-cta" style="margin-top:16px">
-          <button class="btn" id="ctaExplore" onclick="location.href='/pages/tools.html'">Explore Tools</button>
-          <button class="btn ghost" id="ctaDemo" onclick="location.href='/pages/email-generator.html'">Try Demo</button>
-        </div>
-
-        <div style="margin-top:12px">
-          <span class="badge"><i class="fa fa-shield-alt"></i> Trusted by <strong>5,000+</strong></span>
-          <span class="badge" style="margin-left:8px"><i class="fa fa-lock"></i> Secure • Free</span>
-        </div>
-      </div>
-
-      <div class="hero-visual" aria-hidden="true">
-        <!-- Abstract lightweight SVG illustration (keeps site fast) -->
-        <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#3ec5ff"/></linearGradient>
-          </defs>
-          <rect x="64" y="64" rx="12" width="512" height="256" fill="url(#g1)" opacity="0.08"/>
-          <g>
-            <rect x="120" y="110" width="120" height="84" rx="8" fill="#fff" opacity="0.9"/>
-            <rect x="280" y="110" width="120" height="84" rx="8" fill="#0b1224" opacity="0.08"/>
-            <rect x="440" y="110" width="120" height="84" rx="8" fill="url(#g1)" opacity="0.12"/>
-          </g>
-          <text x="50%" y="360" font-size="13" fill="rgba(0,0,0,0.25)" font-family="Inter,Arial" text-anchor="middle">Lightweight abstract illustration</text>
-        </svg>
-      </div>
-    </section>
-
-    <!-- TOOLS GRID -->
-    <section id="tools" aria-labelledby="toolsHeading">
-      <h3 id="toolsHeading">Popular Tools</h3>
-      <div class="tools-grid">
-        <div class="card" onclick="location.href='/pages/image-compressor.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><i class="fa fa-image"></i></div>
-            <div><div class="title">Image Compressor</div><div class="desc">Reduce image size locally — private & fast.</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/email-generator.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-envelope"></i></div>
-            <div><div class="title">Email Generator</div><div class="desc">Generate unlimited random disposable emails.</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/age-calculator.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><i class="fa fa-calendar"></i></div>
-            <div><div class="title">Age Calculator</div><div class="desc">Calculate precise age from date of birth.</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/personal-space.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#9b59b6,#6c5ce7)"><i class="fa fa-user"></i></div>
-            <div><div class="title">Personal Space</div><div class="desc">Upload notes & images (saved locally in your browser).</div></div>
-          </div>
-        </div>
-
-        <!-- Additional tool cards (links to placeholders or pages) -->
-        <div class="card" onclick="location.href='/pages/tools.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-file-pdf"></i></div>
-            <div><div class="title">PDF Merger</div><div class="desc">UI ready — server/API recommended for final merge.</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/tools.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#4f46e5,#7c5cff)"><i class="fa fa-headphones"></i></div>
-            <div><div class="title">Text to Speech</div><div class="desc">Browser TTS with voice & speed control.</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/tools.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><i class="fa fa-qrcode"></i></div>
-            <div><div class="title">QR Generator</div><div class="desc">Create QR codes instantly (free API).</div></div>
-          </div>
-        </div>
-
-        <div class="card" onclick="location.href='/pages/tools.html'">
-          <div class="head">
-            <div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><i class="fa fa-file-alt"></i></div>
-            <div><div class="title">Word Counter</div><div class="desc">Count words, characters & sentences quickly.</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="featured" style="margin-top:16px">
-        <h3 style="margin:0">Most Used</h3>
-        <div style="margin-top:10px">
-          <span class="badge">Image Compressor</span>
-          <span class="badge" style="margin-left:8px">QR Generator</span>
-          <span class="badge" style="margin-left:8px">Text to Speech</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" style="margin-top:18px">
-      <h3>About ToolNextt</h3>
-      <div style="margin-top:8px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
-        <p class="small">ToolNextt offers a compact set of secure, privacy-first web utilities that run in your browser. Client-side tools keep your data private. For advanced conversions we can integrate secure APIs on request.</p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" style="margin-top:18px">
-      <h3>Contact & Support</h3>
-      <div style="display:grid;grid-template-columns:1fr 360px;gap:14px;margin-top:12px">
-        <div class="contact-card" style="padding:16px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
-          <div style="font-weight:700">Contact</div>
-          <div class="small" style="margin-top:6px">Questions or feedback? Email us at <strong><a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></strong>.</div>
-          <form id="contactForm" onsubmit="handleContact(event)" style="margin-top:12px">
-            <label class="small">Name</label><input id="cname" class="input" required placeholder="Your name" />
-            <label class="small">Email</label><input id="cemail" class="input" type="email" required placeholder="your@email.com" />
-            <label class="small">Message</label><textarea id="cmessage" class="input" required placeholder="Your message..." style="min-height:100px"></textarea>
-            <div style="margin-top:10px;display:flex;gap:8px"><button class="btn" type="submit">Send</button><button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Clear</button></div>
-            <div class="small" style="margin-top:8px;color:var(--muted)">Form opens your email client (mailto). Server-side delivery can be added later.</div>
-          </form>
-        </div>
-
-        <aside style="padding:16px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
-          <div style="font-weight:700">Support</div>
-          <div class="small" style="margin-top:8px">FAQs & Quick Links</div>
-          <div style="margin-top:12px"><a href="/pages/tools.html">All Tools</a><div style="margin-top:8px"><a href="/pages/privacy.html">Privacy Policy</a></div></div>
-          <div style="margin-top:16px">
-            <div style="font-weight:700">Follow us</div>
-            <div class="social-row" style="margin-top:8px">
-              <a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-linkedin-in"></i></a>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-grid">
-        <div>
-          <div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:48px;height:48px">TN</div>
-            <div><div style="font-weight:800">ToolNextt</div><div class="small">Fast • Free • Secure</div></div></div>
-          <p class="small" style="margin-top:12px">ToolNextt brings you privacy-first tools — text utilities, converters and time-savers — all accessible in your browser without installs.</p>
-        </div>
-
-        <div><h4>Quick Links</h4><div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="/">Home</a><a href="/pages/tools.html">Tools</a><a href="/pages/about.html">About</a><a href="/pages/contact.html">Contact</a></div></div>
-
-        <div><h4>Popular Tools</h4><div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="/pages/image-compressor.html">Image Compressor</a><a href="/pages/email-generator.html">Email Generator</a><a href="/pages/age-calculator.html">Age Calculator</a></div></div>
-
-        <div><h4>Contact</h4><div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div>
-          <div class="social-row" style="margin-top:8px"><a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a><a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-instagram"></i></a></div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:16px" class="small">© ToolNextt 2025 • Trusted by 5,000+ users • 100% Secure & Free</div>
-    </footer>
-  </div>
-
-  <!-- GLOBAL MODAL (used by pages) -->
-  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
-    <div class="modal-card" role="dialog" aria-modal="true" id="modalCard">
-      <button style="position:absolute;right:12px;top:10px;border:0;background:transparent;cursor:pointer;color:var(--muted)" onclick="closeModal()">✕</button>
-      <div id="modalInner"></div>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>All Your Everyday Tools in One Place</h1>
+      <p>Fast • Free • Mobile Friendly • Secure</p>
+      <a href="#tools" class="btn">Start Using Tools</a>
     </div>
-  </div>
+    <div class="hero-img">
+      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/online-tools-dashboard-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--webapp-application-pack-design-development-illustrations-5117314.png" alt="Tools Illustration">
+    </div>
+  </section>
 
-  <!-- Shared app script (you created assets/app.js) -->
-  <script src="assets/app.js"></script>
+  <section id="tools" class="tools-section">
+    <h2>Popular Tools</h2>
+    <div class="tools-grid">
+      <div class="tool-card"><h3>📝 Word Counter</h3><p>Count words, characters & sentences instantly.</p></div>
+      <div class="tool-card"><h3>🖼 Image Compressor</h3><p>Reduce image size easily without losing quality.</p></div>
+      <div class="tool-card"><h3>📄 PDF Tools</h3><p>Merge, split or compress your PDF files.</p></div>
+      <div class="tool-card"><h3>🔢 Age Calculator</h3><p>Calculate age instantly from date of birth.</p></div>
+      <div class="tool-card"><h3>💰 Currency Converter</h3><p>Convert any currency with real-time rates.</p></div>
+      <div class="tool-card"><h3>🔊 Text to Speech</h3><p>Convert your text to natural sounding speech.</p></div>
+      <div class="tool-card"><h3>📧 Email Generator</h3><p>Create random professional email addresses.</p></div>
+      <div class="tool-card"><h3>🧮 Unit Converter</h3><p>Convert metric, imperial and digital units.</p></div>
+      <div class="tool-card"><h3>🧾 QR Code Generator</h3><p>Create custom QR codes instantly (Free API).</p></div>
+      <div class="tool-card"><h3>🔒 Personal Space</h3><p>Store your text or images securely (local only).</p></div>
+    </div>
+  </section>
 
-  <!-- Small page-specific scripts -->
+  <section id="about" class="about">
+    <h2>About ToolNextt</h2>
+    <p>ToolNextt offers a compact set of secure, privacy-first web utilities that run directly in your browser — keeping your data private. No installations, no tracking — just fast, reliable tools.</p>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact & Support</h2>
+    <p>Have questions? Email us directly at <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+
+    <div class="social">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>ToolNextt</h3>
+        <p>Fast • Secure • Free</p>
+        <p>Privacy-first tools for all your daily tasks.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#">Home</a>
+        <a href="#tools">All Tools</a>
+        <a href="#about">About</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#contact">Contact</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+    <p class="copy">© 2025 ToolNextt — All Rights Reserved.</p>
+  </footer>
+
   <script>
-    // quick handlers (works with assets/app.js theme functions)
-    document.getElementById('openTools').addEventListener('click', ()=> location.href = '/pages/tools.html');
-    document.getElementById('ctaExplore').addEventListener('click', ()=> location.href = '/pages/tools.html');
-
-    // contact form mailto handler
-    function handleContact(e){
-      e.preventDefault();
-      const name = encodeURIComponent(document.getElementById('cname').value.trim());
-      const email = encodeURIComponent(document.getElementById('cemail').value.trim());
-      const msg = encodeURIComponent(document.getElementById('cmessage').value.trim());
-      const subject = encodeURIComponent('ToolNextt Contact: ' + (name || email));
-      const body = `Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${decodeURIComponent(msg)}`;
-      window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
-    }
+    // Dark/Light Theme Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+    });
   </script>
 </body>
 </html>
