@@ -1,154 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ToolNextt — Free & Secure Online Tools</title>
+  <meta name="description" content="ToolNextt — 14 free & secure web utilities: Image Compressor, PDF Merger, Password Generator, QR Creator, Text-to-Speech, Email Generator, Currency Converter, Age Calculator and more." />
+  <meta name="keywords" content="ToolNextt, online tools, image compressor, pdf merge, password generator, qr generator, tts, email generator, currency converter" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Fonts & Icons (optional but recommended) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Your stylesheet (you said you already created assets/style.css) -->
   <link rel="stylesheet" href="assets/style.css">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>ToolNextt — Free & Secure Online Tools</title>
-<meta name="description" content="ToolNextt — 14 free & secure web utilities: Image Compressor, PDF Merger, Password Generator, QR Creator, Text-to-Speech, Email Generator, Currency Converter, Age Calculator and more." />
-<meta name="keywords" content="ToolNextt, online tools, image compressor, pdf merge, password generator, qr generator, tts, email generator, currency converter" />
-<meta name="theme-color" content="#0b1220" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<style>
-  /* ---------- THEME VARIABLES ---------- */
-  :root{
-    /* Light (default) */
-    --bg: linear-gradient(180deg,#f7f9fc,#eef3fb);
-    --page-bg: #f6f8ff;
-    --card-bg: #ffffff;
-    --muted: #6b7280;
-    --text: #071032;
-    --glass-border: rgba(15,23,42,0.04);
-    --accent-a: #4f46e5;
-    --accent-b: #7c5cff;
-    --accent-c: #06b6d4;
-    --radius: 14px;
-    --shadow-soft: 0 10px 30px rgba(2,6,23,0.06);
-    --shadow-strong: 0 18px 60px rgba(2,6,23,0.08);
-    --transition: 300ms cubic-bezier(.2,.9,.2,1);
-  }
-  [data-theme="dark"]{
-    --bg: linear-gradient(180deg,#050617,#071028);
-    --page-bg: linear-gradient(180deg,#050617,#071028);
-    --card-bg: rgba(255,255,255,0.03);
-    --muted: #98a7bf;
-    --text: #e6eef8;
-    --glass-border: rgba(255,255,255,0.04);
-    --accent-a: #5b6cff;
-    --accent-b: #3ec5ff;
-    --accent-c: #22d3ee;
-    --shadow-soft: 0 12px 36px rgba(2,6,23,0.35);
-    --shadow-strong: 0 20px 60px rgba(2,6,23,0.6);
-  }
 
-  /* ---------- RESET & BASE ---------- */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    background:var(--page-bg);color:var(--text);-webkit-font-smoothing:antialiased;transition:background var(--transition),color var(--transition);
-    line-height:1.45;padding-bottom:40px;
-  }
-  a{color:inherit}
-  .container{max-width:1180px;margin:26px auto;padding:0 18px}
-
-  /* ---------- HEADER ---------- */
-  header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;position:relative;transition:all var(--transition)}
-  .brand{display:flex;align-items:center;gap:12px}
-  .logo{
-    width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-a),var(--accent-b));display:flex;align-items:center;justify-content:center;font-weight:900;color:white;font-size:18px;box-shadow:var(--shadow-soft)
-  }
-  .brand .title{font-weight:800;font-size:18px}
-  .brand .tag{font-size:12px;color:var(--muted);margin-top:3px}
-
-  nav.desktop{display:flex;gap:16px;align-items:center}
-  nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600}
-  nav.desktop a:hover{color:var(--text)}
-
-  .actions{display:flex;gap:10px;align-items:center}
-  .btn{
-    background:linear-gradient(135deg,var(--accent-a),var(--accent-b));
-    color:#fff;padding:10px 14px;border-radius:12px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(78,70,255,0.08);
-    transition:transform var(--transition),opacity var(--transition),box-shadow var(--transition);
-  }
-  .btn.ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text)}
-  .icon-btn{background:transparent;border:0;color:var(--muted);font-size:18px;cursor:pointer}
-  .hamburger{display:none}
-
-  /* ---------- HERO ---------- */
-  .hero{display:flex;gap:28px;align-items:center;margin-top:8px;transition:all var(--transition)}
-  .hero-left{flex:1;max-width:64%}
-  .hero h1{font-size:36px;margin:0;line-height:1.02;font-weight:800;letter-spacing:-0.5px}
-  .hero p{margin:8px 0 0;color:var(--muted);font-size:15px}
-  .hero-cta{display:flex;gap:12px;margin-top:18px;align-items:center}
-  .badges{display:flex;gap:10px;margin-top:12px;align-items:center}
-  .badge{background:var(--card-bg);padding:8px 12px;border-radius:999px;border:1px solid var(--glass-border);font-weight:600;color:var(--text);display:flex;gap:8px;align-items:center;box-shadow:var(--shadow-soft)}
-
-  .hero-visual{width:360px;min-width:220px;border-radius:18px;padding:18px;background:var(--card-bg);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;align-items:center;justify-content:center}
-  .hero-visual svg{width:100%;max-width:320px;height:auto;display:block}
-
-  /* ---------- TOOLS GRID ---------- */
-  section h3{font-size:20px;margin:20px 0;color:var(--text)}
-  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-  .card{
-    background:var(--card-bg);border-radius:12px;padding:14px;border:1px solid var(--glass-border);box-shadow:var(--shadow-soft);
-    transition:transform var(--transition), box-shadow var(--transition), background var(--transition);display:flex;flex-direction:column;gap:10px;min-height:120px;
-  }
-  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-strong)}
-  .card .head{display:flex;gap:12px;align-items:center}
-  .card .icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:18px;box-shadow:0 8px 30px rgba(0,0,0,0.08)}
-  .card .title{font-weight:800}
-  .card .desc{color:var(--muted);font-size:13px}
-  .card .actions{margin-top:auto;text-align:right}
-
-  .featured{margin-top:18px;padding:14px;border-radius:12px;background:var(--card-bg);border:1px solid var(--glass-border);box-shadow:var(--shadow-soft)}
-
-  /* ---------- CONTACT / COLUMNS ---------- */
-  .columns{display:grid;grid-template-columns:1fr 360px;gap:14px;margin-top:18px}
-  .contact-card{padding:16px;border-radius:12px;background:var(--card-bg);border:1px solid var(--glass-border)}
-  input, textarea, select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--text);margin-top:8px}
-  .small{font-size:13px;color:var(--muted)}
-
-  /* ---------- PERSONAL SPACE ---------- */
-  .space-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px}
-  .space-item{background:var(--card-bg);padding:8px;border-radius:8px;border:1px solid var(--glass-border);text-align:center}
-
-  /* ---------- FOOTER ---------- */
-  footer{margin-top:28px;padding:26px;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.03));color:var(--muted)}
-  .footer-grid{display:grid;grid-template-columns:1fr repeat(3,200px);gap:18px;max-width:1180px;margin:0 auto}
-  .footer h4{color:var(--text);margin-bottom:8px}
-  .social-row{display:flex;gap:12px;align-items:center;margin-top:10px}
-
-  /* ---------- MODAL ---------- */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.5);display:none;align-items:center;justify-content:center;padding:18px;z-index:220}
-  .modal-card{background:var(--card-bg);width:100%;max-width:920px;border-radius:12px;padding:18px;border:1px solid var(--glass-border);box-shadow:var(--shadow-strong)}
-
-  /* responsive */
-  @media(max-width:980px){
-    .hero{flex-direction:column-reverse}
-    nav.desktop{display:none}
-    .hamburger{display:block}
-    .columns{grid-template-columns:1fr}
-    .hero-left{max-width:100%}
-  }
-  @media(max-width:640px){
-    .hero h1{font-size:22px}
-    .hero-visual{width:100%}
-    .footer-grid{grid-template-columns:1fr}
-  }
-
-  /* micro interactions */
-  .btn:active{transform:translateY(1px)}
-  .card .icon i{transform:translateY(0);transition:transform var(--transition)}
-  .card:hover .icon i{transform:translateY(-4px)}
-</style>
+  <!-- Favicon optional -->
+  <!-- <link rel="icon" href="assets/images/favicon.png" /> -->
 </head>
 <body>
-  <div class="container" id="app">
+  <div class="container">
     <!-- HEADER -->
-    <header>
-      <div class="brand" aria-hidden>
+    <header class="header" role="banner">
+      <div class="brand" aria-hidden="true">
         <div class="logo">TN</div>
         <div>
           <div class="title">ToolNextt</div>
@@ -156,162 +30,122 @@
         </div>
       </div>
 
-      <nav class="desktop" aria-label="Main Navigation">
-        <a href="#home">Home</a>
-        <a href="#tools">Tools</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <nav class="nav" role="navigation" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/pages/tools.html">Tools</a>
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/contact.html">Contact</a>
       </nav>
 
-      <div class="actions">
-        <div class="small" style="color:var(--muted);">Trusted by <strong>5,000+</strong></div>
-        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-pressed="false" aria-label="Toggle theme"><i class="fa fa-sun"></i></button>
+      <div class="actions" role="region" aria-label="Actions">
+        <div class="small">Trusted by <strong>5,000+</strong></div>
+        <button id="themeToggle" class="icon-btn" title="Toggle theme" aria-pressed="false">☀️</button>
         <button id="openTools" class="btn">Explore Tools</button>
       </div>
     </header>
 
     <!-- HERO -->
-    <section id="home" class="hero" aria-label="Intro">
+    <section class="hero" id="home" aria-labelledby="hero-heading">
       <div class="hero-left">
-        <h1>Free & Secure Tools — All in One Place</h1>
-        <p class="small" style="margin-top:8px">ToolNextt helps you access 14 powerful web utilities — fast, private, and mobile-friendly.</p>
+        <h1 id="hero-heading">Free & Secure Tools — All in One Place</h1>
+        <p class="small">ToolNextt helps you access 14 powerful web utilities — fast, private, and mobile-friendly.</p>
 
-        <div class="hero-cta">
-          <button class="btn" id="ctaExplore">Explore Tools</button>
-          <button class="btn ghost" id="ctaDemo">Try Demo</button>
+        <div class="hero-cta" style="margin-top:16px">
+          <button class="btn" id="ctaExplore" onclick="location.href='/pages/tools.html'">Explore Tools</button>
+          <button class="btn ghost" id="ctaDemo" onclick="location.href='/pages/email-generator.html'">Try Demo</button>
         </div>
 
-        <div class="badges">
-          <div class="badge"><i class="fa fa-shield-alt" style="color:#ffd166"></i><div>Trusted by <strong>5,000+</strong></div></div>
-          <div class="badge"><i class="fa fa-lock" style="color:#34d399"></i><div>Secure • Free</div></div>
+        <div style="margin-top:12px">
+          <span class="badge"><i class="fa fa-shield-alt"></i> Trusted by <strong>5,000+</strong></span>
+          <span class="badge" style="margin-left:8px"><i class="fa fa-lock"></i> Secure • Free</span>
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden>
-        <!-- Abstract 3D-like lightweight SVG (matching theme A) -->
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Abstract lightweight SVG illustration (keeps site fast) -->
         <svg viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
           <defs>
             <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#5b6cff"/><stop offset="1" stop-color="#3ec5ff"/></linearGradient>
-            <filter id="f1" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/></filter>
           </defs>
-          <!-- base panels -->
-          <rect x="60" y="60" rx="16" width="520" height="240" fill="url(#g1)" opacity="0.06"/>
-          <rect x="84" y="86" rx="12" width="472" height="196" fill="rgba(255,255,255,0.02)"/>
-          <!-- three cards inside -->
-          <g filter="url(#f1)">
-            <rect x="116" y="114" width="120" height="92" rx="10" fill="url(#g1)"/>
-            <rect x="276" y="114" width="120" height="92" rx="10" fill="#0b1224" opacity="0.55"/>
-            <rect x="436" y="114" width="120" height="92" rx="10" fill="url(#g1)" opacity="0.9"/>
+          <rect x="64" y="64" rx="12" width="512" height="256" fill="url(#g1)" opacity="0.08"/>
+          <g>
+            <rect x="120" y="110" width="120" height="84" rx="8" fill="#fff" opacity="0.9"/>
+            <rect x="280" y="110" width="120" height="84" rx="8" fill="#0b1224" opacity="0.08"/>
+            <rect x="440" y="110" width="120" height="84" rx="8" fill="url(#g1)" opacity="0.12"/>
           </g>
-          <!-- small icons -->
-          <g transform="translate(120,230)" fill="#fff" opacity="0.9">
-            <circle cx="40" cy="12" r="10" fill="url(#g1)" />
-            <rect x="76" y="4" width="20" height="16" rx="3" fill="url(#g1)"/>
-            <rect x="112" y="2" width="20" height="20" rx="3" fill="url(#g1)"/>
-          </g>
-          <text x="50%" y="360" font-size="14" fill="rgba(0,0,0,0.35)" font-family="Inter,Arial" text-anchor="middle">Lightweight abstract illustration</text>
+          <text x="50%" y="360" font-size="13" fill="rgba(0,0,0,0.25)" font-family="Inter,Arial" text-anchor="middle">Lightweight abstract illustration</text>
         </svg>
       </div>
     </section>
 
-    <!-- TOOLS -->
-    <section id="tools" aria-labelledby="toolsHeading" style="margin-top:18px">
-      <h3 id="toolsHeading">14 Useful Tools</h3>
-      <div class="tools-grid" id="toolsGrid">
-
-        <!-- Tool cards (14) -->
-        <div class="card" role="button" tabindex="0" onclick="openTool('imgcomp')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><i class="fa fa-image"></i></div>
-            <div><div class="title">Image Compressor</div><div class="desc">Reduce image size locally — private, fast.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('imgcomp');event.stopPropagation()">Open</button></div>
+    <!-- TOOLS GRID -->
+    <section id="tools" aria-labelledby="toolsHeading">
+      <h3 id="toolsHeading">Popular Tools</h3>
+      <div class="tools-grid">
+        <div class="card" onclick="location.href='/pages/image-compressor.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#34d399,#06b6d4)"><i class="fa fa-image"></i></div>
+            <div><div class="title">Image Compressor</div><div class="desc">Reduce image size locally — private & fast.</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('pdfmerge')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-file-pdf"></i></div>
-            <div><div class="title">PDF Merger</div><div class="desc">Merge PDFs (prepares uploads — server recommended for final merge).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('pdfmerge');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/email-generator.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-envelope"></i></div>
+            <div><div class="title">Email Generator</div><div class="desc">Generate unlimited random disposable emails.</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('pwgen')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#654ea3,#eaafc8)"><i class="fa fa-key"></i></div>
-            <div><div class="title">Password Generator</div><div class="desc">Create strong random passwords and copy quickly.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('pwgen');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/age-calculator.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><i class="fa fa-calendar"></i></div>
+            <div><div class="title">Age Calculator</div><div class="desc">Calculate precise age from date of birth.</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('qr')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><i class="fa fa-qrcode"></i></div>
-            <div><div class="title">QR Code Generator</div><div class="desc">Generate QR codes (image) using a free API.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('qr');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/personal-space.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#9b59b6,#6c5ce7)"><i class="fa fa-user"></i></div>
+            <div><div class="title">Personal Space</div><div class="desc">Upload notes & images (saved locally in your browser).</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('tts')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#4f46e5,#7c5cff)"><i class="fa fa-headphones"></i></div>
-            <div><div class="title">Text to Speech</div><div class="desc">Listen to text with voice & speed controls (browser TTS).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('tts');event.stopPropagation()">Open</button></div>
+        <!-- Additional tool cards (links to placeholders or pages) -->
+        <div class="card" onclick="location.href='/pages/tools.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-file-pdf"></i></div>
+            <div><div class="title">PDF Merger</div><div class="desc">UI ready — server/API recommended for final merge.</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('fileconv')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#06b6d4,#4f46e5)"><i class="fa fa-exchange-alt"></i></div>
-            <div><div class="title">File Converter</div><div class="desc">Convert file types (server/API needed for advanced conversions).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('fileconv');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/tools.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#4f46e5,#7c5cff)"><i class="fa fa-headphones"></i></div>
+            <div><div class="title">Text to Speech</div><div class="desc">Browser TTS with voice & speed control.</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('word-counter')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><i class="fa fa-file-word"></i></div>
-            <div><div class="title">Word Counter</div><div class="desc">Count words, characters & sentences instantly (local).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('word-counter');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/tools.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#ff9a00,#ff6a00)"><i class="fa fa-qrcode"></i></div>
+            <div><div class="title">QR Generator</div><div class="desc">Create QR codes instantly (free API).</div></div>
+          </div>
         </div>
 
-        <div class="card" onclick="openTool('caseconv')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#36d1dc,#5b86e5)"><i class="fa fa-font"></i></div>
-            <div><div class="title">Text Case Converter</div><div class="desc">Uppercase, lowercase & sentence case quickly.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('caseconv');event.stopPropagation()">Open</button></div>
+        <div class="card" onclick="location.href='/pages/tools.html'">
+          <div class="head">
+            <div class="icon" style="background:linear-gradient(135deg,#7b5cff,#5b9dff)"><i class="fa fa-file-alt"></i></div>
+            <div><div class="title">Word Counter</div><div class="desc">Count words, characters & sentences quickly.</div></div>
+          </div>
         </div>
-
-        <div class="card" onclick="openTool('char-counter')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ffd966,#ffb86b)"><i class="fa fa-pen-alt"></i></div>
-            <div><div class="title">Character Counter</div><div class="desc">Count characters including / excluding spaces.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('char-counter');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <div class="card" onclick="openTool('agecalc')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff9966,#ff5e62)"><i class="fa fa-calendar"></i></div>
-            <div><div class="title">Age Calculator</div><div class="desc">Calculate precise age from date of birth.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('agecalc');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <div class="card" onclick="openTool('emailgen')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff5858)"><i class="fa fa-envelope"></i></div>
-            <div><div class="title">Email Generator</div><div class="desc">Generate unlimited random email addresses (copy in one click).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('emailgen');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <div class="card" onclick="openTool('currency')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#f857a6,#ff8a3c)"><i class="fa fa-dollar-sign"></i></div>
-            <div><div class="title">Currency Converter</div><div class="desc">Live rates via exchangerate.host (free API).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('currency');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <div class="card" onclick="openTool('ocr')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#ff5e62,#ff9966)"><i class="fa fa-camera"></i></div>
-            <div><div class="title">Image → Text (OCR)</div><div class="desc">Basic OCR using ocr.space (demo key included for testing).</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('ocr');event.stopPropagation()">Open</button></div>
-        </div>
-
-        <div class="card" onclick="openTool('personal')">
-          <div class="head"><div class="icon" style="background:linear-gradient(135deg,#9b59b6,#6c5ce7)"><i class="fa fa-user"></i></div>
-            <div><div class="title">Personal Space</div><div class="desc">Upload images or notes saved locally in your browser.</div></div></div>
-          <div class="actions"><button class="btn ghost" onclick="openTool('personal');event.stopPropagation()">Open</button></div>
-        </div>
-
       </div>
 
-      <div class="featured" aria-hidden>
+      <div class="featured" style="margin-top:16px">
         <h3 style="margin:0">Most Used</h3>
         <div style="margin-top:10px">
           <span class="badge">Image Compressor</span>
-          <span class="badge">QR Generator</span>
-          <span class="badge">Text to Speech</span>
+          <span class="badge" style="margin-left:8px">QR Generator</span>
+          <span class="badge" style="margin-left:8px">Text to Speech</span>
         </div>
       </div>
     </section>
@@ -319,57 +153,38 @@
     <!-- ABOUT -->
     <section id="about" style="margin-top:18px">
       <h3>About ToolNextt</h3>
-      <div style="margin-top:8px;padding:12px;border-radius:12px;background:var(--card-bg);border:1px solid var(--glass-border)"><p class="small">ToolNextt offers a compact set of secure, privacy-first web utilities that run in your browser. Client-side tools keep your data private. For advanced conversions we can integrate secure APIs on request.</p></div>
+      <div style="margin-top:8px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
+        <p class="small">ToolNextt offers a compact set of secure, privacy-first web utilities that run in your browser. Client-side tools keep your data private. For advanced conversions we can integrate secure APIs on request.</p>
+      </div>
     </section>
 
-    <!-- CONTACT & PERSONAL -->
+    <!-- CONTACT -->
     <section id="contact" style="margin-top:18px">
       <h3>Contact & Support</h3>
-      <div class="columns">
-        <div class="contact-card">
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:14px;margin-top:12px">
+        <div class="contact-card" style="padding:16px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
           <div style="font-weight:700">Contact</div>
-          <div class="small muted" style="margin-top:6px">Questions or feedback? Email us at <strong>toolnextt@gmail.com</strong>. We usually respond within 24 hours.</div>
-
+          <div class="small" style="margin-top:6px">Questions or feedback? Email us at <strong><a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></strong>.</div>
           <form id="contactForm" onsubmit="handleContact(event)" style="margin-top:12px">
-            <label class="small">Name</label>
-            <input id="cname" required placeholder="Your name" />
-            <label class="small">Email</label>
-            <input id="cemail" type="email" required placeholder="your@email.com" />
-            <label class="small">Message</label>
-            <textarea id="cmessage" required placeholder="Your message..."></textarea>
+            <label class="small">Name</label><input id="cname" class="input" required placeholder="Your name" />
+            <label class="small">Email</label><input id="cemail" class="input" type="email" required placeholder="your@email.com" />
+            <label class="small">Message</label><textarea id="cmessage" class="input" required placeholder="Your message..." style="min-height:100px"></textarea>
             <div style="margin-top:10px;display:flex;gap:8px"><button class="btn" type="submit">Send</button><button class="btn ghost" type="button" onclick="document.getElementById('contactForm').reset()">Clear</button></div>
-            <div class="small muted" style="margin-top:8px">Form opens your email client (mailto). Server-side delivery can be added later.</div>
+            <div class="small" style="margin-top:8px;color:var(--muted)">Form opens your email client (mailto). Server-side delivery can be added later.</div>
           </form>
-
-          <!-- Personal Space preview (local) -->
-          <div style="margin-top:14px">
-            <div style="font-weight:700">Your Public Space (Preview)</div>
-            <div class="small muted" style="margin-top:6px">Upload items (saved locally in your browser). To share with others, export or copy data.</div>
-            <div style="display:flex;gap:8px;margin-top:8px">
-              <input id="psTitle" placeholder="Title (optional)" style="flex:1;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)" />
-              <input id="psFile" type="file" />
-              <button class="btn ghost" onclick="addPersonalItem()">Upload</button>
-            </div>
-            <div id="spaceGrid" class="space-grid"></div>
-          </div>
         </div>
 
-        <aside>
+        <aside style="padding:16px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
           <div style="font-weight:700">Support</div>
-          <div class="small muted" style="margin-top:8px">FAQs & Quick Links</div>
-          <div style="margin-top:12px">
-            <div style="margin-bottom:8px"><a href="#tools">All Tools</a></div>
-            <div style="margin-bottom:8px"><a href="#about">About</a></div>
-            <div style="margin-bottom:8px"><a href="#privacy">Privacy Policy</a></div>
-          </div>
-
+          <div class="small" style="margin-top:8px">FAQs & Quick Links</div>
+          <div style="margin-top:12px"><a href="/pages/tools.html">All Tools</a><div style="margin-top:8px"><a href="/pages/privacy.html">Privacy Policy</a></div></div>
           <div style="margin-top:16px">
             <div style="font-weight:700">Follow us</div>
-            <div class="social-row">
-              <a href="#" title="Facebook" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
-              <a href="#" title="Instagram" style="color:var(--muted)"><i class="fa-brands fa-instagram"></i></a>
-              <a href="#" title="X (Twitter)" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="#" title="LinkedIn" style="color:var(--muted)"><i class="fa-brands fa-linkedin-in"></i></a>
+            <div class="social-row" style="margin-top:8px">
+              <a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-linkedin-in"></i></a>
             </div>
           </div>
         </aside>
@@ -381,446 +196,49 @@
       <div class="footer-grid">
         <div>
           <div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:48px;height:48px">TN</div>
-            <div><div style="font-weight:800;color:var(--text)">ToolNextt</div><div class="small muted">Fast • Free • Secure</div></div></div>
-          <p class="small" style="margin-top:12px;color:var(--muted)">ToolNextt brings you 14 fast and privacy-first tools — text utilities, converters and time-savers — all accessible in your browser without installs.</p>
+            <div><div style="font-weight:800">ToolNextt</div><div class="small">Fast • Free • Secure</div></div></div>
+          <p class="small" style="margin-top:12px">ToolNextt brings you privacy-first tools — text utilities, converters and time-savers — all accessible in your browser without installs.</p>
         </div>
-        <div>
-          <h4>Quick Links</h4>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="#home">Home</a><a href="#tools">Tools</a><a href="#about">About</a><a href="#contact">Contact</a></div>
-        </div>
-        <div>
-          <h4>Popular Tools</h4>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="#imgcomp">Image Compressor</a><a href="#qr">QR Generator</a><a href="#tts">Text to Speech</a><a href="#emailgen">Email Generator</a></div>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div>
-          <div class="social-row" style="margin-top:8px">
-            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" style="color:var(--muted)"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
+
+        <div><h4>Quick Links</h4><div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="/">Home</a><a href="/pages/tools.html">Tools</a><a href="/pages/about.html">About</a><a href="/pages/contact.html">Contact</a></div></div>
+
+        <div><h4>Popular Tools</h4><div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><a href="/pages/image-compressor.html">Image Compressor</a><a href="/pages/email-generator.html">Email Generator</a><a href="/pages/age-calculator.html">Age Calculator</a></div></div>
+
+        <div><h4>Contact</h4><div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div>
+          <div class="social-row" style="margin-top:8px"><a href="#" style="color:var(--muted)"><i class="fa-brands fa-facebook-f"></i></a><a href="#" style="color:var(--muted);margin-left:8px"><i class="fa-brands fa-instagram"></i></a></div>
         </div>
       </div>
-
-      <div style="text-align:center;margin-top:16px;color:var(--muted)">© ToolNextt 2025 • Trusted by 5,000+ users • 100% Secure & Free</div>
+      <div style="text-align:center;margin-top:16px" class="small">© ToolNextt 2025 • Trusted by 5,000+ users • 100% Secure & Free</div>
     </footer>
-
-    <!-- privacy anchor content hidden -->
-    <div id="privacy" style="display:none">
-      <h3>Privacy Policy</h3>
-      <p>ToolNextt does not collect personal data unless you voluntarily submit it (contact form opens your email client). Files uploaded to Personal Space are stored locally in your browser only.</p>
-    </div>
   </div>
 
-  <!-- MODAL -->
+  <!-- GLOBAL MODAL (used by pages) -->
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" id="modalCard">
-      <button style="position:absolute;right:12px;top:10px;border:0;background:transparent;color:var(--muted);font-size:18px;cursor:pointer" onclick="closeModal()">✕</button>
+      <button style="position:absolute;right:12px;top:10px;border:0;background:transparent;cursor:pointer;color:var(--muted)" onclick="closeModal()">✕</button>
       <div id="modalInner"></div>
     </div>
   </div>
 
-<script>
-/* ----------------- THEME: Dual (Light default) ----------------- */
-const themeToggle = document.getElementById('themeToggle');
-function applyTheme(t){
-  if(t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); themeToggle.innerHTML = '<i class="fa fa-moon"></i>'; themeToggle.setAttribute('aria-pressed','true'); }
-  else { document.documentElement.removeAttribute('data-theme'); themeToggle.innerHTML = '<i class="fa fa-sun"></i>'; themeToggle.setAttribute('aria-pressed','false'); }
-}
-// load saved preference
-const saved = localStorage.getItem('tn-theme');
-// default to light if not set
-if(saved) applyTheme(saved);
-else applyTheme('light');
+  <!-- Shared app script (you created assets/app.js) -->
+  <script src="assets/app.js"></script>
 
-themeToggle.addEventListener('click', ()=>{
-  const cur = document.documentElement.getAttribute('data-theme');
-  if(cur === 'dark'){ applyTheme('light'); localStorage.setItem('tn-theme','light'); }
-  else { applyTheme('dark'); localStorage.setItem('tn-theme','dark'); }
-});
+  <!-- Small page-specific scripts -->
+  <script>
+    // quick handlers (works with assets/app.js theme functions)
+    document.getElementById('openTools').addEventListener('click', ()=> location.href = '/pages/tools.html');
+    document.getElementById('ctaExplore').addEventListener('click', ()=> location.href = '/pages/tools.html');
 
-/* ----------------- MODAL helpers ----------------- */
-const modalBg = document.getElementById('modalBackdrop');
-const modalInner = document.getElementById('modalInner');
-function openModal(html){
-  modalInner.innerHTML = html;
-  modalBg.style.display = 'flex';
-  modalBg.setAttribute('aria-hidden','false');
-}
-function closeModal(){
-  stopTTS(); modalBg.style.display = 'none'; modalBg.setAttribute('aria-hidden','true'); modalInner.innerHTML = '';
-}
-modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-document.getElementById('openTools').addEventListener('click', ()=> document.getElementById('tools').scrollIntoView({behavior:'smooth'}));
-document.getElementById('ctaExplore').addEventListener('click', ()=> document.getElementById('tools').scrollIntoView({behavior:'smooth'}));
-document.getElementById('ctaDemo').addEventListener('click', ()=> openTool('word-counter'));
-
-/* ----------------- TOOL ROUTER ----------------- */
-function openTool(id){
-  const mapping = {
-    'imgcomp': openImageCompressor,
-    'pdfmerge': openPDFMerger,
-    'pwgen': openPasswordGen,
-    'qr': openQRTool,
-    'tts': openTTS,
-    'fileconv': openFileConverter,
-    'word-counter': openWordCounter,
-    'caseconv': openCaseConv,
-    'char-counter': openCharCounter,
-    'agecalc': openAgeCalc,
-    'emailgen': openEmailGen,
-    'currency': openCurrency,
-    'ocr': openOCR,
-    'personal': openPersonalSpace
-  };
-  const fn = mapping[id];
-  if (fn) fn();
-  else alert('Tool not implemented yet.');
-}
-
-/* ----------------- TTS ----------------- */
-let synth = window.speechSynthesis;
-let utterance = null;
-function populateVoices(selectId){
-  const sel = document.getElementById(selectId);
-  if(!sel) return;
-  sel.innerHTML = '';
-  const voices = synth.getVoices();
-  if(!voices.length){ setTimeout(()=>populateVoices(selectId),200); return; }
-  voices.forEach(v=>{
-    const o = document.createElement('option'); o.value = v.name; o.textContent = `${v.name} ${v.lang? '('+v.lang+')':''}`; sel.appendChild(o);
-  });
-}
-function openTTS(){
-  openModal(`<h2>Text to Speech</h2><p class="small">Runs in your browser (Web Speech API).</p>
-    <textarea id="tts_text" style="width:100%;min-height:140px;margin-top:10px;padding:10px;border-radius:8px"></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
-      <select id="tts_voice" style="padding:8px;border-radius:8px"></select>
-      <select id="tts_rate" style="padding:8px;border-radius:8px"><option value="0.8">Slow</option><option value="1" selected>Normal</option><option value="1.4">Fast</option></select>
-      <button class="btn" onclick="playTTS()">Play</button>
-      <button class="btn ghost" onclick="stopTTS()">Stop</button>
-    </div>`);
-  populateVoices('tts_voice');
-}
-function playTTS(){
-  stopTTS();
-  const txt = document.getElementById('tts_text')?.value || '';
-  if(!txt.trim()){ alert('Enter text to play'); return; }
-  utterance = new SpeechSynthesisUtterance(txt);
-  const selName = document.getElementById('tts_voice')?.value;
-  const voices = synth.getVoices();
-  if(selName){ const v = voices.find(x=>x.name===selName); if(v) utterance.voice = v; }
-  utterance.rate = parseFloat(document.getElementById('tts_rate')?.value || 1);
-  synth.speak(utterance);
-}
-function stopTTS(){ if(synth && synth.speaking) synth.cancel(); }
-
-/* ----------------- Image Compressor ----------------- */
-function openImageCompressor(){
-  openModal(`<h2>Image Compressor</h2><p class="small">Compress images in your browser — file stays on your device.</p>
-    <input id="img_file" type="file" accept="image/*" style="margin-top:10px"/>
-    <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
-      <label class="small">Quality</label><input id="img_quality" type="range" min="10" max="100" value="80"/>
-      <button class="btn" onclick="compressImage()">Compress</button>
-    </div>
-    <div id="img_preview" style="margin-top:12px"></div>`);
-}
-async function compressImage(){
-  const fileInput = document.getElementById('img_file');
-  const q = (document.getElementById('img_quality')?.value || 80)/100;
-  const preview = document.getElementById('img_preview');
-  preview.innerHTML = 'Processing...';
-  if(!fileInput || !fileInput.files || !fileInput.files[0]){ preview.innerHTML = '<div class="small muted">Choose an image first.</div>'; return; }
-  const f = fileInput.files[0];
-  const img = new Image();
-  const url = URL.createObjectURL(f);
-  await new Promise(r=>{ img.onload = r; img.src = url; });
-  const canvas = document.createElement('canvas');
-  const maxW = 1400;
-  let w = img.naturalWidth, h = img.naturalHeight;
-  if(w > maxW){ h = Math.round(h * (maxW / w)); w = maxW; }
-  canvas.width = w; canvas.height = h;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(img,0,0,w,h);
-  const dataUrl = canvas.toDataURL('image/jpeg', q);
-  const blob = await (await fetch(dataUrl)).blob();
-  const sizeKB = Math.round(blob.size/1024);
-  preview.innerHTML = `<div style="display:flex;gap:12px;align-items:center">
-    <img src="${dataUrl}" style="max-width:220px;border-radius:8px"/>
-    <div><div style="font-weight:700">Compressed: ${sizeKB} KB</div><div class="small muted" style="margin-top:6px">Original: ${Math.round(f.size/1024)} KB</div><div style="margin-top:8px"><a href="${dataUrl}" download="toolnextt-compressed.jpg" class="btn">Download</a></div></div></div>`;
-  URL.revokeObjectURL(url);
-}
-
-/* ----------------- PDF MERGER (UI placeholder) ----------------- */
-function openPDFMerger(){
-  openModal(`<h2>PDF Merger</h2><p class="small">Select PDF files to merge. For complete merging server-side processing or a cloud API is recommended. This UI prepares uploads.</p>
-    <input type="file" id="pdf_files" accept="application/pdf" multiple style="margin-top:10px"/>
-    <div style="margin-top:8px"><button class="btn" onclick="preparePDFMerge()">Prepare</button></div>
-    <div id="pdf_preview" style="margin-top:10px" class="small muted"></div>`);
-}
-function preparePDFMerge(){
-  const files = (document.getElementById('pdf_files')?.files) || [];
-  if(!files.length){ alert('Select PDF files'); return; }
-  const list = Array.from(files).map(f=>f.name).join(', ');
-  document.getElementById('pdf_preview').textContent = 'Files: ' + list + ' — Server-side merge required to produce output.';
-}
-
-/* ----------------- PASSWORD GENERATOR ----------------- */
-function openPasswordGen(){
-  openModal(`<h2>Password Generator</h2><p class="small">Generate a strong random password.</p>
-    <div style="display:flex;gap:8px;margin-top:8px;align-items:center"><input id="pw_len" type="number" min="4" max="64" value="16" style="width:80px;padding:8px"/><button class="btn" onclick="generatePassword()">Generate</button></div>
-    <input id="pw_out" readonly style="width:100%;margin-top:10px;padding:10px;border-radius:8px"/>`);
-}
-function generatePassword(){
-  const len = parseInt(document.getElementById('pw_len')?.value || 16,10);
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:,.<>?';
-  let out = '';
-  for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
-  document.getElementById('pw_out').value = out;
-  try{ navigator.clipboard.writeText(out); }catch(e){}
-}
-
-/* ----------------- QR GENERATOR ----------------- */
-function openQRTool(){
-  openModal(`<h2>QR Code Generator</h2><p class="small">Enter text or link — QR image generated via free API.</p>
-    <input id="qr_input" placeholder="Enter URL or text" style="width:100%;margin-top:10px;padding:8px;border-radius:8px"/>
-    <div style="margin-top:8px"><button class="btn" onclick="generateQR()">Generate</button></div>
-    <div id="qr_out" style="margin-top:12px"></div>`);
-}
-function generateQR(){
-  const v = (document.getElementById('qr_input')?.value || '').trim();
-  if(!v){ alert('Enter value'); return; }
-  const url = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(v);
-  document.getElementById('qr_out').innerHTML = `<img src="${url}" alt="QR" style="max-width:260px;border-radius:8px"/><div style="margin-top:8px"><a href="${url}" target="_blank" class="btn">Open</a></div>`;
-}
-
-/* ----------------- FILE CONVERTER (placeholder) ----------------- */
-function openFileConverter(){
-  openModal(`<h2>File Converter</h2><p class="small">Advanced conversion (audio/image/document) requires a server or third-party API. This UI accepts files and prepares job details.</p>
-    <input type="file" id="convfile" style="margin-top:10px"/><div style="margin-top:8px"><select id="convType"><option value="pdf-to-doc">PDF → DOC (server)</option><option value="img-to-webp">Image → WebP (client)</option></select><button class="btn" style="margin-left:8px" onclick="prepareFileConv()">Prepare</button></div>
-    <div id="conv_preview" style="margin-top:10px" class="small muted"></div>`);
-}
-function prepareFileConv(){
-  const f = document.getElementById('convfile')?.files?.[0];
-  const type = document.getElementById('convType')?.value;
-  if(!f){ alert('Select file'); return; }
-  if(type==='img-to-webp'){
-    openModal(`<h2>Image → WebP (Client)</h2><p class="small">Converting image to WebP client-side...</p>`);
-    setTimeout(()=>{ closeModal(); openImageCompressor(); },600);
-  } else {
-    document.getElementById('conv_preview').textContent = 'Conversion requires server/API. Contact us to integrate.';
-  }
-}
-
-/* ----------------- WORD COUNTER ----------------- */
-function openWordCounter(){
-  openModal(`<h2>Word Counter</h2><p class="small">Count words, characters & sentences instantly.</p>
-    <textarea id="wc_text" style="width:100%;min-height:140px;margin-top:8px"></textarea>
-    <div style="margin-top:8px"><button class="btn" onclick="runWordCount()">Count</button><button class="btn ghost" onclick="document.getElementById('wc_text').value=''">Clear</button><div id="wc_out" class="small muted" style="margin-left:12px;display:inline-block"></div></div>`);
-}
-function runWordCount(){
-  const t = (document.getElementById('wc_text')?.value || '').trim();
-  const words = t ? t.split(/\s+/).length : 0;
-  const charsNoSpaces = t.replace(/\s+/g,'').length;
-  const sentences = t.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
-  document.getElementById('wc_out').textContent = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
-}
-
-/* ----------------- CASE CONVERTER ----------------- */
-function openCaseConv(){
-  openModal(`<h2>Text Case Converter</h2><p class="small">Change text case quickly.</p>
-    <textarea id="case_text" style="width:100%;min-height:120px;margin-top:8px"></textarea>
-    <div style="margin-top:8px;display:flex;gap:8px"><button class="btn" onclick="convertCase('upper')">UPPERCASE</button><button class="btn" onclick="convertCase('lower')">lowercase</button><button class="btn" onclick="convertCase('sentence')">Sentence case</button></div>`);
-}
-function convertCase(mode){
-  const el = document.getElementById('case_text');
-  if(!el) return;
-  const v = el.value || '';
-  if(mode==='upper') el.value = v.toUpperCase();
-  else if(mode==='lower') el.value = v.toLowerCase();
-  else if(mode==='sentence') el.value = v.replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
-}
-
-/* ----------------- CHARACTER COUNTER ----------------- */
-function openCharCounter(){
-  openModal(`<h2>Character Counter</h2><p class="small">Count characters including/excluding spaces.</p>
-    <textarea id="char_text" style="width:100%;min-height:140px;margin-top:8px"></textarea>
-    <div style="margin-top:8px"><button class="btn" onclick="runCharCount()">Count</button><button class="btn ghost" onclick="document.getElementById('char_text').value=''">Clear</button></div>
-    <div id="char_out" class="small muted" style="margin-top:8px"></div>`);
-}
-function runCharCount(){
-  const s = document.getElementById('char_text')?.value || '';
-  const withSpaces = s.length;
-  const withoutSpaces = s.replace(/\s+/g,'').length;
-  document.getElementById('char_out').textContent = `Chars (with spaces): ${withSpaces} • Chars (no spaces): ${withoutSpaces}`;
-}
-
-/* ----------------- AGE CALCULATOR ----------------- */
-function openAgeCalc(){
-  openModal(`<h2>Age Calculator</h2><p class="small">Select your DOB to get exact age.</p><input id="dob" type="date" style="margin-top:8px;padding:8px"/><div style="margin-top:8px"><button class="btn" onclick="calcAge()">Calculate</button></div><div id="age_out" class="small muted" style="margin-top:8px"></div>`);
-}
-function calcAge(){
-  const v = document.getElementById('dob')?.value;
-  if(!v){ alert('Select your date of birth'); return; }
-  const dob = new Date(v); const now = new Date();
-  let years = now.getFullYear() - dob.getFullYear();
-  let months = now.getMonth() - dob.getMonth();
-  let days = now.getDate() - dob.getDate();
-  if(days < 0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
-  if(months < 0){ years--; months += 12; }
-  document.getElementById('age_out').textContent = `Age: ${years} yrs, ${months} months, ${days} days`;
-}
-
-/* ----------------- EMAIL GENERATOR (random unlimited) ----------------- */
-async function openEmailGen(){
-  openModal(`<h2>Email Generator</h2><p class="small">Generate unlimited random email addresses — copy one click.</p>
-    <div style="display:flex;gap:8px;margin-top:8px"><button class="btn" onclick="generateRandomEmail()">Generate Email</button><button class="btn ghost" onclick="generateRandomEmail(true)">Generate Many</button></div>
-    <div id="email_out" style="margin-top:12px"></div>`);
-}
-async function generateRandomEmail(many=false){
-  try{
-    const r = await fetch('https://randomuser.me/api/');
-    const j = await r.json();
-    const u = j.results && j.results[0];
-    let local = '';
-    if(u){
-      const p = (u.name.first + '.' + u.name.last).toLowerCase().replace(/[^a-z0-9.]/g,'');
-      local = p + (Math.random() > 0.6 ? Math.floor(Math.random()*999) : '');
-    } else {
-      local = randomString(8);
+    // contact form mailto handler
+    function handleContact(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('cname').value.trim());
+      const email = encodeURIComponent(document.getElementById('cemail').value.trim());
+      const msg = encodeURIComponent(document.getElementById('cmessage').value.trim());
+      const subject = encodeURIComponent('ToolNextt Contact: ' + (name || email));
+      const body = `Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${decodeURIComponent(msg)}`;
+      window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
     }
-    const domains = ['@mail.com','@postbox.com','@inbox.com','@toolnextt.app','@freemail.com'];
-    if(many){
-      let list = [];
-      for(let i=0;i<6;i++){
-        const em = (local + (i?i:'') + domains[Math.floor(Math.random()*domains.length)]);
-        list.push(`<div style="display:flex;gap:8px;align-items:center;margin-bottom:6px"><div style="flex:1">${em}</div><button class="btn" onclick="navigator.clipboard.writeText('${em}').then(()=>alert('Copied'))">Copy</button></div>`);
-      }
-      document.getElementById('email_out').innerHTML = list.join('');
-    } else {
-      const email = local + domains[Math.floor(Math.random()*domains.length)];
-      document.getElementById('email_out').innerHTML = `<div style="display:flex;gap:8px;align-items:center"><div style="flex:1;font-weight:700">${email}</div><button class="btn" onclick="navigator.clipboard.writeText('${email}').then(()=>alert('Copied'))">Copy</button></div>`;
-    }
-  }catch(e){
-    const em = randomString(8) + '@mail.com';
-    document.getElementById('email_out').innerHTML = `<div style="display:flex;gap:8px;align-items:center"><div style="flex:1">${em}</div><button class="btn" onclick="navigator.clipboard.writeText('${em}').then(()=>alert('Copied'))">Copy</button></div>`;
-  }
-}
-function randomString(len){
-  const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  let s='';
-  for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)];
-  return s;
-}
-
-/* ----------------- CURRENCY (exchangerate.host) ----------------- */
-async function openCurrency(){
-  openModal(`<h2>Currency Converter</h2><p class="small">Live rates via exchangerate.host (free).</p>
-    <div style="display:flex;gap:8px;margin-top:8px;align-items:center"><input id="cur_amt" type="number" value="1" style="width:90px;padding:8px"/><select id="cur_from" style="padding:8px"></select><select id="cur_to" style="padding:8px"></select><button class="btn" onclick="convertCurrency()">Convert</button></div>
-    <div id="cur_out" class="small muted" style="margin-top:10px"></div>`);
-  try{
-    const r = await fetch('https://api.exchangerate.host/symbols'); const j = await r.json();
-    const symbols = j.symbols || {}; const keys = Object.keys(symbols);
-    const from = document.getElementById('cur_from'); const to = document.getElementById('cur_to');
-    from.innerHTML = ''; to.innerHTML = '';
-    ['USD','EUR','PKR','GBP','AED','INR'].forEach(c=> { if(symbols[c]) { from.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); }});
-    keys.slice(0,20).forEach(k=> { if(!['USD','EUR','PKR','GBP','AED','INR'].includes(k)) { from.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); }});
-    from.value='USD'; to.value='PKR';
-  }catch(e){ document.getElementById('cur_out').textContent = 'Could not load currency symbols.'; }
-}
-async function convertCurrency(){
-  const amount = parseFloat(document.getElementById('cur_amt')?.value || 1);
-  const from = document.getElementById('cur_from')?.value; const to = document.getElementById('cur_to')?.value;
-  if(!from || !to){ alert('Select currencies'); return; }
-  document.getElementById('cur_out').textContent = 'Converting...';
-  try{
-    const r = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
-    const j = await r.json();
-    if(j.result !== undefined) document.getElementById('cur_out').textContent = `${amount} ${from} = ${j.result} ${to} (Rate: ${j.info.rate})`;
-    else document.getElementById('cur_out').textContent = 'Conversion failed.';
-  }catch(e){ document.getElementById('cur_out').textContent = 'Network error'; }
-}
-
-/* ----------------- OCR (ocr.space demo) ----------------- */
-function openOCR(){
-  openModal(`<h2>Image → Text (OCR)</h2><p class="small">Uses ocr.space API demo key for testing. For production get your own free key.</p><input id="ocr_file" type="file" accept="image/*" style="margin-top:8px"/><div style="margin-top:8px"><button class="btn" onclick="runOCR()">Extract Text</button></div><pre id="ocr_out" class="small muted" style="margin-top:12px;max-height:320px;overflow:auto"></pre>`);
-}
-async function runOCR(){
-  const f = document.getElementById('ocr_file')?.files?.[0];
-  if(!f){ alert('Select an image'); return; }
-  document.getElementById('ocr_out').textContent = 'Processing...';
-  const apikey = 'helloworld'; // demo key; replace for production
-  const form = new FormData(); form.append('apikey', apikey); form.append('file', f); form.append('language','eng'); form.append('isOverlayRequired','false');
-  try{
-    const r = await fetch('https://api.ocr.space/parse/image', { method:'POST', body: form });
-    const j = await r.json();
-    if(j?.IsErroredOnProcessing){ document.getElementById('ocr_out').textContent = 'OCR error: ' + (j.ErrorMessage || JSON.stringify(j)); }
-    else {
-      const text = (j.ParsedResults||[]).map(p=>p.ParsedText).join('\n');
-      document.getElementById('ocr_out').textContent = text || 'No text found';
-    }
-  }catch(e){
-    document.getElementById('ocr_out').textContent = 'Network/CORS error. Server-side proxy or your own key may be required.'; console.warn(e);
-  }
-}
-
-/* ----------------- PERSONAL SPACE (localStorage) ----------------- */
-function openPersonalSpace(){
-  openModal(`<h2>Personal Space</h2><p class="small">Upload images or text notes — saved locally in your browser.</p>
-    <div style="display:flex;gap:8px;margin-top:8px"><input id="ps_title_modal" placeholder="Title (optional)" style="flex:1;padding:8px"/><input id="ps_file_modal" type="file"/><button class="btn" onclick="addPersonalItemModal()">Upload</button></div>
-    <div id="ps_preview_modal" class="space-grid" style="margin-top:12px"></div>`);
-  renderSpaceModal();
-}
-function getSpace(){ try{ return JSON.parse(localStorage.getItem('tn-space')||'[]'); }catch(e){ return []; } }
-function saveSpace(arr){ localStorage.setItem('tn-space', JSON.stringify(arr)); }
-function addPersonalItemModal(){
-  const f = document.getElementById('ps_file_modal')?.files?.[0]; const title = (document.getElementById('ps_title_modal')?.value||'').trim();
-  if(!f){ alert('Select file to upload'); return; }
-  const reader = new FileReader();
-  reader.onload = e => {
-    const data = e.target.result;
-    const arr = getSpace(); arr.unshift({id:Date.now(),title,type:f.type,data}); saveSpace(arr); renderSpaceModal(); renderSpaceGrid(); alert('Saved locally to Personal Space.');
-  };
-  if(f.type.startsWith('text/')) reader.readAsText(f); else reader.readAsDataURL(f);
-}
-function renderSpaceModal(){
-  const p = document.getElementById('ps_preview_modal'); if(!p) return;
-  const arr = getSpace();
-  p.innerHTML = arr.map(it=>{
-    if(it.type.startsWith('image/')) return `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:8px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>`;
-    return `<div class="space-item"><pre style="text-align:left;max-height:120px;overflow:auto">${escapeHtml((it.data||'').slice(0,500))}${it.data.length>500?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`;
-  }).join('');
-}
-function addPersonalItem(){ const f = document.getElementById('psFile')?.files?.[0]; const title = (document.getElementById('psTitle')?.value||'').trim(); if(!f){ alert('Select file'); return; }
-  const r = new FileReader(); r.onload=e=>{ const arr=getSpace(); arr.unshift({id:Date.now(),title,type:f.type,data:e.target.result}); saveSpace(arr); renderSpaceGrid(); alert('Saved locally (browser).'); document.getElementById('psFile').value=''; document.getElementById('psTitle').value=''; }; if(f.type.startsWith('text/')) r.readAsText(f); else r.readAsDataURL(f);
-}
-function renderSpaceGrid(){
-  const g = document.getElementById('spaceGrid'); if(!g) return;
-  const arr = getSpace();
-  g.innerHTML = arr.map(it=>{
-    if(it.type.startsWith('image/')) return `<div class="space-item"><img src="${it.data}" style="max-width:100%;border-radius:6px"/><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Image')}</div></div>`;
-    return `<div class="space-item"><pre style="text-align:left;max-height:140px;overflow:auto">${escapeHtml((it.data||'').slice(0,300))}${it.data.length>300?'...':''}</pre><div style="font-weight:600;margin-top:6px">${escapeHtml(it.title||'Text')}</div></div>`;
-  }).join('');
-}
-function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"}[m])); }
-
-/* ----------------- CONTACT (mailto) ----------------- */
-function handleContact(e){
-  e.preventDefault();
-  const name = encodeURIComponent(document.getElementById('cname').value.trim());
-  const email = encodeURIComponent(document.getElementById('cemail').value.trim());
-  const msg = encodeURIComponent(document.getElementById('cmessage').value.trim());
-  const subject = encodeURIComponent('ToolNextt Contact: ' + (name || email));
-  const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}%0D%0AEmail: ${decodeURIComponent(email)}%0D%0A%0D%0AMessage:%0D%0A${decodeURIComponent(msg)}`);
-  window.location.href = `mailto:toolnextt@gmail.com?subject=${subject}&body=${body}`;
-}
-
-/* ----------------- INIT ----------------- */
-window.addEventListener('load', ()=>{ renderSpaceGrid(); populateVoices && populateVoices('tts_voice'); renderSpaceModalOnLoad && renderSpaceModalOnLoad(); });
-</script>
+  </script>
 </body>
 </html>
