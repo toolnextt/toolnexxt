@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>PDF Merger — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>PDF Merger</h3>
+    <p class="small">Select PDFs to prepare for merging. For final merge a server-side step / API is recommended. This UI helps prepare uploads.</p>
+    <input type="file" id="pdf_files" accept="application/pdf" multiple />
+    <div style="margin-top:8px"><button class="btn" onclick="preparePDFMerge()">Prepare</button></div>
+    <div id="pdf_preview" class="small muted" style="margin-top:10px"></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+<script>
+function preparePDFMerge(){
+  const files = (document.getElementById('pdf_files').files) || [];
+  if(!files.length){ alert('Select PDF files'); return; }
+  const list = Array.from(files).map(f=>f.name).join(', ');
+  document.getElementById('pdf_preview').textContent = 'Files: ' + list + ' — Server-side merge required to produce output.';
+}
+</script>
+</body></html>
