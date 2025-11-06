@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>QR Generator — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>QR Code Generator</h3>
+    <input id="qr_input" class="input" placeholder="Enter URL or text" />
+    <div style="margin-top:8px"><button class="btn" onclick="generateQR()">Generate</button></div>
+    <div id="qr_out" style="margin-top:12px"></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+
+<script>
+function generateQR(){
+  const v = (document.getElementById('qr_input').value || '').trim();
+  if(!v){ alert('Enter value'); return; }
+  const url = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=' + encodeURIComponent(v);
+  document.getElementById('qr_out').innerHTML = `<img src="${url}" alt="QR" style="max-width:260px;border-radius:8px"/><div style="margin-top:8px"><a href="${url}" target="_blank" class="btn">Open</a></div>`;
+}
+</script>
+</body></html>
