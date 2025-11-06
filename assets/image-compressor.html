@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Image Compressor — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Image Compressor</h3>
+    <p class="small">Compress images in your browser. File stays on your device.</p>
+    <input id="imgFile" type="file" accept="image/*" />
+    <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+      <label class="small">Quality</label>
+      <input id="imgQuality" type="range" min="10" max="100" value="80" />
+      <button class="btn" id="imgCompressBtn">Compress</button>
+    </div>
+    <div id="imgPreview" style="margin-top:12px"></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+
+<script src="/assets/app.js" defer></script>
+<script>
+async function compressImageFile(file, quality=0.8){
+  const img = new Image(); const url = URL.createObjectURL(file);
+  await new Promise(r=>{ img.onload=r; img.src=url; });
+  const canvas = document.createElement('canvas'); let w=img.naturalWidth,h=img.naturalHeight;
+  const maxW=1400; if(w>maxW){ h=Math.round(h*(maxW/w)); w=maxW; }
+  canvas.width=w; canvas.height=h; const ctx=canvas.getContext('2d'); ctx.drawImage(img,0,0,w,h);
+  const dataUrl = canvas.toDataURL('image/jpeg', quality);
+  URL.revokeObjectURL(url);
+  return dataUrl;
+}
+document.getElementById('imgCompressBtn').addEventListener('click', async ()=>{
+  const f = document.getElementById('imgFile').files[0]; if(!f) return alert('Select image');
+  const q = (document.getElementById('imgQuality').value)/100; document.getElementById('imgPreview').innerHTML='Processing...';
+  const dataUrl = await compressImageFile(f,q); const blob = await (await fetch(dataUrl)).blob();
+  document.getElementById('imgPreview').innerHTML = `<div style="display:flex;gap:12px;align-items:center"><img src="${dataUrl}" style="max-width:220px;border-radius:8px"/><div><div style="font-weight:700">Compressed ${(Math.round(blob.size/1024))} KB</div><div class="small" style="margin-top:6px">Original: ${(Math.round(f.size/1024))} KB</div><div style="margin-top:8px"><a href="${dataUrl}" download="toolnextt-compressed.jpg" class="btn">Download</a></div></div></div>`;
+});
+</script>
+</body></html>
