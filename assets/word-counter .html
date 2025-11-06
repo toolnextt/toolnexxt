@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Word Counter — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Word Counter</h3>
+    <textarea id="wc_text" style="width:100%;min-height:180px;padding:12px;border-radius:8px;border:1px solid var(--glass-border)"></textarea>
+    <div style="margin-top:8px"><button class="btn" onclick="runWordCount()">Count</button><button class="btn ghost" onclick="document.getElementById('wc_text').value=''">Clear</button><div id="wc_out" class="small muted" style="margin-left:12px;display:inline-block"></div></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+<script src="/assets/app.js" defer></script>
+<script>
+function runWordCount(){
+  const t = (document.getElementById('wc_text').value || '').trim();
+  const words = t ? t.split(/\s+/).length : 0;
+  const charsNoSpaces = t.replace(/\s+/g,'').length;
+  const sentences = t.split(/[.!?]+/).filter(s=>s.trim().length>0).length;
+  document.getElementById('wc_out').textContent = `Words: ${words} • Chars (no spaces): ${charsNoSpaces} • Sentences: ${sentences}`;
+}
+</script>
+</body></html>
