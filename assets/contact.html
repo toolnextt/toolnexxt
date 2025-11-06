@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Contact — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Contact & Support</h3>
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:12px">
+      <div style="padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
+        <form id="contactForm" onsubmit="handleContact(event)">
+          <label class="small">Name</label><input id="cname" class="input" required placeholder="Your name" />
+          <label class="small">Email</label><input id="cemail" class="input" type="email" required placeholder="you@email.com" />
+          <label class="small">Message</label><textarea id="cmessage" class="input" required style="min-height:120px"></textarea>
+          <div style="margin-top:8px"><button class="btn" type="submit">Send</button></div>
+        </form>
+      </div>
+      <aside style="padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
+        <h4>Support</h4>
+        <p class="small">Email us: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></p>
+        <p class="small">Follow us on social media (links in footer).</p>
+      </aside>
+    </div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+<script src="/assets/app.js"></script>
+</body></html>
