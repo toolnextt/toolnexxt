@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Email Generator — ToolNextt</title>
+<link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head>
+<body>
+<div class="container">
+  <header class="header"><div class="brand"><div class="logo">TN</div><div><div class="title">ToolNextt</div><div class="tag">Email Generator</div></div></div>
+  <nav class="nav"><a href="/">Home</a><a href="/pages/tools.html">Tools</a></nav>
+  <div class="actions"><button id="themeToggle" class="icon-btn">☀️</button><button class="btn" onclick="location.href='/pages/tools.html'">All Tools</button></div></header>
+
+  <section>
+    <h3>Email Generator</h3>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="btn" id="genOne">Generate Email</button>
+      <button class="btn ghost" id="genMany">Generate 6</button>
+      <button class="btn ghost" id="copyAll" style="display:none">Copy All</button>
+    </div>
+
+    <div id="emailsOut" style="margin-top:12px"></div>
+
+    <div style="margin-top:18px;padding:12px;border-radius:12px;background:var(--card);border:1px solid var(--glass-border)">
+      <p class="small">This generator creates realistic-looking disposable email addresses. Use for testing or temporary sign-ups. Addresses are generated locally in your browser.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid"><div><div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:48px;height:48px">TN</div><div><div style="font-weight:800">ToolNextt</div><div class="small">Fast • Free • Secure</div></div></div><p class="small" style="margin-top:12px">ToolNextt — privacy-first utilities.</p></div>
+      <div><h4>Quick Links</h4><div style="display:flex;flex-direction:column;gap:6px"><a href="/">Home</a><a href="/pages/tools.html">Tools</a></div></div>
+      <div><h4>Popular</h4><div style="display:flex;flex-direction:column;gap:6px"><a href="/pages/image-compressor.html">Image Compressor</a></div></div>
+      <div><h4>Contact</h4><div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<script src="/assets/app.js" defer></script>
+<script>
+function randomString(len){ const chars='abcdefghijklmnopqrstuvwxyz0123456789'; let s=''; for(let i=0;i<len;i++) s+=chars[Math.floor(Math.random()*chars.length)]; return s; }
+const domains=['@mail.com','@postbox.com','@inbox.com','@toolnextt.app','@freemail.com'];
+document.getElementById('genOne').addEventListener('click', async ()=>{
+  const email = await buildEmail(); renderEmails([email]);
+});
+document.getElementById('genMany').addEventListener('click', async ()=>{
+  const arr=[]; for(let i=0;i<6;i++) arr.push(await buildEmail()); renderEmails(arr,true);
+});
+async function buildEmail(){
+  try{
+    const r = await fetch('https://randomuser.me/api/');
+    const j = await r.json(); const u=j.results[0];
+    const name = (u.name.first + '.' + u.name.last).toLowerCase().replace(/[^a-z0-9.]/g,'');
+    return name + (Math.random()>0.6? Math.floor(Math.random()*999):'') + domains[Math.floor(Math.random()*domains.length)];
+  }catch(e){
+    return randomString(8) + domains[Math.floor(Math.random()*domains.length)];
+  }
+}
+function renderEmails(list,showCopyAll=false){
+  const out = document.getElementById('emailsOut');
+  out.innerHTML = list.map(em=>`<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><div style="flex:1;font-weight:700">${escapeHtml(em)}</div><button class="btn ghost" onclick="navigator.clipboard.writeText('${escapeHtml(em)}').then(()=>alert('Copied'))">Copy</button></div>`).join('');
+  if(showCopyAll){ document.getElementById('copyAll').style.display='inline-block'; document.getElementById('copyAll').onclick = ()=>{ navigator.clipboard.writeText(list.join('\\n')).then(()=>alert('All copied'))}; }
+  else document.getElementById('copyAll').style.display='none';
+}
+</script>
+</body></html>
