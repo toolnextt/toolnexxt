@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Tools — ToolNextt</title>
+<link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script>
+</head><body>
+<div class="container">
+  <header class="header">
+    <div class="brand"><div class="logo">TN</div><div><div class="title">ToolNextt</div><div class="tag">All tools in one</div></div></div>
+    <nav class="nav"><a href="/">Home</a><a href="/pages/tools.html">Tools</a><a href="/pages/about.html">About</a><a href="/pages/contact.html">Contact</a></nav>
+    <div class="actions"><button id="themeToggle" class="icon-btn">☀️</button><button class="btn" onclick="location.href='/'">Home</button></div>
+  </header>
+
+  <section>
+    <h3>All Tools</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="toolSearch" class="input" placeholder="Search tools (e.g. QR, Image, PDF)" />
+      <select id="catFilter" class="input" style="width:180px">
+        <option value="">All Categories</option>
+        <option value="text">Text</option>
+        <option value="image">Image</option>
+        <option value="utility">Utility</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+
+    <div id="toolsGrid" class="tools-grid" style="margin-top:12px"></div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div style="display:flex;gap:12px;align-items:center"><div class="logo" style="width:48px;height:48px">TN</div><div><div style="font-weight:800">ToolNextt</div><div class="small">Fast • Free • Secure</div></div></div><p class="small" style="margin-top:12px">ToolNextt offers privacy-first tools that run in your browser.</p></div>
+      <div><h4>Quick Links</h4><div style="display:flex;flex-direction:column;gap:6px"><a href="/">Home</a><a href="/pages/tools.html">Tools</a><a href="/pages/about.html">About</a></div></div>
+      <div><h4>Popular</h4><div style="display:flex;flex-direction:column;gap:6px"><a href="/pages/email-generator.html">Email Generator</a><a href="/pages/image-compressor.html">Image Compressor</a></div></div>
+      <div><h4>Contact</h4><div style="margin-top:6px">Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></div></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const TOOLS = [
+  {id:'imgcomp',title:'Image Compressor',desc:'Compress images locally',cat:'image',url:'/pages/image-compressor.html'},
+  {id:'pdfmerge',title:'PDF Merger',desc:'Merge PDF files (server recommended)',cat:'utility',url:'/pages/pdf-merger.html'},
+  {id:'pwgen',title:'Password Generator',desc:'Strong random passwords',cat:'utility',url:'/pages/password-generator.html'},
+  {id:'qr',title:'QR Generator',desc:'Create QR codes',cat:'utility',url:'/pages/qr-generator.html'},
+  {id:'tts',title:'Text to Speech',desc:'Browser TTS',cat:'text',url:'/pages/text-to-speech.html'},
+  {id:'word-counter',title:'Word Counter',desc:'Count words & chars',cat:'text',url:'/pages/word-counter.html'},
+  {id:'caseconv',title:'Text Case Converter',desc:'Upper/Lower/Sentence',cat:'text',url:'/pages/text-case.html'},
+  {id:'char-counter',title:'Character Counter',desc:'Count characters',cat:'text',url:'/pages/char-counter.html'},
+  {id:'agecalc',title:'Age Calculator',desc:'Calculate exact age',cat:'utility',url:'/pages/age-calculator.html'},
+  {id:'emailgen',title:'Email Generator',desc:'Generate random emails',cat:'utility',url:'/pages/email-generator.html'},
+  {id:'currency',title:'Currency Converter',desc:'Live rates',cat:'advanced',url:'/pages/currency-converter.html'},
+  {id:'ocr',title:'Image → Text (OCR)',desc:'Extract text from image',cat:'advanced',url:'#'},
+  {id:'fileconv',title:'File Converter',desc:'Convert file types',cat:'advanced',url:'#'},
+  {id:'personal',title:'Personal Space',desc:'Save notes & images locally',cat:'utility',url:'/pages/personal-space.html'}
+];
+
+function renderTools(list){
+  const g = document.getElementById('toolsGrid');
+  g.innerHTML = list.map(t=>`<div class="card" onclick="location.href='${t.url}'"><div class="head"><div class="icon" style="background:linear-gradient(135deg,#667eea,#764ba2)"><i class="fa fa-tools"></i></div><div><div class="title">${t.title}</div><div class="desc">${t.desc}</div></div></div></div>`).join('');
+}
+document.getElementById('toolSearch').addEventListener('input', e=>{
+  const q = e.target.value.toLowerCase(); const cat = document.getElementById('catFilter').value;
+  const filtered = TOOLS.filter(t=> (t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)) && (cat? t.cat===cat:true) );
+  renderTools(filtered);
+});
+document.getElementById('catFilter').addEventListener('change', ()=> document.getElementById('toolSearch').dispatchEvent(new Event('input')));
+
+// init
+renderTools(TOOLS);
+</script>
+</body></html>
