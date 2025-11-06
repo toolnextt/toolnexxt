@@ -1,105 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ToolNextt - Free and Secure Online Tools like Word Counter, Image Compressor, QR Generator, and more.">
-  <title>ToolNextt | Free & Secure Online Tools</title>
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1069/1069130.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToolNextt – Free Online Tools</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e0c6e1b4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <header class="header">
-    <div class="logo">🧰 <span>ToolNextt</span></div>
-    <nav class="nav">
+  <header class="navbar">
+    <div class="logo">⚙️ ToolNextt</div>
+    <nav>
       <a href="#">Home</a>
       <a href="#tools">Tools</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="theme-toggle" class="theme-btn">🌙</button>
+    <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
   </header>
 
   <section class="hero">
     <div class="hero-text">
       <h1>All Your Everyday Tools in One Place</h1>
       <p>Fast • Free • Mobile Friendly • Secure</p>
-      <a href="#tools" class="btn">Start Using Tools</a>
+      <a href="#tools" class="btn-primary">Start Using Tools</a>
     </div>
     <div class="hero-img">
-      <img src="https://cdn3d.iconscout.com/3d/premium/thumb/online-tools-dashboard-3d-illustration-download-in-png-blend-fbx-gltf-file-formats--webapp-application-pack-design-development-illustrations-5117314.png" alt="Tools Illustration">
+      <img src="assets/icons/hero-graphic.png" alt="Tools Illustration">
     </div>
   </section>
 
-  <section id="tools" class="tools-section">
+  <section id="tools" class="tools-grid">
     <h2>Popular Tools</h2>
-    <div class="tools-grid">
-      <div class="tool-card"><h3>📝 Word Counter</h3><p>Count words, characters & sentences instantly.</p></div>
-      <div class="tool-card"><h3>🖼 Image Compressor</h3><p>Reduce image size easily without losing quality.</p></div>
-      <div class="tool-card"><h3>📄 PDF Tools</h3><p>Merge, split or compress your PDF files.</p></div>
-      <div class="tool-card"><h3>🔢 Age Calculator</h3><p>Calculate age instantly from date of birth.</p></div>
-      <div class="tool-card"><h3>💰 Currency Converter</h3><p>Convert any currency with real-time rates.</p></div>
-      <div class="tool-card"><h3>🔊 Text to Speech</h3><p>Convert your text to natural sounding speech.</p></div>
-      <div class="tool-card"><h3>📧 Email Generator</h3><p>Create random professional email addresses.</p></div>
-      <div class="tool-card"><h3>🧮 Unit Converter</h3><p>Convert metric, imperial and digital units.</p></div>
-      <div class="tool-card"><h3>🧾 QR Code Generator</h3><p>Create custom QR codes instantly (Free API).</p></div>
-      <div class="tool-card"><h3>🔒 Personal Space</h3><p>Store your text or images securely (local only).</p></div>
+    <div class="grid">
+      <div class="tool-card"><i class="fa-solid fa-text-width"></i><h3>Word Counter</h3><p>Count words, characters & sentences.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-image"></i><h3>Image Compressor</h3><p>Reduce image size easily without losing quality.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-file-pdf"></i><h3>PDF Tools</h3><p>Merge, split or compress PDF files.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-calculator"></i><h3>Age Calculator</h3><p>Find your exact age in years, months & days.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-envelope"></i><h3>Email Generator</h3><p>Generate random secure email addresses.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-coins"></i><h3>Currency Converter</h3><p>Convert currencies with live rates.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-volume-high"></i><h3>Text to Speech</h3><p>Convert text to natural speech instantly.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-qrcode"></i><h3>QR Code Generator</h3><p>Create QR codes instantly (free API).</p></div>
+      <div class="tool-card"><i class="fa-solid fa-database"></i><h3>Personal Space</h3><p>Upload & store your private text or images.</p></div>
+      <div class="tool-card"><i class="fa-solid fa-language"></i><h3>Translator</h3><p>Translate text between multiple languages.</p></div>
     </div>
   </section>
 
-  <section id="about" class="about">
-    <h2>About ToolNextt</h2>
-    <p>ToolNextt offers a compact set of secure, privacy-first web utilities that run directly in your browser — keeping your data private. No installations, no tracking — just fast, reliable tools.</p>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact & Support</h2>
-    <p>Have questions? Email us directly at <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></p>
-    <form>
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-
-    <div class="social">
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
-      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn"></a>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-grid">
+  <footer id="contact" class="footer">
+    <div class="footer-cols">
       <div>
-        <h3>ToolNextt</h3>
-        <p>Fast • Secure • Free</p>
-        <p>Privacy-first tools for all your daily tasks.</p>
+        <h3>About ToolNextt</h3>
+        <p>ToolNextt provides secure, free, and mobile-friendly online utilities. All tools work directly in your browser.</p>
       </div>
       <div>
-        <h4>Quick Links</h4>
-        <a href="#">Home</a>
-        <a href="#tools">All Tools</a>
-        <a href="#about">About</a>
+        <h3>Quick Links</h3>
+        <a href="#">Home</a><a href="#tools">All Tools</a><a href="#about">About</a><a href="#contact">Contact</a>
       </div>
       <div>
-        <h4>Support</h4>
-        <a href="#contact">Contact</a>
-        <a href="#">Privacy Policy</a>
+        <h3>Contact Us</h3>
+        <p>Email: <a href="mailto:toolnextt@gmail.com">toolnextt@gmail.com</a></p>
+        <div class="socials">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
       </div>
     </div>
-    <p class="copy">© 2025 ToolNextt — All Rights Reserved.</p>
+    <p class="footer-note">© 2025 ToolNextt • Fast • Free • Secure</p>
   </footer>
 
-  <script>
-    // Dark/Light Theme Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
-    });
-  </script>
+  <script src="assets/script.js"></script>
 </body>
 </html>
