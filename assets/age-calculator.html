@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Age Calculator — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header"><div class="brand"><div class="logo">TN</div><div><div class="title">ToolNextt</div><div class="tag">Age Calculator</div></div></div><nav class="nav"><a href="/">Home</a><a href="/pages/tools.html">Tools</a></nav><div class="actions"><button id="themeToggle" class="icon-btn">☀️</button><button class="btn" onclick="location.href='/pages/tools.html'">All Tools</button></div></header>
+
+  <section>
+    <h3>Age Calculator</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="dob" type="date" class="input" />
+      <button class="btn" id="calcBtn">Calculate</button>
+    </div>
+    <div id="ageResult" style="margin-top:12px;font-weight:700"></div>
+    <div style="margin-top:12px" class="small">Enter your date of birth to get exact years, months and days.</div>
+  </section>
+
+  <footer>...standard footer...</footer>
+</div>
+
+<script src="/assets/app.js" defer></script>
+<script>
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const v = document.getElementById('dob').value;
+  if(!v) return alert('Select date of birth');
+  const dob = new Date(v); const now=new Date();
+  let years=now.getFullYear()-dob.getFullYear(); let months=now.getMonth()-dob.getMonth(); let days=now.getDate()-dob.getDate();
+  if(days<0){ months--; days += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if(months<0){ years--; months+=12; }
+  document.getElementById('ageResult').textContent = `Age: ${years} years, ${months} months, ${days} days`;
+});
+</script>
+</body></html>
