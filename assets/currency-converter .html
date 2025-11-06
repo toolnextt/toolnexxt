@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Currency Converter — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Currency Converter</h3>
+    <div style="display:flex;gap:8px;align-items:center">
+      <input id="cur_amt" type="number" value="1" style="width:90px;padding:8px" />
+      <select id="cur_from" class="input" style="width:180px"></select>
+      <select id="cur_to" class="input" style="width:180px"></select>
+      <button class="btn" onclick="convertCurrency()">Convert</button>
+    </div>
+    <div id="cur_out" class="small muted" style="margin-top:10px"></div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+
+<script>
+async function initSymbols(){
+  try{
+    const r = await fetch('https://api.exchangerate.host/symbols'); const j = await r.json();
+    const symbols = j.symbols || {}; const keys = Object.keys(symbols);
+    const from = document.getElementById('cur_from'); const to = document.getElementById('cur_to');
+    from.innerHTML=''; to.innerHTML='';
+    ['USD','EUR','PKR','GBP','AED','INR'].forEach(c=>{ if(symbols[c]){ from.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${c}">${c} - ${symbols[c].description}</option>`); }});
+    keys.slice(0,20).forEach(k=>{ if(!['USD','EUR','PKR','GBP','AED','INR'].includes(k)) { from.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); to.insertAdjacentHTML('beforeend',`<option value="${k}">${k}</option>`); }});
+    from.value='USD'; to.value='PKR';
+  }catch(e){ document.getElementById('cur_out').textContent = 'Could not load currency symbols.'; }
+}
+async function convertCurrency(){
+  const amount = parseFloat(document.getElementById('cur_amt').value || 1);
+  const from = document.getElementById('cur_from').value; const to = document.getElementById('cur_to').value;
+  if(!from || !to) return alert('Select currencies');
+  document.getElementById('cur_out').textContent = 'Converting...';
+  try{
+    const r = await fetch(`https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amount}`);
+    const j = await r.json();
+    if(j.result !== undefined) document.getElementById('cur_out').textContent = `${amount} ${from} = ${j.result} ${to} (Rate: ${j.info.rate})`;
+    else document.getElementById('cur_out').textContent = 'Conversion failed.';
+  }catch(e){ document.getElementById('cur_out').textContent = 'Network error'; }
+}
+window.addEventListener('load', initSymbols);
+</script>
+</body></html>
