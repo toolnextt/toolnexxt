@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Text to Speech — ToolNextt</title><link rel="stylesheet" href="/assets/style.css"/><script defer src="/assets/app.js"></script></head><body>
+<div class="container">
+  <header class="header">...standard header...</header>
+  <section>
+    <h3>Text to Speech</h3>
+    <textarea id="tts_text" style="width:100%;min-height:140px;padding:12px;border-radius:8px;border:1px solid var(--glass-border)"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+      <select id="tts_voice" style="padding:8px;border-radius:8px"></select>
+      <select id="tts_rate" style="padding:8px;border-radius:8px"><option value="0.8">Slow</option><option value="1" selected>Normal</option><option value="1.4">Fast</option></select>
+      <button class="btn" onclick="playTTS()">Play</button>
+      <button class="btn ghost" onclick="stopTTS()">Stop</button>
+    </div>
+  </section>
+  <footer>...standard footer...</footer>
+</div>
+<script src="/assets/app.js" defer></script>
+<script>
+let synth = window.speechSynthesis;
+let utterance = null;
+function populateVoices(selectId){
+  const sel = document.getElementById(selectId);
+  if(!sel) return;
+  sel.innerHTML = '';
+  const voices = synth.getVoices();
+  if(!voices.length){ setTimeout(()=>populateVoices(selectId),200); return; }
+  voices.forEach(v=>{ const o=document.createElement('option'); o.value=v.name; o.textContent = `${v.name} ${v.lang? '('+v.lang+')':''}`; sel.appendChild(o); });
+}
+function playTTS(){
+  stopTTS();
+  const txt = document.getElementById('tts_text').value || '';
+  if(!txt.trim()){ alert('Enter text to play'); return; }
+  utterance = new SpeechSynthesisUtterance(txt);
+  const selName = document.getElementById('tts_voice')?.value;
+  const voices = synth.getVoices();
+  if(selName){ const v = voices.find(x=>x.name===selName); if(v) utterance.voice = v; }
+  utterance.rate = parseFloat(document.getElementById('tts_rate').value || 1);
+  synth.speak(utterance);
+}
+function stopTTS(){ if(synth && synth.speaking) synth.cancel(); }
+window.addEventListener('load', ()=> populateVoices('tts_voice'));
+</script>
+</body></html>
